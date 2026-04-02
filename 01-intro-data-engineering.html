@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -201,8 +221,15 @@ ul.task-list li input[type="checkbox"] {
 <p>This notebook summarizes the data engineering lifecycle, and emphasizes the components covered in DATA_ENG 300.</p>
 <section id="data-engineering-lifecycle" class="level2">
 <h2 class="anchored" data-anchor-id="data-engineering-lifecycle">Data Engineering Lifecycle</h2>
-<p>Reis, J., &amp; Housley, M. (2022) describes the data engineering lifecycle with five main stages:<br>
-- Generation - Storage - Ingestion - Transformation - Serving data</p>
+<p><span class="citation" data-cites="reis2022fundamentals">Reis and Housley (<a href="99-references.html#ref-reis2022fundamentals" role="doc-biblioref">2022</a>)</span> describes the data engineering lifecycle with five main stages:</p>
+<ul>
+<li>Generation</li>
+<li>Storage</li>
+<li>Ingestion</li>
+<li>Transformation</li>
+<li>Serving data</li>
+</ul>
+<p>. . .</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -211,11 +238,10 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">Data engineering lifecycle components (Reis, J., &amp; Housley, M. (2022))</td>
+<td style="text-align: center;">Data engineering lifecycle components <span class="citation" data-cites="reis2022fundamentals">Reis and Housley (<a href="99-references.html#ref-reis2022fundamentals" role="doc-biblioref">2022</a>)</span></td>
 </tr>
 </tbody>
 </table>
-<p>```</p>
 </section>
 <section id="preparation-for-next-week" class="level2">
 <h2 class="anchored" data-anchor-id="preparation-for-next-week">Preparation for next week</h2>
@@ -226,6 +252,11 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-reis2022fundamentals" class="csl-entry" role="listitem">
+Reis, Joe, and Matt Housley. 2022. <em>Fundamentals of Data Engineering</em>. O’Reilly Media, Inc.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

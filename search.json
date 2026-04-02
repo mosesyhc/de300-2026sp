@@ -44,7 +44,7 @@
     "href": "index.html#communications",
     "title": "DATA_ENG 300: Data Engineering Studio",
     "section": "Communications",
-    "text": "Communications\nCanvas, where the syllabus, class announcements, exams, notes, and assignments are posted.\nEmails should lead with a title including DE300, followed by the matter of concern. Formal communications should be directed to emails, e.g., accommodation, progress discussion. The teaching team observes a 24-workhour response policy.",
+    "text": "Communications\nCanvas, where the syllabus, class announcements, exams, notes, and assignments are posted.\nPiazza, where questions and discussions are directed.\nEmails should lead with a title including DE300, followed by the matter of concern. Formal communications should be directed to emails, e.g., accommodation, progress discussion. The teaching team observes a 24-workhour response policy.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>DATA_ENG 300: Data Engineering Studio</span>"
     ]
@@ -104,7 +104,7 @@
     "href": "01-intro-data-engineering.html",
     "title": "Introduction to Data Engineering",
     "section": "",
-    "text": "Data Engineering Lifecycle\nThis notebook summarizes the data engineering lifecycle, and emphasizes the components covered in DATA_ENG 300.\nReis, J., & Housley, M. (2022) describes the data engineering lifecycle with five main stages:\n- Generation - Storage - Ingestion - Transformation - Serving data\n```",
+    "text": "Data Engineering Lifecycle\nThis notebook summarizes the data engineering lifecycle, and emphasizes the components covered in DATA_ENG 300.\nReis and Housley (2022) describes the data engineering lifecycle with five main stages:\n. . .",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Data Engineering</span>"
     ]
@@ -114,7 +114,7 @@
     "href": "01-intro-data-engineering.html#data-engineering-lifecycle",
     "title": "Introduction to Data Engineering",
     "section": "",
-    "text": "Data engineering lifecycle components (Reis, J., & Housley, M. (2022))",
+    "text": "Generation\nStorage\nIngestion\nTransformation\nServing data\n\n\n\n\n\n\n\n\n\n\nData engineering lifecycle components Reis and Housley (2022)",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Data Engineering</span>"
     ]
@@ -124,7 +124,7 @@
     "href": "01-intro-data-engineering.html#preparation-for-next-week",
     "title": "Introduction to Data Engineering",
     "section": "Preparation for next week",
-    "text": "Preparation for next week\n\nLabs are on Tuesdays 4 - 6PM\nFamiliarize with Github (if you have not, register for an account.)\nFamiliarize with colab / jupyter notebook",
+    "text": "Preparation for next week\n\nLabs are on Tuesdays 4 - 6PM\nFamiliarize with Github (if you have not, register for an account.)\nFamiliarize with colab / jupyter notebook\n\n\n\n\n\nReis, Joe, and Matt Housley. 2022. Fundamentals of Data Engineering. O’Reilly Media, Inc.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Data Engineering</span>"
     ]
