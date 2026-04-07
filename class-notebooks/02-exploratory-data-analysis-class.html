@@ -59,14 +59,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../class-notebooks/03-missing-data-class.html" rel="next">
+<link href="../notes/02-exploratory-data-analysis-complete.html" rel="next">
 <link href="../01-intro-data-engineering.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -106,6 +106,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -166,6 +169,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../class-notebooks/02-exploratory-data-analysis-class.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Intro to EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/02-exploratory-data-analysis-complete.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Intro to EDA, filled</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -312,10 +320,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 <li>Potential data quality issues, e.g., inconsistency, special NA characters</li>
 </ol>
-<div id="82a89846-bdfa-404d-83d8-89d6d4974c40" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[]" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="a8d44c68" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install pandas seaborn matplotlib</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="82a89846-bdfa-404d-83d8-89d6d4974c40" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <table class="caption-top table">
 <thead>
@@ -333,80 +344,415 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="earthquake-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="earthquake-dataset">Earthquake dataset</h2>
 <p><a href="https://open.canada.ca/data/en/dataset/2c3672b6-4c17-4ff5-9861-29e2dd6d03b3/resource/9cfea46f-561a-440f-9d17-fed3557fc7b5">Source Link</a></p>
-<div id="10f6ca64-3a40-44ab-8de2-19f0408b1c90" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load and save a copy of the earthquake dataset</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>earthquake <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/mosesyhc/de300-2026wi/refs/heads/main/datasets/Canadian-Earthquakes-2010-2019.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="10f6ca64-3a40-44ab-8de2-19f0408b1c90" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load and save a copy of the earthquake dataset</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>earthquake <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/mosesyhc/de300-2026wi/refs/heads/main/datasets/Canadian-Earthquakes-2010-2019.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="d51255a4-9ca2-42e1-bfe3-73bef38541fd" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># take a glimpse of the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># take a glimpse of the data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>earthquake.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">magnitude_codelist</th>
+<th data-quarto-table-cell-role="th">magnitude</th>
+<th data-quarto-table-cell-role="th">magnitude_type</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">place</th>
+<th data-quarto-table-cell-role="th">depth</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">OBJECTID</th>
+<th data-quarto-table-cell-role="th">longitude_geom</th>
+<th data-quarto-table-cell-role="th">latitude_geom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>&lt;2</td>
+<td>1.7</td>
+<td>ML</td>
+<td>2010-01-01T00:16:49+0000</td>
+<td>81 km NE&nbsp;&nbsp;of Seattle</td>
+<td>0.0</td>
+<td>48.192001</td>
+<td>-121.677002</td>
+<td>1</td>
+<td>-121.677315</td>
+<td>48.191706</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>2.2</td>
+<td>MN</td>
+<td>2010-01-01T00:52:50+0000</td>
+<td>86 km NW from Maniwaki</td>
+<td>18.0</td>
+<td>47.028999</td>
+<td>-76.583000</td>
+<td>2</td>
+<td>-76.583303</td>
+<td>47.028909</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>&lt;2</td>
+<td>1.8</td>
+<td>MN</td>
+<td>2010-01-01T03:21:58+0000</td>
+<td>21 km NW from Mont-Laurier</td>
+<td>18.0</td>
+<td>46.651001</td>
+<td>-75.734001</td>
+<td>3</td>
+<td>-75.733902</td>
+<td>46.650809</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>&lt;2</td>
+<td>1.5</td>
+<td>MN</td>
+<td>2010-01-01T04:14:51+0000</td>
+<td>CHARLEVOIX SEISMIC ZONE</td>
+<td>13.0</td>
+<td>47.740002</td>
+<td>-69.741997</td>
+<td>4</td>
+<td>-69.742000</td>
+<td>47.740210</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>&lt;2</td>
+<td>1.6</td>
+<td>ML</td>
+<td>2010-01-01T04:15:17+0000</td>
+<td>83 km W&nbsp;&nbsp; of Gold R.</td>
+<td>11.6</td>
+<td>49.500999</td>
+<td>-127.222000</td>
+<td>5</td>
+<td>-127.222216</td>
+<td>49.500705</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <div id="86f129d4-4d81-42db-9769-1b8d02d60291" class="cell" data-editable="true" data-scrolled="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view a summary of the full data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view a summary of the full data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>earthquake.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+RangeIndex: 44561 entries, 0 to 44560
+Data columns (total 11 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   magnitude_codelist  44561 non-null  str    
+ 1   magnitude           44561 non-null  float64
+ 2   magnitude_type      44462 non-null  str    
+ 3   date                44561 non-null  str    
+ 4   place               44561 non-null  str    
+ 5   depth               44561 non-null  float64
+ 6   latitude            44561 non-null  float64
+ 7   longitude           44561 non-null  float64
+ 8   OBJECTID            44561 non-null  int64  
+ 9   longitude_geom      44561 non-null  float64
+ 10  latitude_geom       44561 non-null  float64
+dtypes: float64(6), int64(1), str(4)
+memory usage: 5.8 MB</code></pre>
+</div>
 </div>
 <div id="d82f93a5-351a-48cf-a979-516893c1aff0" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checks for duplicates (also ask if duplicates make sense)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checks for duplicates (also ask if duplicates make sense)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>earthquake.duplicated()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># .loc / .iloc</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>0        False
+1        False
+2        False
+3        False
+4        False
+         ...  
+44556    False
+44557    False
+44558    False
+44559    False
+44560    False
+Length: 44561, dtype: bool</code></pre>
+</div>
 </div>
 <div id="68b170c2-9fbd-4742-80e9-2e272895983b" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># duplicates</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># duplicates</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="a289329c-3672-4182-ac50-3ef60fcb5a34" class="cell" data-editable="true" data-scrolled="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a quick numerical summary </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a quick numerical summary </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>earthquake.describe(include<span class="op">=</span><span class="st">'all'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">magnitude_codelist</th>
+<th data-quarto-table-cell-role="th">magnitude</th>
+<th data-quarto-table-cell-role="th">magnitude_type</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">place</th>
+<th data-quarto-table-cell-role="th">depth</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">OBJECTID</th>
+<th data-quarto-table-cell-role="th">longitude_geom</th>
+<th data-quarto-table-cell-role="th">latitude_geom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">count</th>
+<td>44561</td>
+<td>44561.000000</td>
+<td>44462</td>
+<td>44561</td>
+<td>44561</td>
+<td>44561.000000</td>
+<td>44561.000000</td>
+<td>44561.000000</td>
+<td>44561.000000</td>
+<td>44561.000000</td>
+<td>44561.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">unique</th>
+<td>6</td>
+<td>NaN</td>
+<td>7</td>
+<td>44481</td>
+<td>18639</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">top</th>
+<td>&lt;2</td>
+<td>NaN</td>
+<td>ML</td>
+<td>2018-07-02T04:08:13+0000</td>
+<td>CHARLEVOIX SEISMIC ZONE</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">freq</th>
+<td>19764</td>
+<td>NaN</td>
+<td>29509</td>
+<td>3</td>
+<td>1250</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">mean</th>
+<td>NaN</td>
+<td>2.134070</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>12.852194</td>
+<td>53.351863</td>
+<td>-118.953322</td>
+<td>22281.000000</td>
+<td>-118.953299</td>
+<td>53.351830</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">std</th>
+<td>NaN</td>
+<td>0.828096</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>9.963145</td>
+<td>6.214464</td>
+<td>23.696484</td>
+<td>12863.797009</td>
+<td>23.696493</td>
+<td>6.214465</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">min</th>
+<td>NaN</td>
+<td>-1.400000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>-0.500000</td>
+<td>40.808998</td>
+<td>-148.811005</td>
+<td>1.000000</td>
+<td>-148.810526</td>
+<td>40.808509</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">25%</th>
+<td>NaN</td>
+<td>1.600000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>5.000000</td>
+<td>49.169998</td>
+<td>-132.427994</td>
+<td>11141.000000</td>
+<td>-132.427618</td>
+<td>49.170009</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">50%</th>
+<td>NaN</td>
+<td>2.100000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>10.000000</td>
+<td>52.137001</td>
+<td>-129.671997</td>
+<td>22281.000000</td>
+<td>-129.672016</td>
+<td>52.136507</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">75%</th>
+<td>NaN</td>
+<td>2.700000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>18.000000</td>
+<td>56.514999</td>
+<td>-121.947998</td>
+<td>33421.000000</td>
+<td>-121.948318</td>
+<td>56.515206</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">max</th>
+<td>NaN</td>
+<td>7.700000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>214.000000</td>
+<td>82.608002</td>
+<td>-39.320000</td>
+<td>44561.000000</td>
+<td>-39.319968</td>
+<td>82.607812</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <div id="00afe82f-09eb-4803-9bfe-4d3e6fca0a48" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checks for possible statistical assumption(s)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> sps</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checks for possible statistical assumption(s)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> sps</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>sps.normaltest(earthquake[<span class="st">'magnitude'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>NormaltestResult(statistic=np.float64(1597.6658124732553), pvalue=np.float64(0.0))</code></pre>
+</div>
 </div>
 <div id="29725215-c4f8-406c-af9e-82592efdac6f" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract only numeric variables</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract only numeric variables</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>earthquake</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="83527a55-fe9f-46f1-a30e-e552fdb0fe57" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for example, normality test</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for example, normality test</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sps.shapiro(earthquake[<span class="st">'magnitude'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\moses\AppData\Local\Programs\Python\Python312\Lib\site-packages\scipy\stats\_axis_nan_policy.py:592: UserWarning: scipy.stats.shapiro: For N &gt; 5000, computed p-value may not be accurate. Current N is 44561.
+  res = hypotest_fun_out(*samples, **kwds)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>ShapiroResult(statistic=np.float64(0.9877396508026011), pvalue=np.float64(1.179774985585813e-49))</code></pre>
+</div>
 </div>
 <div id="e55e4a50-9ec3-401f-87df-95cb6715dc5d" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for example, another normality test</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for example, another normality test</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="dac905eb-c0f5-4f35-b772-385e822f5465" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pairwise correlation</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pairwise correlation</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>earthquake_num <span class="op">=</span> earthquake.select_dtypes(<span class="st">'number'</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>np.corrcoef(earthquake_num.iloc[:<span class="dv">500</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="data-visualization">Data visualization</h2>
 <div id="fc415625-04a8-41d9-8bc3-c73a19144026" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(context<span class="op">=</span><span class="st">'talk'</span>, style<span class="op">=</span><span class="st">'ticks'</span>)  <span class="co"># simply for aesthetics</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sns.set_palette(<span class="st">'magma'</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># earthquake = earthquake.sample(n=500)  # (if too slow) for illustration purposes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(context<span class="op">=</span><span class="st">'talk'</span>, style<span class="op">=</span><span class="st">'ticks'</span>)  <span class="co"># simply for aesthetics</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sns.set_palette(<span class="st">'magma'</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># earthquake = earthquake.sample(n=500)  # (if too slow) for illustration purposes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="3f63be58-3bdb-416f-ad86-158ba7d0eab2" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram for continuous variables using pandas built-in plots </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram for continuous variables using pandas built-in plots </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="dac34314-b559-47e2-9274-1f5df09d31ce" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># relative frequency? ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># relative frequency? ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="a4dbf50a-df4d-4b52-9f19-b038872f775a" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram of masses by group</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram of masses by group</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="81457e61-b8d2-4e50-ac1b-cfa8c81de15e" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># other types of plots</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># other types of plots</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="95be9d60-1f2b-41a0-b1a6-1e3b2d3ef407" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># counts for categorical variables</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># counts for categorical variables</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="bd1504e9-ad84-40e4-b668-97c792ddaad2" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># barplots by group</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># barplots by group</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="0c006fb4-daaa-4cdd-8135-133382bc9ace" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bivariate plots</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bivariate plots</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fe7741b0-6132-473c-b6b8-a76325d15cf1" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bivariate plots (log-log)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bivariate plots (log-log)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="8e1fe0c8-3c3e-46fc-904d-fc87deb61dac" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pairwise plots  (time-consuming)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pairwise plots  (time-consuming)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="6680e377-c999-4f4d-8f05-576a0f1ac7ae" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># another pairwise plot by group</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># another pairwise plot by group</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="in-class-activity" class="level2">
@@ -887,8 +1233,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../class-notebooks/03-missing-data-class.html" class="pagination-link" aria-label="Handling missing data">
-        <span class="nav-page-text"><span class="chapter-title">Handling missing data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../notes/02-exploratory-data-analysis-complete.html" class="pagination-link" aria-label="Intro to EDA, filled">
+        <span class="nav-page-text"><span class="chapter-title">Intro to EDA, filled</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
