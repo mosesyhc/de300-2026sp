@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project Specification – DATA_ENG 300: Data Engineering Studio</title>
+<title>Resilient distributed datasets – DATA_ENG 300: Data Engineering Studio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./a1-presentation-rubric.html" rel="next">
-<link href="./06-rdd.html" rel="prev">
+<link href="./a0-project-specification.html" rel="next">
+<link href="./05-spark.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -83,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a0-project-specification.html">Project</a></li><li class="breadcrumb-item"><a href="./a0-project-specification.html"><span class="chapter-title">Project Specification</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-spark.html">Parallelization of computing</a></li><li class="breadcrumb-item"><a href="./06-rdd.html"><span class="chapter-title">Resilient distributed datasets</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -170,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-rdd.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Resilient distributed datasets</span></a>
+  <a href="./06-rdd.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Resilient distributed datasets</span></a>
   </div>
 </li>
       </ul>
@@ -186,7 +221,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./a0-project-specification.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Project Specification</span></a>
+  <a href="./a0-project-specification.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Project Specification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -233,25 +268,23 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#group-formation" id="toc-group-formation" class="nav-link active" data-scroll-target="#group-formation">Group formation</a></li>
-  <li><a href="#project-grading" id="toc-project-grading" class="nav-link" data-scroll-target="#project-grading">Project grading</a></li>
-  <li><a href="#project-proposal" id="toc-project-proposal" class="nav-link" data-scroll-target="#project-proposal">Project proposal</a>
+  <li><a href="#what-is-rdd" id="toc-what-is-rdd" class="nav-link active" data-scroll-target="#what-is-rdd">What is RDD?</a></li>
+  <li><a href="#why-rdd-if-we-have-dataframes" id="toc-why-rdd-if-we-have-dataframes" class="nav-link" data-scroll-target="#why-rdd-if-we-have-dataframes">Why RDD if we have dataframes?</a></li>
+  <li><a href="#main-ingredients-of-rdd-manipulation" id="toc-main-ingredients-of-rdd-manipulation" class="nav-link" data-scroll-target="#main-ingredients-of-rdd-manipulation">Main ingredients of RDD manipulation</a>
   <ul class="collapse">
-  <li><a href="#guidelines-for-proposal" id="toc-guidelines-for-proposal" class="nav-link" data-scroll-target="#guidelines-for-proposal">Guidelines for proposal</a></li>
+  <li><a href="#map-through-an-example" id="toc-map-through-an-example" class="nav-link" data-scroll-target="#map-through-an-example"><code>map</code> through an example</a></li>
+  <li><a href="#filter-through-an-example" id="toc-filter-through-an-example" class="nav-link" data-scroll-target="#filter-through-an-example"><code>filter</code> through an example</a></li>
+  <li><a href="#reduce-through-an-example" id="toc-reduce-through-an-example" class="nav-link" data-scroll-target="#reduce-through-an-example"><code>reduce</code> through an example</a></li>
   </ul></li>
-  <li><a href="#potential-data-sources" id="toc-potential-data-sources" class="nav-link" data-scroll-target="#potential-data-sources">Potential data sources</a></li>
-  <li><a href="#project-check-up" id="toc-project-check-up" class="nav-link" data-scroll-target="#project-check-up">Project check-up</a></li>
-  <li><a href="#presentation" id="toc-presentation" class="nav-link" data-scroll-target="#presentation">Presentation</a></li>
-  <li><a href="#report" id="toc-report" class="nav-link" data-scroll-target="#report">Report</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a0-project-specification.html">Project</a></li><li class="breadcrumb-item"><a href="./a0-project-specification.html"><span class="chapter-title">Project Specification</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-spark.html">Parallelization of computing</a></li><li class="breadcrumb-item"><a href="./06-rdd.html"><span class="chapter-title">Resilient distributed datasets</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Project Specification</span></h1>
+<h1 class="title"><span class="chapter-title">Resilient distributed datasets</span></h1>
 </div>
 
 
@@ -268,195 +301,200 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="group-formation" class="level2">
-<h2 class="anchored" data-anchor-id="group-formation">Group formation</h2>
-<p>The project group may consist of up to 3 students.</p>
+<p>Resilient distributed datasets, or <em>RDD</em>s, are the fundamental blocks in PySpark.</p>
+<section id="what-is-rdd" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-rdd">What is RDD?</h2>
+<p>RDD is essentially a collection of unordered objects,</p>
+<ul>
+<li>or a mathematical <em>set</em>,</li>
+<li>or a Python list of objects,</li>
+<li>or similar to a JSON.</li>
+</ul>
+<div id="2215afa3" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"JAVA_HOME"</span>] <span class="op">=</span> <span class="vs">r"C:</span><span class="er">\</span><span class="vs">Program Files</span><span class="er">\</span><span class="vs">Java</span><span class="er">\</span><span class="vs">jdk-24"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"SPARK_HOME"</span>] <span class="op">=</span> <span class="vs">r"C:</span><span class="er">\</span><span class="vs">Program Files</span><span class="dv">\S</span><span class="vs">park</span><span class="dv">\s</span><span class="vs">park-4</span><span class="dv">.</span><span class="vs">1</span><span class="dv">.</span><span class="vs">1-bin-hadoop3"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="3d80b60d-935c-41a1-b28a-03ac73accf41" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> SparkSession.builder.getOrCreate()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>collection <span class="op">=</span> [<span class="dv">1</span>, <span class="st">"two"</span>, <span class="fl">3.0</span>, (<span class="st">"four"</span>, <span class="dv">4</span>), {<span class="st">"five"</span>: <span class="dv">5</span>}]  <span class="co"># generic list</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> spark.sparkContext</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>collection_rdd <span class="op">=</span> sc.parallelize(collection)  <span class="co"># list promoted to RDD</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(collection_rdd)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ParallelCollectionRDD[0] at readRDDFromFile at PythonRDD.scala:299</code></pre>
+</div>
+</div>
+<div id="a9c2ade2-a513-4c43-9d22-c509b2be2093" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>collection_rdd.collect()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
-<section id="project-grading" class="level2">
-<h2 class="anchored" data-anchor-id="project-grading">Project grading</h2>
-<p>The project is worth 35% of the class grade, with the following details:</p>
+<section id="why-rdd-if-we-have-dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="why-rdd-if-we-have-dataframes">Why RDD if we have dataframes?</h2>
+<ul>
+<li>If the data at hand are more <em>freeformed</em>, using an RDD allows for storage of various types of objects.</li>
+<li>Compared to dataframe, which will <em>attempt</em> (and fail) to find a common denominator to fit the data above.</li>
+</ul>
+</section>
+<section id="main-ingredients-of-rdd-manipulation" class="level2">
+<h2 class="anchored" data-anchor-id="main-ingredients-of-rdd-manipulation">Main ingredients of RDD manipulation</h2>
+<p>We cover three main building blocks for using RDDs, inheriting the concept of a MapReduce scheme.</p>
+<p>Each of the following building blocks (<em>functions</em>) takes a functional input:</p>
+<ul>
+<li><code>map()</code></li>
+<li><code>filter()</code></li>
+<li><code>reduce()</code></li>
+</ul>
+<section id="map-through-an-example" class="level3">
+<h3 class="anchored" data-anchor-id="map-through-an-example"><code>map</code> through an example</h3>
+<p><code>map()</code> applies the given function to each element of the RDD.</p>
+<div id="312efecc-4e1a-4291-8eba-003b9ac9062f" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> py4j.protocol <span class="im">import</span> Py4JJavaError</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_one(value):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> value <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>collection_rdd_p1 <span class="op">=</span> collection_rdd.<span class="bu">map</span>(add_one)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="59b073c6-1b0d-4ee2-a0b2-2e27ee90dfc6" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>: </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(collection_rdd_p1.collect())</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> Py4JJavaError <span class="im">as</span> e:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(e)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># You'll get one of the following:</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># TypeError: can only concatenate str (not "int") to str</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># TypeError: unsupported operand type(s) for +: 'dict' and 'int'</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># TypeError: can only concatenate tuple (not "int") to tuple</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="img/rdd-map.png" class="img-fluid" alt="rdd-map"></th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td style="text-align: center;"><strong>Due date</strong></td>
-<td style="text-align: center;"><strong>Proportion (%)</strong></td>
+<td style="text-align: center;">Applying <code>add_one()</code> to each element of RDD through <code>map()</code> (Fig 8.2 in Rioux, 2022).</td>
 </tr>
-<tr class="even">
-<td>Proposal</td>
-<td style="text-align: center;">May 5</td>
-<td style="text-align: center;">10</td>
+</tbody>
+</table>
+<p><strong>Quick note:</strong></p>
+<ul>
+<li>Why did the line throw an error?</li>
+<li>When was the error thrown?</li>
+</ul>
+<p><strong>A potential fix:</strong></p>
+<div id="69a233c8-6d1c-44d2-9412-e47fa06cfe64" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> safer_add_one(value):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> value <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">TypeError</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> value</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>collection_rdd_p1_again <span class="op">=</span> collection_rdd.<span class="bu">map</span>(safer_add_one)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Lesson here</strong>:</p>
+<ul>
+<li>PySpark does not warn you about the content of the RDD.</li>
+<li>As the developer, we are responsible for how to deal with the data given to an RDD.</li>
+</ul>
+</section>
+<section id="filter-through-an-example" class="level3">
+<h3 class="anchored" data-anchor-id="filter-through-an-example"><code>filter</code> through an example</h3>
+<p><code>filter()</code> takes a function that returns <code>True</code>/<code>False</code> based on any conditions.</p>
+<div id="dbfff441-752b-49a4-8654-e6e073be1495" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>collection_rdd_filter <span class="op">=</span> collection_rdd.<span class="bu">filter</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> elem: <span class="bu">isinstance</span>(elem, (<span class="bu">float</span>, <span class="bu">int</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="371e7767-2713-40ec-9618-7212ca4496de" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print(collection_rdd_filter.collect())</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="img/rdd-filter.png" class="img-fluid" alt="rdd-filter"></th>
 </tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td>Check-up</td>
-<td style="text-align: center;">May 19</td>
-<td style="text-align: center;">10</td>
+<td style="text-align: center;">Applying <code>filter()</code> to the RDD (Fig 8.3 in Rioux, 2022).</td>
 </tr>
-<tr class="even">
-<td>Presentation</td>
-<td style="text-align: center;">June 2 and 4</td>
-<td style="text-align: center;">25</td>
+</tbody>
+</table>
+<p><strong>A word about <code>lambda</code> function</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="img/rdd-lambda.png" class="img-fluid" alt="rdd-lambda"></th>
 </tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td>Report</td>
-<td style="text-align: center;">June 10</td>
-<td style="text-align: center;">45</td>
-</tr>
-<tr class="even">
-<td>Peer experience summary</td>
-<td style="text-align: center;">June 10</td>
-<td style="text-align: center;">10</td>
-</tr>
-<tr class="odd">
-<td><strong>Total</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">100</td>
+<td style="text-align: center;">The use of <code>lambda</code> function (Rioux, 2022).</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="project-proposal" class="level2">
-<h2 class="anchored" data-anchor-id="project-proposal">Project proposal</h2>
-<p>Develop a proposal that includes your topic, the selection of relevant dataset(s), and a plan to answer questions of interests. Keep in mind the timeline of the quarter and set achievable goals.</p>
-<section id="guidelines-for-proposal" class="level3">
-<h3 class="anchored" data-anchor-id="guidelines-for-proposal">Guidelines for proposal</h3>
-<p>Review the guidelines below carefully.</p>
-<p><strong>Overarching theme:</strong> Design a data process that involves ingesting data, preprocessing, analysis, and service. Consider a process that can scale and can be reused given data update.</p>
-<p>The proposal should follow this format (5 points):</p>
+<section id="reduce-through-an-example" class="level3">
+<h3 class="anchored" data-anchor-id="reduce-through-an-example"><code>reduce</code> through an example</h3>
+<p><code>reduce()</code> summarizes the RDD by sequentially applying the given function.</p>
 <ul>
-<li>Include full names of all teammates.</li>
-<li>Between 1 to 2 pages, single-spaced, 11-point type, 1-inch margins.</li>
-<li>Do not include graphics.</li>
-<li>Decide on the name of your group. A pdf named <code>[GroupName]_proposal.pdf</code> should be submitted.</li>
+<li>similar to <code>groupby()</code> in a dataframe.</li>
 </ul>
-<p>The proposal should cover the following components (but in a narrative format, not Q/A):</p>
+<div id="4d8b2328-9c01-4cb3-83a9-e5f076098071" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> add</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>collection_rdd2 <span class="op">=</span> sc.parallelize([<span class="dv">4</span>, <span class="dv">7</span>, <span class="fl">9.2</span>, <span class="fl">5.6</span>, <span class="op">-</span><span class="dv">20</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="4ec95197-9069-4685-ad01-1320955448f5" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>collection_rdd2.<span class="bu">reduce</span>(add)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="38c173fb-a37c-4eea-b451-67cdc081adab" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># collection_rdd2.reduce(</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     lambda a, b: a + b</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="img/rdd-reduce.png" class="img-fluid" alt="rdd-reduce"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Applying <code>add</code> through <code>reduce()</code> to the RDD (Fig 8.4 in Rioux, 2022).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Warnings about <code>reduce()</code></strong></p>
 <ul>
-<li><strong>Introduction</strong> (12 points): Introduce your project and motivation, e.g.,
-<ul>
-<li>What is the main issue you are interested in?</li>
-<li>Why is this topic important?</li>
-<li>In what way does this project provide a solution?</li>
-</ul></li>
-<li><strong>Data source(s)</strong> (10 points): Describe the data sources you have chosen, e.g.,
-<ul>
-<li>How can the data be retrieved?</li>
-<li>How are the data related to the topic?</li>
-<li>State the amount of data you will be working with.</li>
-</ul></li>
-<li><strong>Goal definitions</strong> (18 points): State two to three goals you are interested in achieving with the selected data sources.<br>
-As you tackle the goals, you should use <strong>at least one</strong> of the data engineering techniques covered in class:
-<ul>
-<li>Missing data imputation</li>
-<li>Database system (relational or non-relational)</li>
-<li>Distributed computing framework (e.g., pyspark)<br>
-For each goal, answer the following:</li>
-<li>How do you intend to achieve your goal?</li>
-<li>How do you intend to use the above techniques?</li>
-<li>What can you answer (and not answer) with the proposed datasets?</li>
-</ul></li>
-<li><strong>Reference</strong> (5 points): Provide valid references for your data source(s). (Reference does not count toward the page limit.)
-<ul>
-<li>For example, using APA guidelines, the MIMIC-III database can be cited as &gt; Johnson, A., Pollard, T., &amp; Mark, R. (2016). MIMIC-III Clinical Database (version 1.4). <em>PhysioNet</em>. https://doi.org/10.13026/C2XW26.</li>
-<li>or the original article &gt; Johnson, A. E., Pollard, T. J., Shen, L., Lehman, L. W. H., Feng, M., Ghassemi, M., … &amp; Mark, R. G. (2016). MIMIC-III, a freely accessible critical care database. <em>Scientific data</em>, 3(1), 1-9.</li>
-</ul></li>
+<li>What functions are reasonable for <code>reduce()</code>?</li>
+<li><em>commutative operation</em></li>
+<li><em>associative operation</em></li>
 </ul>
-</section>
-</section>
-<section id="potential-data-sources" class="level2">
-<h2 class="anchored" data-anchor-id="potential-data-sources">Potential data sources</h2>
-<p>Below are some possible avenues for finding data sources:</p>
-<ul>
-<li><a href="https://datasetsearch.research.google.com/">Google dataset search</a></li>
-<li><a href="https://github.com/awesomedata/awesome-public-datasets">Awesome public datasets</a></li>
-<li><a href="https://github.com/BuzzFeedNews/everything">BuzzFeed news repository</a></li>
-<li><a href="https://github.com/sisinflab/DataRec">Recommendation systems reference</a></li>
-<li><a href="https://challenge.ey.com">Open data challenge</a></li>
-</ul>
-</section>
-<section id="project-check-up" class="level2">
-<h2 class="anchored" data-anchor-id="project-check-up">Project check-up</h2>
-<p>Two elements are required for the project check-up:</p>
-<ol type="1">
-<li><strong>Group, submitted on Canvas as a pdf.</strong> (30 points)
-<ul>
-<li>For each of your set goals in the proposal, provide a brief summary of progress. <em>If you have not worked on a particular goal yet, feel free to say that you have not made progress there.</em></li>
-<li>Include any questions or roadblocks you are encountering and require assistance.</li>
-<li>If you find it helpful to set up a time to meet with Prof.&nbsp;Chan, indicate so.</li>
-</ul></li>
-<li><strong>Individual.</strong> (20 points)
-<ul>
-<li>Complete the following Google form: <a href="">DE300 Project check-up Google Form, Link to come</a></li>
-</ul></li>
-</ol>
-<p><em>Note:</em> While the check-up form would not necessarily change your individual project grades, adjustments will be considered combining the feedback from the check-up and the peer experience summary.</p>
-</section>
-<section id="presentation" class="level2">
-<h2 class="anchored" data-anchor-id="presentation">Presentation</h2>
-<p>A presentation will be due on the last day of class. The presentation should follow these guidelines:</p>
-<ul>
-<li>Up to fifteen minutes.</li>
-<li><em>Tips:</em> Distribute your content and do a quick dry run in advance. This will smoothen out your presentation.</li>
-</ul>
-<p>The presentation should include <em>but not limited to the following</em>:</p>
-<ul>
-<li>Motivation of your project.</li>
-<li>Introduction to your dataset(s) and its relevance.</li>
-<li>Goals, method of analyses, and findings.</li>
-<li>Summary.</li>
-</ul>
-<p>The presentation is evaluated via the following criteria (20 each):</p>
-<ul>
-<li>Organization of content</li>
-<li>Appropriate use of language</li>
-<li>Delivery</li>
-<li>Use of supporting materials (visuals, statistics, etc.)</li>
-<li>Clarity of central idea</li>
-</ul>
-<p>Note that while the evaluation is primarily for the entire group, evaluation may differ among students if significant discrepancy is observed. You may refer to the <a href="a1-presentation-rubric">sample reference rubric</a> for details.</p>
-</section>
-<section id="report" class="level2">
-<h2 class="anchored" data-anchor-id="report">Report</h2>
-<p>Prepare a project report to clearly outline your project choice and its importance, your approach to achieving the set of goals, your results, and a summary.</p>
-<p>The report should follow these guidlines:</p>
-<ul>
-<li>Include full names of all teammates.
-<ul>
-<li>This is a reminder that it is an academic violation to include your name on any work you have not contributed or performed.</li>
-</ul></li>
-<li>Up to 15 pages (not including Appendix), single-spaced, 11-point type, 1-inch margins.</li>
-</ul>
-<p><strong>Submission:</strong> A single pdf named <code>[Groupname]_report.pdf</code> should be submitted.</p>
-<p>Include all of your code in a zipped folder in your submission. Make sure your codes and code organization are understandable.</p>
-<hr>
-<p>The report should include the following components in a narrative format:</p>
-<ul>
-<li><strong>Introduction</strong> (5 points): Introduce your project and motivation, e.g.,
-<ul>
-<li>What is the main issue you are interested in?</li>
-<li>Why is this topic important?</li>
-<li>In what way does this project provide a solution?</li>
-</ul></li>
-<li><strong>Data source(s)</strong> (5 points): Describe the data sources you have chosen, e.g.,
-<ul>
-<li>How can the data be retrieved?</li>
-<li>How are the data related to the topic?</li>
-<li>State the amount of data you will be working with.</li>
-</ul></li>
-<li><strong>Goals and approaches</strong> (60 points): State the <em>specific</em> goals you are attempting to achieve with the selected data sources. For each goal, provide the approach in achieving said goal, its implementation, and your results. Use any graph, table, or other visualization to support your narrative.</li>
-<li><strong>Summary</strong> (10 points): Provide a brief summary of your project, and describe any loose ends or future opportunities.</li>
-<li><strong>Generative AI statement and reference</strong> (10 points):
-<ul>
-<li>Generative AI statement: If you have, in any way, employed the use of generative AI tools, report all usage according to the syllabus. This statement does not count toward the page limit.</li>
-<li>Reference: Provide valid references for your data source(s). (<em>Does not count toward the page limit.</em>)
-<ul>
-<li>For example, using APA guidelines, the MIMIC-III database can be cited as &gt; Johnson, A., Pollard, T., &amp; Mark, R. (2016). MIMIC-III Clinical Database (version 1.4). <em>PhysioNet</em>. https://doi.org/10.13026/C2XW26.</li>
-<li>or the original article &gt; Johnson, A. E., Pollard, T. J., Shen, L., Lehman, L. W. H., Feng, M., Ghassemi, M., … &amp; Mark, R. G. (2016). MIMIC-III, a freely accessible critical care database. <em>Scientific data</em>, 3(1), 1-9.</li>
-</ul></li>
-</ul></li>
-<li><strong>Code legibility and organization</strong> (10 points): Give a brief summary or provide a README to use and evaluate your code. (<em>Does not count toward the page limit.</em>)</li>
-</ul>
+<p><strong>Additional Note:</strong></p>
+<p>A dataframe is actually an RDD, e.g.,</p>
+<div id="801bee99-595f-4b1a-b6fa-2a8a89d10b8f" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> spark.createDataFrame([[<span class="dv">1</span>], [<span class="dv">2</span>], [<span class="dv">3</span>]], schema<span class="op">=</span>[<span class="st">"column"</span>])</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.rdd)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.rdd.collect())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -862,13 +900,13 @@ For each goal, answer the following:</li>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./06-rdd.html" class="pagination-link" aria-label="Resilient distributed datasets">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Resilient distributed datasets</span></span>
+      <a href="./05-spark.html" class="pagination-link" aria-label="Intro to parallelized computing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Intro to parallelized computing</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./a1-presentation-rubric.html" class="pagination-link" aria-label="Presentation reference rubric">
-        <span class="nav-page-text"><span class="chapter-title">Presentation reference rubric</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./a0-project-specification.html" class="pagination-link" aria-label="Project Specification">
+        <span class="nav-page-text"><span class="chapter-title">Project Specification</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project Specification – DATA_ENG 300: Data Engineering Studio</title>
+<title>Intro to parallelized computing – DATA_ENG 300: Data Engineering Studio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,8 +85,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./a1-presentation-rubric.html" rel="next">
-<link href="./06-rdd.html" rel="prev">
+<link href="./06-rdd.html" rel="next">
+<link href="./04-rec-system.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -83,7 +138,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a0-project-specification.html">Project</a></li><li class="breadcrumb-item"><a href="./a0-project-specification.html"><span class="chapter-title">Project Specification</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-spark.html">Parallelization of computing</a></li><li class="breadcrumb-item"><a href="./05-spark.html"><span class="chapter-title">Intro to parallelized computing</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -165,7 +220,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-spark.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Intro to parallelized computing</span></a>
+  <a href="./05-spark.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Intro to parallelized computing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -186,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./a0-project-specification.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Project Specification</span></a>
+  <a href="./a0-project-specification.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Project Specification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -233,25 +288,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#group-formation" id="toc-group-formation" class="nav-link active" data-scroll-target="#group-formation">Group formation</a></li>
-  <li><a href="#project-grading" id="toc-project-grading" class="nav-link" data-scroll-target="#project-grading">Project grading</a></li>
-  <li><a href="#project-proposal" id="toc-project-proposal" class="nav-link" data-scroll-target="#project-proposal">Project proposal</a>
+  <li><a href="#separation-of-compute-from-storage" id="toc-separation-of-compute-from-storage" class="nav-link active" data-scroll-target="#separation-of-compute-from-storage">Separation of compute from storage</a>
   <ul class="collapse">
-  <li><a href="#guidelines-for-proposal" id="toc-guidelines-for-proposal" class="nav-link" data-scroll-target="#guidelines-for-proposal">Guidelines for proposal</a></li>
+  <li><a href="#hybridization-of-separation-and-colocation" id="toc-hybridization-of-separation-and-colocation" class="nav-link" data-scroll-target="#hybridization-of-separation-and-colocation">Hybridization of separation and colocation</a></li>
   </ul></li>
-  <li><a href="#potential-data-sources" id="toc-potential-data-sources" class="nav-link" data-scroll-target="#potential-data-sources">Potential data sources</a></li>
-  <li><a href="#project-check-up" id="toc-project-check-up" class="nav-link" data-scroll-target="#project-check-up">Project check-up</a></li>
-  <li><a href="#presentation" id="toc-presentation" class="nav-link" data-scroll-target="#presentation">Presentation</a></li>
-  <li><a href="#report" id="toc-report" class="nav-link" data-scroll-target="#report">Report</a></li>
+  <li><a href="#hadoop" id="toc-hadoop" class="nav-link" data-scroll-target="#hadoop">Hadoop</a></li>
+  <li><a href="#spark" id="toc-spark" class="nav-link" data-scroll-target="#spark">Spark</a></li>
   </ul>
-</nav>
+<div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/05b-rdd-class.ipynb"><i class="bi bi-link-45deg"></i>Source Code to RDD example</a></li><li><a href="https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/06b-article-analysis-class.ipynb"><i class="bi bi-link-45deg"></i>Source Code to SparkSQL example</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a0-project-specification.html">Project</a></li><li class="breadcrumb-item"><a href="./a0-project-specification.html"><span class="chapter-title">Project Specification</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-spark.html">Parallelization of computing</a></li><li class="breadcrumb-item"><a href="./05-spark.html"><span class="chapter-title">Intro to parallelized computing</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Project Specification</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">Intro to parallelized computing</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -268,195 +319,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="group-formation" class="level2">
-<h2 class="anchored" data-anchor-id="group-formation">Group formation</h2>
-<p>The project group may consist of up to 3 students.</p>
-</section>
-<section id="project-grading" class="level2">
-<h2 class="anchored" data-anchor-id="project-grading">Project grading</h2>
-<p>The project is worth 35% of the class grade, with the following details:</p>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td></td>
-<td style="text-align: center;"><strong>Due date</strong></td>
-<td style="text-align: center;"><strong>Proportion (%)</strong></td>
-</tr>
-<tr class="even">
-<td>Proposal</td>
-<td style="text-align: center;">May 5</td>
-<td style="text-align: center;">10</td>
-</tr>
-<tr class="odd">
-<td>Check-up</td>
-<td style="text-align: center;">May 19</td>
-<td style="text-align: center;">10</td>
-</tr>
-<tr class="even">
-<td>Presentation</td>
-<td style="text-align: center;">June 2 and 4</td>
-<td style="text-align: center;">25</td>
-</tr>
-<tr class="odd">
-<td>Report</td>
-<td style="text-align: center;">June 10</td>
-<td style="text-align: center;">45</td>
-</tr>
-<tr class="even">
-<td>Peer experience summary</td>
-<td style="text-align: center;">June 10</td>
-<td style="text-align: center;">10</td>
-</tr>
-<tr class="odd">
-<td><strong>Total</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">100</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="project-proposal" class="level2">
-<h2 class="anchored" data-anchor-id="project-proposal">Project proposal</h2>
-<p>Develop a proposal that includes your topic, the selection of relevant dataset(s), and a plan to answer questions of interests. Keep in mind the timeline of the quarter and set achievable goals.</p>
-<section id="guidelines-for-proposal" class="level3">
-<h3 class="anchored" data-anchor-id="guidelines-for-proposal">Guidelines for proposal</h3>
-<p>Review the guidelines below carefully.</p>
-<p><strong>Overarching theme:</strong> Design a data process that involves ingesting data, preprocessing, analysis, and service. Consider a process that can scale and can be reused given data update.</p>
-<p>The proposal should follow this format (5 points):</p>
+<p>This document covers the key elements for modern distributed computing, specifically a quick word on Hadoop and Spark.</p>
+<section id="separation-of-compute-from-storage" class="level2">
+<h2 class="anchored" data-anchor-id="separation-of-compute-from-storage">Separation of compute from storage</h2>
+<p>Traditionally compute and storage are colocated, e.g.,</p>
 <ul>
-<li>Include full names of all teammates.</li>
-<li>Between 1 to 2 pages, single-spaced, 11-point type, 1-inch margins.</li>
-<li>Do not include graphics.</li>
-<li>Decide on the name of your group. A pdf named <code>[GroupName]_proposal.pdf</code> should be submitted.</li>
+<li>a transactional database leverages its low-latency disk reads and high bandwidth.</li>
+<li>even for distributed jobs, a <em>map</em> job locates the location of data and runs the <em>map</em> local to the data.</li>
 </ul>
-<p>The proposal should cover the following components (but in a narrative format, not Q/A):</p>
+<p>Then why separate compute and storage?</p>
 <ul>
-<li><strong>Introduction</strong> (12 points): Introduce your project and motivation, e.g.,
+<li>Availability of cloud computing and storage purchase
 <ul>
-<li>What is the main issue you are interested in?</li>
-<li>Why is this topic important?</li>
-<li>In what way does this project provide a solution?</li>
+<li>Cost: It is cheap to buy and host a server than to rent <em>if the server is up 24/7</em>, minus <em>maintenance cost</em></li>
+<li>Towards ephermerality: Spin up an instance, use, and stop when done.</li>
+<li>Towards scalability: If you only need to run this titan job once a month, only pay for the resources then.</li>
 </ul></li>
-<li><strong>Data source(s)</strong> (10 points): Describe the data sources you have chosen, e.g.,
+<li>Data durability and availability
 <ul>
-<li>How can the data be retrieved?</li>
-<li>How are the data related to the topic?</li>
-<li>State the amount of data you will be working with.</li>
-</ul></li>
-<li><strong>Goal definitions</strong> (18 points): State two to three goals you are interested in achieving with the selected data sources.<br>
-As you tackle the goals, you should use <strong>at least one</strong> of the data engineering techniques covered in class:
-<ul>
-<li>Missing data imputation</li>
-<li>Database system (relational or non-relational)</li>
-<li>Distributed computing framework (e.g., pyspark)<br>
-For each goal, answer the following:</li>
-<li>How do you intend to achieve your goal?</li>
-<li>How do you intend to use the above techniques?</li>
-<li>What can you answer (and not answer) with the proposed datasets?</li>
-</ul></li>
-<li><strong>Reference</strong> (5 points): Provide valid references for your data source(s). (Reference does not count toward the page limit.)
-<ul>
-<li>For example, using APA guidelines, the MIMIC-III database can be cited as &gt; Johnson, A., Pollard, T., &amp; Mark, R. (2016). MIMIC-III Clinical Database (version 1.4). <em>PhysioNet</em>. https://doi.org/10.13026/C2XW26.</li>
-<li>or the original article &gt; Johnson, A. E., Pollard, T. J., Shen, L., Lehman, L. W. H., Feng, M., Ghassemi, M., … &amp; Mark, R. G. (2016). MIMIC-III, a freely accessible critical care database. <em>Scientific data</em>, 3(1), 1-9.</li>
+<li>Fault tolerance: Replication of data increases availability and mitgates a write operation that destroys data.</li>
 </ul></li>
 </ul>
-</section>
-</section>
-<section id="potential-data-sources" class="level2">
-<h2 class="anchored" data-anchor-id="potential-data-sources">Potential data sources</h2>
-<p>Below are some possible avenues for finding data sources:</p>
-<ul>
-<li><a href="https://datasetsearch.research.google.com/">Google dataset search</a></li>
-<li><a href="https://github.com/awesomedata/awesome-public-datasets">Awesome public datasets</a></li>
-<li><a href="https://github.com/BuzzFeedNews/everything">BuzzFeed news repository</a></li>
-<li><a href="https://github.com/sisinflab/DataRec">Recommendation systems reference</a></li>
-<li><a href="https://challenge.ey.com">Open data challenge</a></li>
-</ul>
-</section>
-<section id="project-check-up" class="level2">
-<h2 class="anchored" data-anchor-id="project-check-up">Project check-up</h2>
-<p>Two elements are required for the project check-up:</p>
-<ol type="1">
-<li><strong>Group, submitted on Canvas as a pdf.</strong> (30 points)
-<ul>
-<li>For each of your set goals in the proposal, provide a brief summary of progress. <em>If you have not worked on a particular goal yet, feel free to say that you have not made progress there.</em></li>
-<li>Include any questions or roadblocks you are encountering and require assistance.</li>
-<li>If you find it helpful to set up a time to meet with Prof.&nbsp;Chan, indicate so.</li>
-</ul></li>
-<li><strong>Individual.</strong> (20 points)
-<ul>
-<li>Complete the following Google form: <a href="">DE300 Project check-up Google Form, Link to come</a></li>
-</ul></li>
-</ol>
-<p><em>Note:</em> While the check-up form would not necessarily change your individual project grades, adjustments will be considered combining the feedback from the check-up and the peer experience summary.</p>
-</section>
-<section id="presentation" class="level2">
-<h2 class="anchored" data-anchor-id="presentation">Presentation</h2>
-<p>A presentation will be due on the last day of class. The presentation should follow these guidelines:</p>
-<ul>
-<li>Up to fifteen minutes.</li>
-<li><em>Tips:</em> Distribute your content and do a quick dry run in advance. This will smoothen out your presentation.</li>
-</ul>
-<p>The presentation should include <em>but not limited to the following</em>:</p>
-<ul>
-<li>Motivation of your project.</li>
-<li>Introduction to your dataset(s) and its relevance.</li>
-<li>Goals, method of analyses, and findings.</li>
-<li>Summary.</li>
-</ul>
-<p>The presentation is evaluated via the following criteria (20 each):</p>
-<ul>
-<li>Organization of content</li>
-<li>Appropriate use of language</li>
-<li>Delivery</li>
-<li>Use of supporting materials (visuals, statistics, etc.)</li>
-<li>Clarity of central idea</li>
-</ul>
-<p>Note that while the evaluation is primarily for the entire group, evaluation may differ among students if significant discrepancy is observed. You may refer to the <a href="a1-presentation-rubric">sample reference rubric</a> for details.</p>
-</section>
-<section id="report" class="level2">
-<h2 class="anchored" data-anchor-id="report">Report</h2>
-<p>Prepare a project report to clearly outline your project choice and its importance, your approach to achieving the set of goals, your results, and a summary.</p>
-<p>The report should follow these guidlines:</p>
-<ul>
-<li>Include full names of all teammates.
-<ul>
-<li>This is a reminder that it is an academic violation to include your name on any work you have not contributed or performed.</li>
-</ul></li>
-<li>Up to 15 pages (not including Appendix), single-spaced, 11-point type, 1-inch margins.</li>
-</ul>
-<p><strong>Submission:</strong> A single pdf named <code>[Groupname]_report.pdf</code> should be submitted.</p>
-<p>Include all of your code in a zipped folder in your submission. Make sure your codes and code organization are understandable.</p>
 <hr>
-<p>The report should include the following components in a narrative format:</p>
+<section id="hybridization-of-separation-and-colocation" class="level3">
+<h3 class="anchored" data-anchor-id="hybridization-of-separation-and-colocation">Hybridization of separation and colocation</h3>
+<p>In reality, compute and storage are not either separated or colocated, e.g.,</p>
 <ul>
-<li><strong>Introduction</strong> (5 points): Introduce your project and motivation, e.g.,
-<ul>
-<li>What is the main issue you are interested in?</li>
-<li>Why is this topic important?</li>
-<li>In what way does this project provide a solution?</li>
-</ul></li>
-<li><strong>Data source(s)</strong> (5 points): Describe the data sources you have chosen, e.g.,
-<ul>
-<li>How can the data be retrieved?</li>
-<li>How are the data related to the topic?</li>
-<li>State the amount of data you will be working with.</li>
-</ul></li>
-<li><strong>Goals and approaches</strong> (60 points): State the <em>specific</em> goals you are attempting to achieve with the selected data sources. For each goal, provide the approach in achieving said goal, its implementation, and your results. Use any graph, table, or other visualization to support your narrative.</li>
-<li><strong>Summary</strong> (10 points): Provide a brief summary of your project, and describe any loose ends or future opportunities.</li>
-<li><strong>Generative AI statement and reference</strong> (10 points):
-<ul>
-<li>Generative AI statement: If you have, in any way, employed the use of generative AI tools, report all usage according to the syllabus. This statement does not count toward the page limit.</li>
-<li>Reference: Provide valid references for your data source(s). (<em>Does not count toward the page limit.</em>)
-<ul>
-<li>For example, using APA guidelines, the MIMIC-III database can be cited as &gt; Johnson, A., Pollard, T., &amp; Mark, R. (2016). MIMIC-III Clinical Database (version 1.4). <em>PhysioNet</em>. https://doi.org/10.13026/C2XW26.</li>
-<li>or the original article &gt; Johnson, A. E., Pollard, T. J., Shen, L., Lehman, L. W. H., Feng, M., Ghassemi, M., … &amp; Mark, R. G. (2016). MIMIC-III, a freely accessible critical care database. <em>Scientific data</em>, 3(1), 1-9.</li>
-</ul></li>
-</ul></li>
-<li><strong>Code legibility and organization</strong> (10 points): Give a brief summary or provide a README to use and evaluate your code. (<em>Does not count toward the page limit.</em>)</li>
+<li>AWS elastic mapreduce (EMR) and S3</li>
+<li>Spark infrastructure dependence on RAM</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/hadoop-emr.png" class="img-fluid figure-img"></p>
+<figcaption>Instances as a processing cache in an ephemeral Hadoop cluster, Fig 6.7 from <span class="citation" data-cites="reis2022fundamentals">Reis and Housley (<a href="99-references.html#ref-reis2022fundamentals" role="doc-biblioref">2022</a>)</span></figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="hadoop" class="level2">
+<h2 class="anchored" data-anchor-id="hadoop">Hadoop</h2>
+<p>Developed in 2006 to process data with the <em>MapReduce programming model</em> <span class="citation" data-cites="dean2008mapreduce">Dean and Ghemawat (<a href="99-references.html#ref-dean2008mapreduce" role="doc-biblioref">2008</a>)</span>, with the “big data” processing idea.</p>
+<p>Main components of Apache Hadoop:</p>
+<ul>
+<li><em>Hadoop Distributed File System (HDFS)</em>: Manages large data sets running on commodity hardware (with data replication)</li>
+<li>Yet Another Resource Negotiator (YARN)</li>
+<li><em>Hadoop MapReduce</em>: Splits data into blocks, distributes across different nodes, then runs task on each block in parallel</li>
+<li>Hadoop Common (Hadoop Core): Common libraries and utilities</li>
+</ul>
+<p><em>Why Hadoop is not enough?</em></p>
+<ul>
+<li>Hadoop utilizes external storage. Read/write latency is high.</li>
+<li>All codes must be restricted to a <code>map</code> and <code>reduce</code> constructs.</li>
+</ul>
+</section>
+<section id="spark" class="level2">
+<h2 class="anchored" data-anchor-id="spark">Spark</h2>
+<p>Main components:</p>
+<ul>
+<li>Spark Core: Execution engine for resource coordination</li>
+<li><em>Spark SQL</em></li>
+<li><em>Machine Learning Library (MLlib)</em></li>
+<li>Spark Streaming: Capability for processing streaming data</li>
+<li>GraphX: Capability for processing graph-based data</li>
+</ul>
+<p>Spark essentially tackles <em>only</em> where Hadoop does not perform well, by using an <em>in-memory</em> distributed computing engine,</p>
+<ul>
+<li>making use of Resilient Distributed Dataset (RDD)</li>
+<li>employing dynamic RAM in processing</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/mapreduce-trad.jpg" class="img-fluid figure-img"></p>
+<figcaption>MapReduce schema from <span class="citation" data-cites="tian2015energy">Tian and Zhao (<a href="99-references.html#ref-tian2015energy" role="doc-biblioref">2015</a>)</span>.</figcaption>
+</figure>
+</div>
 
 
+<!-- -->
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-dean2008mapreduce" class="csl-entry" role="listitem">
+Dean, Jeffrey, and Sanjay Ghemawat. 2008. <span>“MapReduce: Simplified Data Processing on Large Clusters.”</span> <em>Communications of the ACM</em> 51 (1): 107–13.
+</div>
+<div id="ref-reis2022fundamentals" class="csl-entry" role="listitem">
+Reis, Joe, and Matt Housley. 2022. <em>Fundamentals of Data Engineering</em>. O’Reilly Media, Inc.
+</div>
+<div id="ref-tian2015energy" class="csl-entry" role="listitem">
+Tian, Wenhong, and Yong Zhao. 2015. <span>“9 - Energy Efficiency Scheduling in Hadoop.”</span> In <em>Optimized Cloud Resource Management and Scheduling</em>, edited by Wenhong Tian and Yong Zhao, 179–204. Boston: Morgan Kaufmann. https://doi.org/<a href="https://doi.org/10.1016/B978-0-12-801476-9.00009-4">https://doi.org/10.1016/B978-0-12-801476-9.00009-4</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -531,6 +482,57 @@ For each goal, answer the following:</li>
       });
       clipboardModal.on('success', onCopySuccess);
     }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -547,6 +549,11 @@ For each goal, answer the following:</li>
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -862,16 +869,105 @@ For each goal, answer the following:</li>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./06-rdd.html" class="pagination-link" aria-label="Resilient distributed datasets">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Resilient distributed datasets</span></span>
+      <a href="./04-rec-system.html" class="pagination-link" aria-label="Handling missing data in recommendation systems">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Handling missing data in recommendation systems</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./a1-presentation-rubric.html" class="pagination-link" aria-label="Presentation reference rubric">
-        <span class="nav-page-text"><span class="chapter-title">Presentation reference rubric</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./06-rdd.html" class="pagination-link" aria-label="Resilient distributed datasets">
+        <span class="nav-page-text"><span class="chapter-title">Resilient distributed datasets</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Intro to parallelized computing</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  revealjs:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    scrollable: true</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">  html: </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    other-links: </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">      - text: Source Code to RDD example</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">        href: https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/05b-rdd-class.ipynb</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">      - text: Source Code to SparkSQL example</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">        href: https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/06b-article-analysis-class.ipynb</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    link-external-newwindow: true</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">  ipynb: default</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>This document covers the key elements for modern distributed computing, specifically a quick word on Hadoop and Spark.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Separation of compute from storage</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Traditionally compute and storage are colocated, e.g.,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a transactional database leverages its low-latency disk reads and high bandwidth.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>even for distributed jobs, a *map* job locates the location of data and runs the *map* local to the data.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Then why separate compute and storage?</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Availability of cloud computing and storage purchase</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Cost: It is cheap to buy and host a server than to rent *if the server is up 24/7*, minus *maintenance cost*</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Towards ephermerality: Spin up an instance, use, and stop when done.</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Towards scalability: If you only need to run this titan job once a month, only pay for the resources then.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Data durability and availability</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Fault tolerance: Replication of data increases availability and mitgates a write operation that destroys data.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>--- </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hybridization of separation and colocation</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>In reality, compute and storage are not either separated or colocated, e.g.,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AWS elastic mapreduce (EMR) and S3</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Spark infrastructure dependence on RAM</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="al">![Instances as a processing cache in an ephemeral Hadoop cluster, Fig 6.7 from @reis2022fundamentals](img/hadoop-emr.png)</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hadoop</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>Developed in 2006 to process data with the *MapReduce programming model* @dean2008mapreduce, with the "big data" processing idea.</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>Main components of Apache Hadoop:  </span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Hadoop Distributed File System (HDFS)*: Manages large data sets running on commodity hardware (with data replication)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Yet Another Resource Negotiator (YARN)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Hadoop MapReduce*: Splits data into blocks, distributes across different nodes, then runs task on each block in parallel</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hadoop Common (Hadoop Core): Common libraries and utilities</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>*Why Hadoop is not enough?* </span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hadoop utilizes external storage.  Read/write latency is high.</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All codes must be restricted to a <span class="in">`map`</span> and <span class="in">`reduce`</span> constructs.</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Spark </span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>Main components:</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Spark Core: Execution engine for resource coordination</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Spark SQL*</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Machine Learning Library (MLlib)*</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Spark Streaming: Capability for processing streaming data</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>GraphX: Capability for processing graph-based data</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>Spark essentially tackles *only* where Hadoop does not perform well, by using an *in-memory* distributed computing engine,</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>making use of Resilient Distributed Dataset (RDD)</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>employing dynamic RAM in processing</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="al">![MapReduce schema from @tian2015energy.](img/mapreduce-trad.jpg)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
