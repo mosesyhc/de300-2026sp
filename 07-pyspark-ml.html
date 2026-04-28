@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Setting up EC2 instance for jupyter notebook – DATA_ENG 300: Data Engineering Studio</title>
+<title>Machine learning examples in PySpark – DATA_ENG 300: Data Engineering Studio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./0b-access-keyspaces.html" rel="next">
-<link href="./a1-presentation-rubric.html" rel="prev">
+<link href="./a0-project-specification.html" rel="next">
+<link href="./06-rdd.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -71,6 +106,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -83,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./0a-jupyter-ec2.html">Useful guides</a></li><li class="breadcrumb-item"><a href="./0a-jupyter-ec2.html"><span class="chapter-title">Setting up EC2 instance for jupyter notebook</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-spark.html">Parallelization of computing</a></li><li class="breadcrumb-item"><a href="./07-pyspark-ml.html"><span class="chapter-title">Machine learning examples in PySpark</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -175,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-pyspark-ml.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Machine learning examples in PySpark</span></a>
+  <a href="./07-pyspark-ml.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Machine learning examples in PySpark</span></a>
   </div>
 </li>
       </ul>
@@ -212,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./0a-jupyter-ec2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Setting up EC2 instance for jupyter notebook</span></a>
+  <a href="./0a-jupyter-ec2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Setting up EC2 instance for jupyter notebook</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -238,16 +302,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#reconnect-to-ec2-jupyter-notebook" id="toc-reconnect-to-ec2-jupyter-notebook" class="nav-link active" data-scroll-target="#reconnect-to-ec2-jupyter-notebook">Reconnect to EC2 Jupyter notebook</a></li>
+  <li><a href="#linear-regression-refresher" id="toc-linear-regression-refresher" class="nav-link active" data-scroll-target="#linear-regression-refresher">Linear regression refresher</a></li>
   </ul>
-</nav>
+<div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/07a-linear-regression-example.ipynb"><i class="bi bi-link-45deg"></i>Source Code to Linear Regression example</a></li><li><a href="https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/07b-ex-pipeline-news-class.ipynb"><i class="bi bi-link-45deg"></i>Source Code to News Category Prediction example</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./0a-jupyter-ec2.html">Useful guides</a></li><li class="breadcrumb-item"><a href="./0a-jupyter-ec2.html"><span class="chapter-title">Setting up EC2 instance for jupyter notebook</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-spark.html">Parallelization of computing</a></li><li class="breadcrumb-item"><a href="./07-pyspark-ml.html"><span class="chapter-title">Machine learning examples in PySpark</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Setting up EC2 instance for jupyter notebook</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">Machine learning examples in PySpark</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -264,126 +328,30 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="linear-regression-refresher" class="level2">
+<h2 class="anchored" data-anchor-id="linear-regression-refresher">Linear regression refresher</h2>
+<p>To fit a linear regression (without any penalty or regularization) can be done via the least-squares estimation:</p>
+<p><span class="math display">\[\min_\beta~\ell(\beta) = \|\mathbf{y} - \mathbf{X} \beta \|_2^2,\]</span></p>
+<p>The corresponding analytical solution can be found by setting the partial derivatives to zero: <span class="math display">\[\frac{\partial \ell(\beta)}{\partial \beta} \equiv 0 \qquad \Rightarrow \qquad \widehat{\beta} = (\mathbf{X}^\mathsf{T}\mathbf{X})^{-1} \mathbf{X}^\mathsf{T}\mathbf{y}.\]</span></p>
+<p><em>Why do we need to think about parallelization at all?</em></p>
+<p>Say we have <span class="math inline">\(n\)</span> data points, i.e.&nbsp;<span class="math inline">\((\mathbf{x}_i, y_i)_{i=1}^n\)</span>. Take a look at the dimension of the quantities of interest: <span class="math display">\[\mathbf{X} \in \mathbb{R}^{n \times (d+1)}, \mathbf{y} \in \mathbb{R}^n.\]</span></p>
+<p>What are the major computational tasks?</p>
+<hr>
+<p>The major computations involve three operations:</p>
 <ol type="1">
-<li>Access AWS
-<ul>
-<li>Always access AWS by using the Northwestern AWS portal and your NetID: https://nu-sso.awsapps.com/start/</li>
-<li>You should have access through the <code>mse-tl-dataeng300-EMR</code> user account.</li>
-<li>If you do not, reach out to the instructor.</li>
-<li>(Preferred) Check that you are in the <code>N. Virginia</code> region (right top corner).</li>
-</ul></li>
+<li>Multiplication: <span class="math inline">\(\mathbf{X}^\mathsf{T}\mathbf{X} = \sum_{i=1}^n \mathbf{x}_i \mathbf{x}_i^\mathsf{T},\)</span></li>
+<li>Multiplication: <span class="math inline">\(\mathbf{X}^\mathsf{T}\mathbf{y} = \sum_{i=1}^n \mathbf{x_i} y_i,\)</span></li>
+<li>Inversion of matrix: <span class="math inline">\((\mathbf{X}^\mathsf{T}\mathbf{X})^{-1} \mathbf{X}^\mathsf{T}\mathbf{y}.\)</span></li>
 </ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/ec2/aws-start.png" class="img-fluid figure-img"></p>
-<figcaption>AWS Start page</figcaption>
-</figure>
-</div>
-<ol start="2" type="1">
-<li><strong>If you do not currently have an EC2 instance under your name,</strong> launch an EC2 instance, by doing the following:
+<p><em>Rationale:</em></p>
 <ul>
-<li>Services -&gt; EC2</li>
-<li>(<em>Optional</em>) Launch an instance using <code>Launch instance from template</code>:
-<ul>
-<li>You will find a <code>de300-t2.medium</code> template available.</li>
-</ul></li>
-<li>Verify the following configurations (or set up an instance from scratch):
-<ul>
-<li>Image: AMI (Linux 64-bit)</li>
-<li>Instance type: <code>t2.medium</code></li>
-<li><strong>Key pair</strong>: You should create a new key pair for your instance (if you do not currently have one).
-<ul>
-<li>Name your key pair name in the same way such that you can identify it. Default options are fine.</li>
-<li>Upon creating a key pair, a “key file” <code>[name].pem</code> will be automatically downloaded. Store it somewhere your machine has read/write access to.</li>
-<li>(You only have to do this once.) run <code>chmod 400 [name].pem</code> on your console. (If you use a Windows machine, use either bash or PowerShell.) The command modifies the “key file” to be read-only.</li>
-</ul></li>
-<li>Subnet: <code>RDS-Pvt-subnet-5</code></li>
-<li>Firewall: Select <code>launch-wizard-3</code> security group</li>
-<li>Storage: Specify 12 Gb of EBS storage.</li>
-<li><strong>Resource tags:</strong> Key: <code>Name</code>, Value: <code>[firstname][lastname]-de300</code> as your instance name.</li>
-</ul></li>
-<li>Launch instance.
-<ul>
-<li>An instance will be <em>running</em> automatically. You may track running instances under the <code>Instances</code> page.</li>
-</ul></li>
-</ul></li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/ec2/launch-from-template.png" class="img-fluid figure-img"></p>
-<figcaption>Launching from template</figcaption>
-</figure>
-</div>
-<ol start="3" type="1">
-<li>SSH into EC2
-<ul>
-<li>Once your instance is running, select the instance under the <code>Instances</code> page and hit <code>Connect</code>.</li>
-<li>Under the <code>SSH client</code> tab, you will see the instructions to connect to the EC2 instance via SSH on your console.</li>
-<li><em>Troubleshoot</em>:
-<ul>
-<li>If access is denied, double check your <code>[name].pem</code> file is located in your console working directory.</li>
-<li>If an error about unprotected key arises, make sure you have run <code>chmod 400 [name].pem</code>.</li>
-</ul></li>
-</ul></li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/ec2/instances.png" class="img-fluid figure-img"></p>
-<figcaption>EC2 Instances</figcaption>
-</figure>
-</div>
-<ol start="4" type="1">
-<li>Anaconda installation on EC2
-<ul>
-<li>Fetch source code: <code>wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh</code> or the appropriate source code.</li>
-<li>(<em>Optional</em>) Verify the source code SHA256 key: <code>sha256sum [filename].sh</code>.</li>
-<li>Install: <code>bash Anaconda3-2023.09-0-Linux-x86_64.sh</code>
-<ul>
-<li>The first prompt requires you to read the agreement and respond <code>yes</code></li>
-<li>You may have to confirm the location of installation. The default is fine.</li>
-<li>By the end of installation, you will see a prompt about <code>conda init</code>, you may respond <code>yes</code> such that each time you log into EC2, the conda environment is automatically loaded.</li>
-</ul></li>
-<li>Activate conda environment:
-<ul>
-<li>If you responded yes above, run <code>source .bashrc</code> to activate the conda environment. You should see <code>(base)</code> as the beginning of your console cursor.</li>
-<li>If you did not respond yes above, you can run <code>eval "$($CONDA_PATH/bin/conda shell.bash hook)"</code> to activate the conda environment.</li>
-</ul></li>
-<li>To verify that Anaconda is successfully installed, you can run <code>which python</code> in the console, and a path to the Python executables should be returned.
-<ul>
-<li>If no python is found, it means that your conda environment was not successfully activated.</li>
-</ul></li>
-</ul></li>
-<li>Set Jupyter notebook password
-<ul>
-<li>Run <code>jupyter notebook password</code>.</li>
-<li>Enter and verify your password.</li>
-</ul></li>
-<li>SSH into Jupyter notebook on EC2
-<ul>
-<li>In the console where EC2 is running, run <code>jupyter notebook --no-browser --port=8888</code></li>
-<li>Once a jupyter notebook is running, <strong>open</strong> a new console on your local machine.</li>
-<li>On the new console, run <code>ssh -i [name].pem -N -f -L 8888:localhost:8888 ec2-user@[your-public-DNS].compute-1.amazonaws.com</code>.</li>
-<li>Open a new browser (Chrome, Firefox, etc.), access https://localhost:8888.</li>
-<li>Enter your password to access your Jupyter notebook.</li>
-</ul></li>
-<li>Stop your EC2 instance on AWS <code>Instances</code> page.</li>
-</ol>
-<p><strong>Important: Whenever you are not running anything (for more than 15 minutes), you should stop the EC2 instance on the AWS <code>Instances</code> page.</strong></p>
-<section id="reconnect-to-ec2-jupyter-notebook" class="level2">
-<h2 class="anchored" data-anchor-id="reconnect-to-ec2-jupyter-notebook">Reconnect to EC2 Jupyter notebook</h2>
-<ol type="1">
-<li>Start your EC2 instance from https://nu-sso.awsapps.com/start/. (<em>The one you have a private key for.</em>)</li>
-<li>Once the EC2 instance is running, connect to the instance via SSH
-<ul>
-<li>Under the SSH client tab, you will see the instructions to connect to the EC2 instance via SSH on your console.</li>
-</ul></li>
-<li>If your EC2 console shows <code>(base)</code> before your cursor, it indicates that conda environment is already running.
-<ul>
-<li>If not, you have to run <code>eval "$($CONDA_PATH/bin/conda shell.bash hook)"</code> to activate the conda environment.</li>
-</ul></li>
-<li>SSH into Jupyter notebook on EC2 (as in step 7 above.)</li>
-</ol>
+<li>In the case where <span class="math inline">\(n\)</span> is extremely large, the multiplication and summation, steps (1) and (2), are slow.</li>
+<li>Since the inversion of matrix is driven by the size of <span class="math inline">\(\mathbf{X}^\mathsf{T}\mathbf{X}\)</span>, which is typically a relatively small <span class="math inline">\((d+1) \times (d+1)\)</span> matrix. Step (3) is relatively cheap in terms of computation.</li>
+</ul>
+<p><em>Lecture continues with examples linked above.</em></p>
 
+
+<!-- -->
 
 </section>
 
@@ -459,6 +427,57 @@ ul.task-list li input[type="checkbox"] {
       });
       clipboardModal.on('success', onCopySuccess);
     }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -475,6 +494,11 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -790,16 +814,75 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./a1-presentation-rubric.html" class="pagination-link" aria-label="Presentation reference rubric">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Presentation reference rubric</span></span>
+      <a href="./06-rdd.html" class="pagination-link" aria-label="Resilient distributed datasets">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Resilient distributed datasets</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./0b-access-keyspaces.html" class="pagination-link" aria-label="Setting up access to Keyspace in Jupyter notebook">
-        <span class="nav-page-text"><span class="chapter-title">Setting up access to Keyspace in Jupyter notebook</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./a0-project-specification.html" class="pagination-link" aria-label="Project Specification">
+        <span class="nav-page-text"><span class="chapter-title">Project Specification</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Machine learning examples in PySpark</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  revealjs:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    scrollable: true</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">  html: </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    other-links: </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">      - text: Source Code to Linear Regression example</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">        href: https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/07a-linear-regression-example.ipynb</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">      - text: Source Code to News Category Prediction example</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">        href: https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/07b-ex-pipeline-news-class.ipynb</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    link-external-newwindow: true</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">  ipynb: default</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Linear regression refresher</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>To fit a linear regression (without any penalty or regularization) can be done via the least-squares estimation:</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>$$\min_\beta~\ell(\beta) = <span class="sc">\|</span>\mathbf{y} - \mathbf{X} \beta <span class="sc">\|</span>_2^2,$$</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>The corresponding analytical solution can be found by setting the partial derivatives to zero:</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>$$\frac{\partial \ell(\beta)}{\partial \beta} \equiv 0 \qquad \Rightarrow \qquad \widehat{\beta} = (\mathbf{X}^\mathsf{T}\mathbf{X})^{-1} \mathbf{X}^\mathsf{T}\mathbf{y}.$$</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>*Why do we need to think about parallelization at all?*</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>Say we have $n$ data points, i.e. $(\mathbf{x}_i, y_i)_{i=1}^n$. Take a look at the dimension of the quantities of interest:</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>$$\mathbf{X} \in \mathbb{R}^{n \times (d+1)}, \mathbf{y} \in \mathbb{R}^n.$$</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>What are the major computational tasks?</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>The major computations involve three operations:  </span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Multiplication: $\mathbf{X}^\mathsf{T}\mathbf{X} = \sum_{i=1}^n \mathbf{x}_i \mathbf{x}_i^\mathsf{T},$</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Multiplication: $\mathbf{X}^\mathsf{T}\mathbf{y} = \sum_{i=1}^n \mathbf{x_i} y_i,$</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Inversion of matrix: $(\mathbf{X}^\mathsf{T}\mathbf{X})^{-1} \mathbf{X}^\mathsf{T}\mathbf{y}.$</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>*Rationale:*  </span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>In the case where $n$ is extremely large, the multiplication and summation, steps (1) and (2), are slow.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Since the inversion of matrix is driven by the size of $\mathbf{X}^\mathsf{T}\mathbf{X}$, which is typically a relatively small $(d+1) \times (d+1)$ matrix.  Step (3) is relatively cheap in terms of computation.</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>*Lecture continues with examples linked above.*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
