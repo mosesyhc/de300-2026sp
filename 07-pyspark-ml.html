@@ -304,7 +304,7 @@ window.Quarto = {
   <ul>
   <li><a href="#linear-regression-refresher" id="toc-linear-regression-refresher" class="nav-link active" data-scroll-target="#linear-regression-refresher">Linear regression refresher</a></li>
   </ul>
-<div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/07a-linear-regression-example.ipynb"><i class="bi bi-link-45deg"></i>Source Code to Linear Regression example</a></li><li><a href="https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/07b-ex-pipeline-news-class.ipynb"><i class="bi bi-link-45deg"></i>Source Code to News Category Prediction example</a></li></ul></div></nav>
+<div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/06b-article-analysis-class.ipynb"><i class="bi bi-link-45deg"></i>Source Code to SparkSQL example</a></li><li><a href="https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/06b-article-analysis-filled.ipynb"><i class="bi bi-link-45deg"></i>SparkSQL filled example</a></li><li><a href="https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/07a-linear-regression-example.ipynb"><i class="bi bi-link-45deg"></i>Source Code to Linear Regression example</a></li><li><a href="https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/07b-ex-pipeline-news-class.ipynb"><i class="bi bi-link-45deg"></i>Source Code to News Category Prediction example</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -834,54 +834,58 @@ window.Quarto = {
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">  html: </span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    other-links: </span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">      - text: Source Code to Linear Regression example</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">        href: https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/07a-linear-regression-example.ipynb</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">      - text: Source Code to News Category Prediction example</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">        href: https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/07b-ex-pipeline-news-class.ipynb</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    link-external-newwindow: true</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">  ipynb: default</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Linear regression refresher</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>To fit a linear regression (without any penalty or regularization) can be done via the least-squares estimation:</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">      - text: Source Code to SparkSQL example</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">        href: https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/06b-article-analysis-class.ipynb</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">      - text: SparkSQL filled example</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">        href: https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/06b-article-analysis-filled.ipynb</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">      - text: Source Code to Linear Regression example</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">        href: https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/07a-linear-regression-example.ipynb</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">      - text: Source Code to News Category Prediction example</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">        href: https://github.com/mosesyhc/de300-2026sp/blob/main/class-notebooks/07b-ex-pipeline-news-class.ipynb</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">    link-external-newwindow: true</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">  ipynb: default</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Linear regression refresher</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>$$\min_\beta~\ell(\beta) = <span class="sc">\|</span>\mathbf{y} - \mathbf{X} \beta <span class="sc">\|</span>_2^2,$$</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>To fit a linear regression (without any penalty or regularization) can be done via the least-squares estimation:</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>The corresponding analytical solution can be found by setting the partial derivatives to zero:</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>$$\frac{\partial \ell(\beta)}{\partial \beta} \equiv 0 \qquad \Rightarrow \qquad \widehat{\beta} = (\mathbf{X}^\mathsf{T}\mathbf{X})^{-1} \mathbf{X}^\mathsf{T}\mathbf{y}.$$</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>$$\min_\beta~\ell(\beta) = <span class="sc">\|</span>\mathbf{y} - \mathbf{X} \beta <span class="sc">\|</span>_2^2,$$</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>*Why do we need to think about parallelization at all?*</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>The corresponding analytical solution can be found by setting the partial derivatives to zero:</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>$$\frac{\partial \ell(\beta)}{\partial \beta} \equiv 0 \qquad \Rightarrow \qquad \widehat{\beta} = (\mathbf{X}^\mathsf{T}\mathbf{X})^{-1} \mathbf{X}^\mathsf{T}\mathbf{y}.$$</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>Say we have $n$ data points, i.e. $(\mathbf{x}_i, y_i)_{i=1}^n$. Take a look at the dimension of the quantities of interest:</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>$$\mathbf{X} \in \mathbb{R}^{n \times (d+1)}, \mathbf{y} \in \mathbb{R}^n.$$</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>*Why do we need to think about parallelization at all?*</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>What are the major computational tasks?</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>Say we have $n$ data points, i.e. $(\mathbf{x}_i, y_i)_{i=1}^n$. Take a look at the dimension of the quantities of interest:</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>$$\mathbf{X} \in \mathbb{R}^{n \times (d+1)}, \mathbf{y} \in \mathbb{R}^n.$$</span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>The major computations involve three operations:  </span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>What are the major computational tasks?</span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Multiplication: $\mathbf{X}^\mathsf{T}\mathbf{X} = \sum_{i=1}^n \mathbf{x}_i \mathbf{x}_i^\mathsf{T},$</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Multiplication: $\mathbf{X}^\mathsf{T}\mathbf{y} = \sum_{i=1}^n \mathbf{x_i} y_i,$</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Inversion of matrix: $(\mathbf{X}^\mathsf{T}\mathbf{X})^{-1} \mathbf{X}^\mathsf{T}\mathbf{y}.$</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>The major computations involve three operations:  </span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>*Rationale:*  </span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Multiplication: $\mathbf{X}^\mathsf{T}\mathbf{X} = \sum_{i=1}^n \mathbf{x}_i \mathbf{x}_i^\mathsf{T},$</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Multiplication: $\mathbf{X}^\mathsf{T}\mathbf{y} = \sum_{i=1}^n \mathbf{x_i} y_i,$</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Inversion of matrix: $(\mathbf{X}^\mathsf{T}\mathbf{X})^{-1} \mathbf{X}^\mathsf{T}\mathbf{y}.$</span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>In the case where $n$ is extremely large, the multiplication and summation, steps (1) and (2), are slow.</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Since the inversion of matrix is driven by the size of $\mathbf{X}^\mathsf{T}\mathbf{X}$, which is typically a relatively small $(d+1) \times (d+1)$ matrix.  Step (3) is relatively cheap in terms of computation.</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>*Lecture continues with examples linked above.*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>*Rationale:*  </span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>In the case where $n$ is extremely large, the multiplication and summation, steps (1) and (2), are slow.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Since the inversion of matrix is driven by the size of $\mathbf{X}^\mathsf{T}\mathbf{X}$, which is typically a relatively small $(d+1) \times (d+1)$ matrix.  Step (3) is relatively cheap in terms of computation.</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>*Lecture continues with examples linked above.*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
