@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Setting up EC2 instance for jupyter notebook – DATA_ENG 300: Data Engineering Studio</title>
+<title>Setting Up MWAA Environment on EC2 – DATA_ENG 300: Data Engineering Studio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./0b-access-keyspaces.html" rel="next">
-<link href="./a1-presentation-rubric.html" rel="prev">
+<link href="./99-references.html" rel="next">
+<link href="./0d-pyspark_ec2_setup_manual.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./0a-jupyter-ec2.html">Useful guides</a></li><li class="breadcrumb-item"><a href="./0a-jupyter-ec2.html"><span class="chapter-title">Setting up EC2 instance for jupyter notebook</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./0a-jupyter-ec2.html">Useful guides</a></li><li class="breadcrumb-item"><a href="./0c-airflow-mwaa-setup.html"><span class="chapter-title">Setting Up MWAA Environment on EC2</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -233,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./0a-jupyter-ec2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Setting up EC2 instance for jupyter notebook</span></a>
+  <a href="./0a-jupyter-ec2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Setting up EC2 instance for jupyter notebook</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -248,7 +248,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./0c-airflow-mwaa-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Setting Up MWAA Environment on EC2</span></a>
+  <a href="./0c-airflow-mwaa-setup.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Setting Up MWAA Environment on EC2</span></a>
   </div>
 </li>
       </ul>
@@ -269,16 +269,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#reconnect-to-ec2-jupyter-notebook" id="toc-reconnect-to-ec2-jupyter-notebook" class="nav-link active" data-scroll-target="#reconnect-to-ec2-jupyter-notebook">Reconnect to EC2 Jupyter notebook</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#step-1-create-an-s3-bucket" id="toc-step-1-create-an-s3-bucket" class="nav-link" data-scroll-target="#step-1-create-an-s3-bucket">Step 1: Create an S3 Bucket</a></li>
+  <li><a href="#step-2-create-the-mwaa-environment" id="toc-step-2-create-the-mwaa-environment" class="nav-link" data-scroll-target="#step-2-create-the-mwaa-environment">Step 2: Create the MWAA Environment</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./0a-jupyter-ec2.html">Useful guides</a></li><li class="breadcrumb-item"><a href="./0a-jupyter-ec2.html"><span class="chapter-title">Setting up EC2 instance for jupyter notebook</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./0a-jupyter-ec2.html">Useful guides</a></li><li class="breadcrumb-item"><a href="./0c-airflow-mwaa-setup.html"><span class="chapter-title">Setting Up MWAA Environment on EC2</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Setting up EC2 instance for jupyter notebook</span></h1>
+<h1 class="title"><span class="chapter-title">Setting Up MWAA Environment on EC2</span></h1>
 </div>
 
 
@@ -295,127 +299,86 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>This guide walks through setting up MWAA Environment on AWS.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each team can only create and operate on <strong>one</strong> MWAA environment at a time.</p>
+</div>
+</div>
+<section id="step-1-create-an-s3-bucket" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-create-an-s3-bucket">Step 1: Create an S3 Bucket</h2>
+<p>MWAA uses S3 to store your DAGs, plugins, and requirements.</p>
 <ol type="1">
-<li>Access AWS
-<ul>
-<li>Always access AWS by using the Northwestern AWS portal and your NetID: https://nu-sso.awsapps.com/start/</li>
-<li>You should have access through the <code>mse-tl-dataeng300-EMR</code> user account.</li>
-<li>If you do not, reach out to the instructor.</li>
-<li>(Preferred) Check that you are in the <code>N. Virginia</code> region (right top corner).</li>
-</ul></li>
+<li>Go to <strong>S3</strong> in the AWS Console and create a new bucket (e.g., <code>de300-airflow-lastnames</code>).</li>
+<li><strong>Versioning</strong> should be enabled by default on the bucket. Double check, this is required by MWAA.</li>
+<li>Create the following folder structure inside the bucket:</li>
 </ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/ec2/aws-start.png" class="img-fluid figure-img"></p>
-<figcaption>AWS Start page</figcaption>
-</figure>
-</div>
-<ol start="2" type="1">
-<li><strong>If you do not currently have an EC2 instance under your name,</strong> launch an EC2 instance, by doing the following:
-<ul>
-<li>Services -&gt; EC2</li>
-<li>(<em>Optional</em>) Launch an instance using <code>Launch instance from template</code>:
-<ul>
-<li>You will find a <code>de300-t2.medium</code> template available.</li>
-</ul></li>
-<li>Verify the following configurations (or set up an instance from scratch):
-<ul>
-<li>Image: AMI (Linux 64-bit)</li>
-<li>Instance type: <code>t2.medium</code></li>
-<li><strong>Key pair</strong>: You should create a new key pair for your instance (if you do not currently have one).
-<ul>
-<li>Name your key pair name in the same way such that you can identify it. Default options are fine.</li>
-<li>Upon creating a key pair, a “key file” <code>[name].pem</code> will be automatically downloaded. Store it somewhere your machine has read/write access to.</li>
-<li>(You only have to do this once.) run <code>chmod 400 [name].pem</code> on your console. (If you use a Windows machine, use either bash or PowerShell.) The command modifies the “key file” to be read-only.</li>
-</ul></li>
-<li>Subnet: <code>RDS-Pvt-subnet-5</code></li>
-<li>Firewall: Select <code>launch-wizard-3</code> security group</li>
-<li>Storage: Specify 12 Gb of EBS storage.</li>
-<li><strong>Resource tags:</strong> Key: <code>Name</code>, Value: <code>[firstname][lastname]-de300</code> as your instance name.</li>
-</ul></li>
-<li>Launch instance.
-<ul>
-<li>An instance will be <em>running</em> automatically. You may track running instances under the <code>Instances</code> page.</li>
-</ul></li>
-</ul></li>
+<pre><code>my-mwaa-bucket/
+├── dags/
+├── plugins/        # optional
+└── requirements.txt  # optional</code></pre>
+</section>
+<section id="step-2-create-the-mwaa-environment" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-create-the-mwaa-environment">Step 2: Create the MWAA Environment</h2>
+<ol type="1">
+<li>Navigate to <strong>Amazon MWAA</strong> in the AWS Console and click <strong>Create environment</strong>.</li>
+<li>Fill in the configuration:</li>
 </ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/ec2/launch-from-template.png" class="img-fluid figure-img"></p>
-<figcaption>Launching from template</figcaption>
-</figure>
-</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><code>de300-airflow-lastnames</code></td>
+</tr>
+<tr class="even">
+<td><strong>Airflow version</strong></td>
+<td>Latest stable (e.g., 2.9.x)</td>
+</tr>
+<tr class="odd">
+<td><strong>S3 bucket</strong></td>
+<td><code>s3://YOUR-BUCKET/</code></td>
+</tr>
+<tr class="even">
+<td><strong>DAGs folder</strong></td>
+<td><code>s3://YOUR-BUCKET/dags/</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Execution role</strong></td>
+<td><code>arn:.....MWAA.....</code></td>
+</tr>
+<tr class="even">
+<td><strong>VPC / Subnets</strong></td>
+<td>Choose the VPC that indicates <code>MWAA</code></td>
+</tr>
+</tbody>
+</table>
 <ol start="3" type="1">
-<li>SSH into EC2
+<li>Under <strong>Network access</strong>, choose:
 <ul>
-<li>Once your instance is running, select the instance under the <code>Instances</code> page and hit <code>Connect</code>.</li>
-<li>Under the <code>SSH client</code> tab, you will see the instructions to connect to the EC2 instance via SSH on your console.</li>
-<li><em>Troubleshoot</em>:
-<ul>
-<li>If access is denied, double check your <code>[name].pem</code> file is located in your console working directory.</li>
-<li>If an error about unprotected key arises, make sure you have run <code>chmod 400 [name].pem</code>.</li>
+<li><strong>Public</strong> — accessible over the internet (simpler for getting started)</li>
 </ul></li>
-</ul></li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/ec2/instances.png" class="img-fluid figure-img"></p>
-<figcaption>EC2 Instances</figcaption>
-</figure>
-</div>
-<ol start="4" type="1">
-<li>Anaconda installation on EC2
-<ul>
-<li>Fetch source code: <code>wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh</code> or the appropriate source code.</li>
-<li>(<em>Optional</em>) Verify the source code SHA256 key: <code>sha256sum [filename].sh</code>.</li>
-<li>Install: <code>bash Anaconda3-2023.09-0-Linux-x86_64.sh</code>
-<ul>
-<li>The first prompt requires you to read the agreement and respond <code>yes</code></li>
-<li>You may have to confirm the location of installation. The default is fine.</li>
-<li>By the end of installation, you will see a prompt about <code>conda init</code>, you may respond <code>yes</code> such that each time you log into EC2, the conda environment is automatically loaded.</li>
-</ul></li>
-<li>Activate conda environment:
-<ul>
-<li>If you responded yes above, run <code>source .bashrc</code> to activate the conda environment. You should see <code>(base)</code> as the beginning of your console cursor.</li>
-<li>If you did not respond yes above, you can run <code>eval "$($CONDA_PATH/bin/conda shell.bash hook)"</code> to activate the conda environment.</li>
-</ul></li>
-<li>To verify that Anaconda is successfully installed, you can run <code>which python</code> in the console, and a path to the Python executables should be returned.
-<ul>
-<li>If no python is found, it means that your conda environment was not successfully activated.</li>
-</ul></li>
-</ul></li>
-<li>Set Jupyter notebook password
-<ul>
-<li>Run <code>jupyter notebook password</code>.</li>
-<li>Enter and verify your password.</li>
-</ul></li>
-<li>SSH into Jupyter notebook on EC2
-<ul>
-<li>In the console where EC2 is running, run <code>jupyter notebook --no-browser --port=8888</code></li>
-<li>Once a jupyter notebook is running, <strong>open</strong> a new console on your local machine.</li>
-<li>On the new console, run <code>ssh -i [name].pem -N -f -L 8888:localhost:8888 ec2-user@[your-public-DNS].compute-1.amazonaws.com</code>.</li>
-<li>Open a new browser (Chrome, Firefox, etc.), access https://localhost:8888.</li>
-<li>Enter your password to access your Jupyter notebook.</li>
-</ul></li>
-<li>Stop your EC2 instance on AWS <code>Instances</code> page.</li>
-</ol>
-<p><strong>Important: Whenever you are not running anything (for more than 15 minutes), you should stop the EC2 instance on the AWS <code>Instances</code> page.</strong></p>
-<section id="reconnect-to-ec2-jupyter-notebook" class="level2">
-<h2 class="anchored" data-anchor-id="reconnect-to-ec2-jupyter-notebook">Reconnect to EC2 Jupyter notebook</h2>
-<ol type="1">
-<li>Start your EC2 instance from https://nu-sso.awsapps.com/start/. (<em>The one you have a private key for.</em>)</li>
-<li>Once the EC2 instance is running, connect to the instance via SSH
-<ul>
-<li>Under the SSH client tab, you will see the instructions to connect to the EC2 instance via SSH on your console.</li>
-</ul></li>
-<li>If your EC2 console shows <code>(base)</code> before your cursor, it indicates that conda environment is already running.
-<ul>
-<li>If not, you have to run <code>eval "$($CONDA_PATH/bin/conda shell.bash hook)"</code> to activate the conda environment.</li>
-</ul></li>
-<li>SSH into Jupyter notebook on EC2 (as in step 7 above.)</li>
+<li>Change <strong>Maximum number of workers</strong> to 4.</li>
+<li>Click <strong>Create environment</strong> and wait 20–30 minutes for provisioning.</li>
 </ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -821,13 +784,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./a1-presentation-rubric.html" class="pagination-link" aria-label="Presentation reference rubric">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Presentation reference rubric</span></span>
+      <a href="./0d-pyspark_ec2_setup_manual.html" class="pagination-link" aria-label="Setting Up PySpark on EC2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Setting Up PySpark on EC2</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./0b-access-keyspaces.html" class="pagination-link" aria-label="Setting up access to Keyspace in Jupyter notebook">
-        <span class="nav-page-text"><span class="chapter-title">Setting up access to Keyspace in Jupyter notebook</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./99-references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -647,6 +647,72 @@
     ]
   },
   {
+    "objectID": "09-mwaa-airflow.html",
+    "href": "09-mwaa-airflow.html",
+    "title": "MWAA and Airflow Workflow Orchestration",
+    "section": "",
+    "text": "Why Workflow Orchestration Exists\nModern data systems are rarely one-step scripts.\nThey usually require:\nWithout orchestration, workflows become fragile collections of scripts, jobs, and manual checks.",
+    "crumbs": [
+      "Managed workflow with Airflow",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MWAA and Airflow Workflow Orchestration</span>"
+    ]
+  },
+  {
+    "objectID": "09-mwaa-airflow.html#why-workflow-orchestration-exists",
+    "href": "09-mwaa-airflow.html#why-workflow-orchestration-exists",
+    "title": "MWAA and Airflow Workflow Orchestration",
+    "section": "",
+    "text": "Ingesting data from multiple systems\nValidating data quality\nTransforming raw data into useful models\nLoading outputs into warehouses or applications\nNotifying downstream consumers\nRetrying failures safely\n\n\n\n\nExample: A Simple Data Pipeline\n\n\n\n\n\ngraph LR\n  A[\"Download data\"] --&gt; B[\"Validate schema\"]\n  B --&gt; C[Transform]\n  C --&gt; D[Load table]\n  D --&gt; E[Send alert]\n\n\n\n\n\n\nThis looks simple, but production adds complexity:\n\nWhat if validation fails?\nWhat if the warehouse is temporarily unavailable?\nWhat if yesterday’s data needs to be reprocessed?\nWhat if two tasks can run in parallel?\n\n\n\n\nOrchestration Solves Coordination Problems\nWorkflow orchestration coordinates:\n\nTask order\nScheduling\nDependencies\nRetries\nFailure handling\nParallelism\nState tracking\nObservability\n\nThe orchestrator answers:\n\nWhat should run next, when, and under what conditions?\n\n\n\n\nOrchestration vs Execution\n\n\n\n\n\n\n\n\nConcept\nMain responsibility\nExample\n\n\n\n\nOrchestration\nCoordinates workflow logic\nAirflow decides task order\n\n\nExecution\nPerforms actual work\nSpark transforms a dataset\n\n\n\nAirflow is primarily an orchestrator.\nIt can run Python code, but it is not designed to be a distributed compute engine for large-scale data processing.\n\n\n\nMental Model\n\n\n\n\n\nflowchart LR\n  A[Airflow DAG] --&gt; B[Submit Spark Job]\n  A --&gt; C[Trigger Glue Job]\n  A --&gt; D[Call API]\n  A --&gt; E[Run Python Task]\n\n  B --&gt; F[Compute Happens Elsewhere]\n  C --&gt; F\n  D --&gt; F\n  E --&gt; G[Compute Happens on Worker]\n\n\n\n\n\n\nAirflow coordinates the workflow; the compute may happen on workers or in external systems.",
+    "crumbs": [
+      "Managed workflow with Airflow",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MWAA and Airflow Workflow Orchestration</span>"
+    ]
+  },
+  {
+    "objectID": "09-mwaa-airflow.html#what-is-apache-airflow",
+    "href": "09-mwaa-airflow.html#what-is-apache-airflow",
+    "title": "MWAA and Airflow Workflow Orchestration",
+    "section": "What Is Apache Airflow?",
+    "text": "What Is Apache Airflow?\nApache Airflow is an open-source platform to:\n\nAuthor workflows as Python code\nSchedule workflows\nManage dependencies\nRetry failed tasks\nMonitor task state\nBackfill historical runs\n\nAirflow models workflows as DAGs.\nA DAG is the central abstraction.\n\n\nDAG Theory\nA DAG is a Directed Acyclic Graph.\n\n\n\nTerm\nMeaning in Airflow\n\n\n\n\nDirected\nEdges have direction; order matters\n\n\nAcyclic\nNo circular dependencies\n\n\nGraph\nTasks connected by dependencies\n\n\nNode\nA task\n\n\nEdge\nA dependency\n\n\n\n\n\n\nValid DAG\n\n\n\n\n\nflowchart LR\n  Extract --&gt; Transform --&gt; Load\n\n\n\n\n\n\nThis is valid because dependencies move in one direction and never loop back.\n\n\n\nInvalid DAG: Cycle\n\n\n\n\n\nflowchart LR\n  A[Task A] --&gt; B[Task B]\n  B --&gt; C[Task C]\n  C --&gt; A\n\n\n\n\n\n\nThis is invalid because Task A depends indirectly on itself.\nAirflow cannot create a stable execution order from this graph.\n\n\n\nWhy Acyclic Matters\nAcyclic graphs allow Airflow to determine:\n\nWhich tasks have no unmet dependencies\nWhich tasks can run now\nWhich tasks must wait\nWhich tasks are blocked by failures\nWhen the whole DAG run is complete\n\nCycles make this impossible.\n\n\n\nParallelism from DAG Structure\n\n\n\n\n\nflowchart TD\n  A[Extract source data] --&gt; B[Transform sales]\n  A --&gt; C[Transform inventory]\n  A --&gt; D[Transform customers]\n  B --&gt; E[Load warehouse]\n  C --&gt; E\n  D --&gt; E\n\n\n\n\n\n\nTasks B, C, and D can run in parallel after A succeeds.\nParallelism is determined by both:\n\nDAG structure\nRuntime concurrency limits\n\n\n\n\nDAGs Enable Fault Isolation\nIf one task fails, Airflow can isolate the failure.\n\n\n\n\n\nflowchart LR\n  A[Extract] --&gt; B[Transform]\n  B --&gt; C[Load]\n  B --&gt; D[Quality Report]\n\n\n\n\n\n\nIf D fails, Airflow does not necessarily need to rerun A, B, and C.\nThis is one reason task granularity matters.",
+    "crumbs": [
+      "Managed workflow with Airflow",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MWAA and Airflow Workflow Orchestration</span>"
+    ]
+  },
+  {
+    "objectID": "09-mwaa-airflow.html#airflow-core-concepts",
+    "href": "09-mwaa-airflow.html#airflow-core-concepts",
+    "title": "MWAA and Airflow Workflow Orchestration",
+    "section": "Airflow Core Concepts",
+    "text": "Airflow Core Concepts\n\n\n\nConcept\nMeaning\n\n\n\n\nDAG\nWorkflow definition\n\n\nDAG Run\nOne execution of a DAG\n\n\nTask\nUnit of work in a DAG\n\n\nTask Instance\nOne execution of a task in a specific DAG Run\n\n\nOperator\nTemplate for a task action\n\n\nXCom\nSmall cross-task message\n\n\nScheduler\nDecides what should run\n\n\nWorker\nExecutes tasks\n\n\n\n\n\nDAG vs DAG Run\nA DAG is the blueprint.\nA DAG Run is a specific execution of that blueprint.\n\n\n\n\n\nflowchart TD\n  D[DAG: daily_sales_pipeline] --&gt; R1[DAG Run: 2026-05-10]\n  D --&gt; R2[DAG Run: 2026-05-11]\n  D --&gt; R3[DAG Run: 2026-05-12]\n\n\n\n\n\n\n\n\n\nTask vs Task Instance\nA task is defined once in code.\nA task instance is created each time the task runs.\n\n\n\n\n\nflowchart TD\n  T[Task: validate_sales] --&gt; I1[Task Instance for 2026-05-10]\n  T --&gt; I2[Task Instance for 2026-05-11]\n  T --&gt; I3[Task Instance for 2026-05-12]\n\n\n\n\n\n\nThis distinction is essential for debugging Airflow state.\n\n\n\nAirflow Architecture\n\n\n\n\n\nflowchart LR\n  DAGs[DAG Files] --&gt; Scheduler[Scheduler]\n  Scheduler --&gt; Metadata[(Metadata DB)]\n  Scheduler --&gt; Queue[Executor Queue]\n  Queue --&gt; Workers[Workers]\n  Workers --&gt; Metadata\n  Webserver[Webserver / UI] --&gt; Metadata\n\n\n\n\n\n\nThe scheduler decides what should run.\nWorkers execute tasks.\nThe metadata database stores the truth about workflow state.\n\n\n\nComponent: Scheduler\nThe scheduler is the orchestration brain.\nResponsibilities:\n\nParse DAG files\nCreate DAG Runs\nEvaluate dependencies\nQueue runnable tasks\nRespect concurrency limits\nUpdate scheduling state\n\nImportant mental model:\n\nThe scheduler continuously evaluates whether task instances are ready to run.\n\n\n\n\nComponent: Metadata Database\nThe metadata database stores:\n\nDAG definitions and serialized metadata\nDAG Run state\nTask Instance state\nRetry history\nXCom values\nConnection and variable metadata\n\nAirflow is a state-driven system.\nThe metadata database is the source of truth.\n\n\n\nComponent: Workers\nWorkers execute tasks.\nTasks may:\n\nRun Python functions\nExecute shell commands\nCall APIs\nSubmit jobs to AWS Glue, EMR, ECS, Lambda, or Spark\nRead/write to databases or object storage\n\nWorkers report state and logs back to Airflow infrastructure.\n\n\n\nComponent: Webserver / UI\nThe Airflow UI helps users inspect:\n\nDAG list\nGraph view\nGrid view\nLogs\nImport errors\nXComs\nRetries\nTask duration\nConnections, variables, and pools\n\nThe UI mostly reads state from the metadata database.\n\n\n\nExecutor Concept\nThe executor determines how Airflow launches tasks.\n\n\n\nExecutor\nCommon use\n\n\n\n\nSequentialExecutor\nLocal single-task testing\n\n\nLocalExecutor\nParallel local execution\n\n\nCeleryExecutor\nDistributed workers\n\n\nKubernetesExecutor\nTask-per-pod execution\n\n\n\nMWAA abstracts much of this infrastructure away from the user.",
+    "crumbs": [
+      "Managed workflow with Airflow",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MWAA and Airflow Workflow Orchestration</span>"
+    ]
+  },
+  {
+    "objectID": "09-mwaa-airflow.html#why-mwaa",
+    "href": "09-mwaa-airflow.html#why-mwaa",
+    "title": "MWAA and Airflow Workflow Orchestration",
+    "section": "Why MWAA?",
+    "text": "Why MWAA?\nAmazon Managed Workflows for Apache Airflow is AWS’s managed Airflow service.\nMWAA reduces the need to operate:\n\nScheduler infrastructure\nWebserver infrastructure\nWorker infrastructure\nMetadata database\nLogging integration\nScaling infrastructure\nAWS networking integration\n\n\n\nMWAA Architecture\n\n\n\n\n\nflowchart TB\n  S3[S3 Bucket: DAGs / plugins / requirements] --&gt; MWAA[MWAA Environment]\n  MWAA --&gt; CW[CloudWatch Logs]\n  MWAA --&gt; RDS[(Managed Metadata DB)]\n  IAM[IAM Execution Role] --- MWAA\n  VPC[Customer VPC] --- MWAA\n  MWAA --&gt; AWS[AWS Services]\n\n\n\n\n\n\nMWAA connects Airflow to AWS-native infrastructure.\n\n\n\nWhat MWAA Manages\nMWAA manages:\n\nAirflow scheduler\nAirflow webserver\nWorker environment\nMetadata database infrastructure\nLogs to CloudWatch\nEnvironment scaling integration\nAirflow environment lifecycle\n\nYou still manage:\n\nDAG code\nDependencies\nIAM permissions\nS3 deployment structure\nVPC connectivity choices\nAirflow configuration choices\n\n\n\n\nMWAA Deployment Model\n\n\n\n\n\nsequenceDiagram\n  participant Dev as Developer\n  participant S3 as S3 Bucket\n  participant MWAA as MWAA Scheduler\n  participant Worker as MWAA Worker\n  participant Logs as CloudWatch\n\n  Dev-&gt;&gt;S3: Upload DAG file\n  MWAA-&gt;&gt;S3: Sync and parse DAGs\n  MWAA-&gt;&gt;Worker: Queue runnable task\n  Worker-&gt;&gt;Logs: Stream task logs\n  Worker-&gt;&gt;MWAA: Report task state\n\n\n\n\n\n\nThe DAG file is deployed to S3, then MWAA parses and schedules it.\n\n\n\nMWAA and S3\nTypical S3 layout:\ns3://your-mwaa-bucket/\n  dags/\n    example_dag.py\n  plugins/\n    custom_plugin.zip\n  requirements.txt\nS3 is the source location for DAGs and environment dependencies.\nCommon issue:\n\nThe DAG is uploaded, but Airflow does not show it because of path, parsing, or dependency errors.\n\n\n\n\nMWAA and IAM\nIAM controls what your Airflow environment can access.\nExamples:\n\nRead/write S3 objects\nStart AWS Glue jobs\nAccess Secrets Manager\nPublish CloudWatch logs\nQuery Redshift or Athena\n\nMany MWAA task failures are not Airflow logic failures.\nThey are permissions failures.\n\n\n\nMWAA and VPC\nVPC configuration controls network reachability.\nAirflow tasks may need access to:\n\nPrivate databases\nInternal APIs\nVPC endpoints\nAWS services\nInternet endpoints\n\nCommon failure:\n\nA task is logically correct but cannot reach the service it needs because of subnet, route table, endpoint, or security group configuration.",
+    "crumbs": [
+      "Managed workflow with Airflow",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MWAA and Airflow Workflow Orchestration</span>"
+    ]
+  },
+  {
+    "objectID": "09-mwaa-airflow.html#airflow-execution-lifecycle",
+    "href": "09-mwaa-airflow.html#airflow-execution-lifecycle",
+    "title": "MWAA and Airflow Workflow Orchestration",
+    "section": "Airflow Execution Lifecycle",
+    "text": "Airflow Execution Lifecycle\n\n\n\n\n\nflowchart TB\n  A[Parse DAG File] --&gt; B[Register DAG]\n  B --&gt; C[Create DAG Run]\n  C --&gt; D[Resolve Dependencies]\n  D --&gt; E[Queue Task Instance]\n  E --&gt; F[Worker Executes Task]\n  F --&gt; G[Persist State]\n  F --&gt; H[Emit Logs]\n\n\n\n\n\n\nUse this lifecycle to debug almost every Airflow issue.\n\n\nDebugging by Lifecycle Stage\n\n\n\n\n\n\n\n\nStage\nCommon symptom\nFirst place to check\n\n\n\n\nParse DAG\nDAG missing\nImport Errors\n\n\nSchedule DAG Run\nNo run appears\nschedule, start_date, pause state\n\n\nQueue task\nTask stuck queued\nworkers, pools, concurrency\n\n\nExecute task\nTask fails\ntask logs\n\n\nAccess AWS service\nAccess denied\nIAM execution role\n\n\nNetwork call\nTimeout\nVPC, route, endpoint, security group\n\n\n\n\nDiscuss with a neighbor:\n\nWhat is different between Airflow and PySpark?\nWhat breaks if a workflow graph contains a cycle?\nWhy does Airflow need a metadata database?\nWhat does MWAA manage, and what does the DAG author still own?\nWhere would you look first if a DAG does not appear in the UI?",
+    "crumbs": [
+      "Managed workflow with Airflow",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MWAA and Airflow Workflow Orchestration</span>"
+    ]
+  },
+  {
     "objectID": "a0-project-specification.html",
     "href": "a0-project-specification.html",
     "title": "Project Specification",
@@ -654,7 +720,7 @@
     "text": "Group formation\nThe project group may consist of up to 3 students.",
     "crumbs": [
       "Project",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Project Specification</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
     ]
   },
   {
@@ -665,7 +731,7 @@
     "text": "Project grading\nThe project is worth 35% of the class grade, with the following details:\n\n\n\n\nDue date\nProportion (%)\n\n\nProposal\nMay 5\n10\n\n\nCheck-up\nMay 19\n10\n\n\nPresentation\nJune 2 and 4\n25\n\n\nReport\nJune 10\n45\n\n\nPeer experience summary\nJune 10\n10\n\n\nTotal\n\n100",
     "crumbs": [
       "Project",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Project Specification</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
     ]
   },
   {
@@ -676,7 +742,7 @@
     "text": "Project proposal\nDevelop a proposal that includes your topic, the selection of relevant dataset(s), and a plan to answer questions of interests. Keep in mind the timeline of the quarter and set achievable goals.\n\nGuidelines for proposal\nReview the guidelines below carefully.\nOverarching theme: Design a data process that involves ingesting data, preprocessing, analysis, and service. Consider a process that can scale and can be reused given data update.\nThe proposal should follow this format (5 points):\n\nInclude full names of all teammates.\nBetween 1 to 2 pages, single-spaced, 11-point type, 1-inch margins.\nDo not include graphics.\nDecide on the name of your group. A pdf named [GroupName]_proposal.pdf should be submitted.\n\nThe proposal should cover the following components (but in a narrative format, not Q/A):\n\nIntroduction (12 points): Introduce your project and motivation, e.g.,\n\nWhat is the main issue you are interested in?\nWhy is this topic important?\nIn what way does this project provide a solution?\n\nData source(s) (10 points): Describe the data sources you have chosen, e.g.,\n\nHow can the data be retrieved?\nHow are the data related to the topic?\nState the amount of data you will be working with.\n\nGoal definitions (18 points): State two to three goals you are interested in achieving with the selected data sources.\nAs you tackle the goals, you should use at least one of the data engineering techniques covered in class:\n\nMissing data imputation\nDatabase system (relational or non-relational)\nDistributed computing framework (e.g., pyspark)\nFor each goal, answer the following:\nHow do you intend to achieve your goal?\nHow do you intend to use the above techniques?\nWhat can you answer (and not answer) with the proposed datasets?\n\nReference (5 points): Provide valid references for your data source(s). (Reference does not count toward the page limit.)\n\nFor example, using APA guidelines, the MIMIC-III database can be cited as &gt; Johnson, A., Pollard, T., & Mark, R. (2016). MIMIC-III Clinical Database (version 1.4). PhysioNet. https://doi.org/10.13026/C2XW26.\nor the original article &gt; Johnson, A. E., Pollard, T. J., Shen, L., Lehman, L. W. H., Feng, M., Ghassemi, M., … & Mark, R. G. (2016). MIMIC-III, a freely accessible critical care database. Scientific data, 3(1), 1-9.",
     "crumbs": [
       "Project",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Project Specification</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
     ]
   },
   {
@@ -687,7 +753,7 @@
     "text": "Potential data sources\nBelow are some possible avenues for finding data sources:\n\nGoogle dataset search\nAwesome public datasets\nBuzzFeed news repository\nRecommendation systems reference\nOpen data challenge",
     "crumbs": [
       "Project",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Project Specification</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
     ]
   },
   {
@@ -698,7 +764,7 @@
     "text": "Example project topics\n\nCTA Bus delay analysis\nWater quality monitoring across US\nTrend analysis of song / artist popularity\nElectric grid and price forecasting",
     "crumbs": [
       "Project",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Project Specification</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
     ]
   },
   {
@@ -709,7 +775,7 @@
     "text": "Project check-up\nTwo elements are required for the project check-up:\n\nGroup, submitted on Canvas as a pdf. (30 points)\n\nFor each of your set goals in the proposal, provide a brief summary of progress. If you have not worked on a particular goal yet, feel free to say that you have not made progress there.\nInclude any questions or roadblocks you are encountering and require assistance.\nIf you find it helpful to set up a time to meet with Prof. Chan, indicate so.\n\nIndividual. (20 points)\n\nComplete the following Google form: DE300 Project check-up Google Form, Link to come\n\n\nNote: While the check-up form would not necessarily change your individual project grades, adjustments will be considered combining the feedback from the check-up and the peer experience summary.",
     "crumbs": [
       "Project",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Project Specification</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
     ]
   },
   {
@@ -720,7 +786,7 @@
     "text": "Presentation\nA presentation will be due on the last day of class. The presentation should follow these guidelines:\n\nUp to fifteen minutes.\nTips: Distribute your content and do a quick dry run in advance. This will smoothen out your presentation.\n\nThe presentation should include but not limited to the following:\n\nMotivation of your project.\nIntroduction to your dataset(s) and its relevance.\nGoals, method of analyses, and findings.\nSummary.\n\nThe presentation is evaluated via the following criteria (20 each):\n\nOrganization of content\nAppropriate use of language\nDelivery\nUse of supporting materials (visuals, statistics, etc.)\nClarity of central idea\n\nNote that while the evaluation is primarily for the entire group, evaluation may differ among students if significant discrepancy is observed. You may refer to the sample reference rubric for details.",
     "crumbs": [
       "Project",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Project Specification</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
     ]
   },
   {
@@ -731,7 +797,7 @@
     "text": "Report\nPrepare a project report to clearly outline your project choice and its importance, your approach to achieving the set of goals, your results, and a summary.\nThe report should follow these guidlines:\n\nInclude full names of all teammates.\n\nThis is a reminder that it is an academic violation to include your name on any work you have not contributed or performed.\n\nUp to 15 pages (not including Appendix), single-spaced, 11-point type, 1-inch margins.\n\nSubmission: A single pdf named [Groupname]_report.pdf should be submitted.\nInclude all of your code in a zipped folder in your submission. Make sure your codes and code organization are understandable.\n\nThe report should include the following components in a narrative format:\n\nIntroduction (5 points): Introduce your project and motivation, e.g.,\n\nWhat is the main issue you are interested in?\nWhy is this topic important?\nIn what way does this project provide a solution?\n\nData source(s) (5 points): Describe the data sources you have chosen, e.g.,\n\nHow can the data be retrieved?\nHow are the data related to the topic?\nState the amount of data you will be working with.\n\nGoals and approaches (60 points): State the specific goals you are attempting to achieve with the selected data sources. For each goal, provide the approach in achieving said goal, its implementation, and your results. Use any graph, table, or other visualization to support your narrative.\nSummary (10 points): Provide a brief summary of your project, and describe any loose ends or future opportunities.\nGenerative AI statement and reference (10 points):\n\nGenerative AI statement: If you have, in any way, employed the use of generative AI tools, report all usage according to the syllabus. This statement does not count toward the page limit.\nReference: Provide valid references for your data source(s). (Does not count toward the page limit.)\n\nFor example, using APA guidelines, the MIMIC-III database can be cited as &gt; Johnson, A., Pollard, T., & Mark, R. (2016). MIMIC-III Clinical Database (version 1.4). PhysioNet. https://doi.org/10.13026/C2XW26.\nor the original article &gt; Johnson, A. E., Pollard, T. J., Shen, L., Lehman, L. W. H., Feng, M., Ghassemi, M., … & Mark, R. G. (2016). MIMIC-III, a freely accessible critical care database. Scientific data, 3(1), 1-9.\n\n\nCode legibility and organization (10 points): Give a brief summary or provide a README to use and evaluate your code. (Does not count toward the page limit.)",
     "crumbs": [
       "Project",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Project Specification</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
     ]
   },
   {
@@ -742,7 +808,7 @@
     "text": "Thorough Understanding\nGood Understanding\nBasic Understanding\nPoor/No Understanding\n\n\n\n\nOrganization\nOrganizational pattern (specific introduction and conclusion, sequenced material within the body, and transitions) is clearly and consistently observable and is skillful and makes the content of the presentation cohesive.\nOrganizational pattern (specific introduction and conclusion, sequenced material within the body, and transitions) is clearly and consistently observable within the presentation.\nOrganizational pattern (specific introduction and conclusion, sequenced material within the body, and transitions) is intermittently observable within the presentation.\nOrganizational pattern (specific introduction and conclusion, sequenced material within the body, and transitions) is not observable within the presentation.\n\n\nLanguage\nLanguage choices are memorable, compelling, and enhance the effectiveness of the presentation. Language in presentation is appropriate to audience.\nLanguage choices are thoughtful and generally support the effectiveness of the presentation. Language in presentation is appropriate to audience.\nLanguage choices are mundane and commonplace and partially support the effectiveness of the presentation. Language in presentation is appropriate to audience.\nLanguage choices are unclear and minimally support the effectiveness of the presentation. Language in presentation is not appropriate to audience.\n\n\nDelivery\nDelivery techniques (posture, gesture, eye contact, and vocal expressiveness) make the presentation compelling, and speaker appears polished and confident.\nDelivery techniques (posture, gesture, eye contact, and vocal expressiveness) make the presentation interesting, and speaker appears comfortable.\nDelivery techniques (posture, gesture, eye contact, and vocal expressiveness) make the presentation understandable, and speaker appears tentative.\nDelivery techniques (posture, gesture, eye contact, and vocal expressiveness) detract from the understandability of the presentation, and speaker appears uncomfortable.\n\n\nSupporting Material\nA variety of types of supporting materials (explanations, illustrations, statistics) make appropriate reference to information or analysis that significantly supports the presentation or establishes the presenter’s credibility/authority on the topic.\nSupporting materials (explanations, illustrations, statistics) make appropriate reference to information or analysis that generally supports the presentation or establishes the presenter’s credibility/authority on the topic.\nSupporting materials (explanations, illustrations, statistics) make appropriate reference to information or analysis that partially supports the presentation or establishes the presenter’s credibility/authority on the topic.\nInsufficient supporting materials (explanations, illustrations, statistics) make reference to information or analysis that minimally supports the presentation or establishes the presenter’s credibility/authority on the topic.\n\n\nCentral Message\nCentral message is precisely stated and strongly supported.\nCentral message is clear and consistent with the supporting material.\nCentral message is basically understandable but is not memorable.\nCentral message can be deduced, but is not explicitly stated in the presentation.",
     "crumbs": [
       "Project",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Presentation reference rubric</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Presentation reference rubric</span>"
     ]
   },
   {
@@ -753,7 +819,7 @@
     "text": "Reconnect to EC2 Jupyter notebook\nImportant: Whenever you are not running anything (for more than 15 minutes), you should stop the EC2 instance on the AWS Instances page.",
     "crumbs": [
       "Useful guides",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Setting up EC2 instance for jupyter notebook</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Setting up EC2 instance for jupyter notebook</span>"
     ]
   },
   {
@@ -764,7 +830,7 @@
     "text": "Start your EC2 instance from https://nu-sso.awsapps.com/start/. (The one you have a private key for.)\nOnce the EC2 instance is running, connect to the instance via SSH\n\nUnder the SSH client tab, you will see the instructions to connect to the EC2 instance via SSH on your console.\n\nIf your EC2 console shows (base) before your cursor, it indicates that conda environment is already running.\n\nIf not, you have to run eval \"$($CONDA_PATH/bin/conda shell.bash hook)\" to activate the conda environment.\n\nSSH into Jupyter notebook on EC2 (as in step 7 above.)",
     "crumbs": [
       "Useful guides",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Setting up EC2 instance for jupyter notebook</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Setting up EC2 instance for jupyter notebook</span>"
     ]
   },
   {
@@ -775,7 +841,7 @@
     "text": "Prerequisites\nTwo files are required for accessing Keyspace in Jupyter notebook:\nMore details about the setup can be found in Using a Cassandra Python client.",
     "crumbs": [
       "Useful guides",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
     ]
   },
   {
@@ -786,7 +852,7 @@
     "text": "Starfield digital certificate\nAWS credentials for Keyspace\n\n\n\nStarfield digital certificate\nThe digital certificate can be downloaded by:\n\n!curl -O https://www.amazontrust.com/repository/AmazonRootCA1.pem\n!curl -O https://www.amazontrust.com/repository/AmazonRootCA2.pem\n!curl -O https://www.amazontrust.com/repository/AmazonRootCA3.pem\n!curl -O https://www.amazontrust.com/repository/AmazonRootCA4.pem\n!curl -O https://certs.secureserver.net/repository/sf-class2-root.crt\n\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100  1188  100  1188    0     0  18569      0 --:--:-- --:--:-- --:--:-- 19800\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100  1883  100  1883    0     0  59867      0 --:--:-- --:--:-- --:--:-- 69740\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100   656  100   656    0     0  14694      0 --:--:-- --:--:-- --:--:-- 16000\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100   737  100   737    0     0  13336      0 --:--:-- --:--:-- --:--:-- 14450\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100  1468  100  1468    0     0   5144      0 --:--:-- --:--:-- --:--:--  5187\n\n\n\n# combine key files\n!type AmazonRootCA1.pem AmazonRootCA2.pem AmazonRootCA3.pem AmazonRootCA4.pem sf-class2-root.crt &gt; keyspaces-bundle.pem\n\n\nAmazonRootCA1.pem\n\n\n\nAmazonRootCA2.pem\n\n\n\nAmazonRootCA3.pem\n\n\n\nAmazonRootCA4.pem\n\n\n\nsf-class2-root.crt\n\n\n\n\n\n\nAWS credentials\nThe AWS credentials file can be downloaded via Canvas. Place this credentials file under .aws/ folder on your local machine, or your EC2 instance, so that AWS knows where to look for the credentials.\nMAJOR NOTE: Do not store this credentials anywhere that is publicly accessible, github, public S3 bucket, etc. That is the primary reason why this file is only available on Canvas.",
     "crumbs": [
       "Useful guides",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
     ]
   },
   {
@@ -797,7 +863,7 @@
     "text": "Sample code for connection\n\nInstall cassandra-sigv4 via the following command:\n\n\n!pip install cassandra-sigv4\n\n\nSet up a boto3 session and a Cassandra cluster (the Python way of interacting with AWS).\n\n\nfrom cassandra.cluster import Cluster\nfrom ssl import SSLContext, PROTOCOL_TLSv1_2 , CERT_REQUIRED\nimport boto3\nfrom cassandra_sigv4.auth import SigV4AuthProvider\n\nssl_context = SSLContext(PROTOCOL_TLSv1_2)\nssl_context.load_verify_locations('keyspaces-bundle.pem')\nssl_context.verify_mode = CERT_REQUIRED\n\n&lt;positron-console-cell-5&gt;:6: DeprecationWarning: ssl.PROTOCOL_TLSv1_2 is deprecated\n\n\n\nimport pandas as pd\naccess_key = pd.read_csv('../admin/de300-keyspaces_accessKeys.csv')\n\n\n# use this if you want to use Boto to set the session parameters.\nboto_session = boto3.Session(aws_access_key_id=\"AKIAYAAO5HRMC6K3K34T\",\n                             aws_secret_access_key=access_key['Secret access key'].values[0],\n                            #  aws_session_token=\"AQoDYXdzEJr...&lt;remainder of token&gt;\",\n                             region_name=\"us-east-1\")\nauth_provider = SigV4AuthProvider(boto_session)\n\ncluster = Cluster(['cassandra.us-east-1.amazonaws.com'], \n                  ssl_context=ssl_context, \n                  auth_provider=auth_provider,\n                  port=9142)\nsession = cluster.connect()\nr = session.execute('select * from system_schema.keyspaces')\nprint(r.current_rows)\n\n[Row(keyspace_name='system_schema', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='system_schema_mcs', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='system', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='system_multiregion_info', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_acharya', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_chan', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_demo', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_fingerson', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_lacombefarina', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_sokolenko', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_wilks', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')]))]",
     "crumbs": [
       "Useful guides",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
     ]
   },
   {
@@ -808,7 +874,7 @@
     "text": "Working with Cassandra (AWS Keyspace)\n\n# establishing connection to Keyspace\nsession = cluster.connect()\n\n\n# Insert any CQL queries between .connect() and .shutdown()\n\n# For example, show all keyspaces created\nr = session.execute('''\n    SELECT * FROM system_schema.keyspaces;\n    ''')\nprint(r.current_rows)\n\n[Row(keyspace_name='system_schema', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='system_schema_mcs', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='system', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='system_multiregion_info', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_acharya', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_chan', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_demo', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_fingerson', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_lacombefarina', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_sokolenko', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_wilks', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')]))]\n\n\n\nq = '''\nSELECT * FROM de300_chan.test_table;\n'''\n\nr = session.execute(q)\n\n\nr.current_rows\n\n[Row(country='US', user_id=1002, gender='F'),\n Row(country='GB', user_id=1001, gender='M')]\n\n\n\nfrom cassandra import ConsistencyLevel\nsession.default_consistency_level = ConsistencyLevel.LOCAL_QUORUM\n\nq = '''\nINSERT INTO de300_chan.test_table (country, gender, user_id) VALUES ('US', 'F', 1002);\n'''\n\nr = session.execute(q)\n\n\n\n# For example, create a keyspace for HW2\nr = session.execute('''\n    CREATE KEYSPACE IF NOT EXISTS de300_demo \n    WITH replication = {'class': 'SingleRegionStrategy'};\n    ''')\nprint(r.current_rows)",
     "crumbs": [
       "Useful guides",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
     ]
   },
   {
@@ -819,7 +885,7 @@
     "text": "Shutdown your Cassandra connection\n\nsession.shutdown()",
     "crumbs": [
       "Useful guides",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
     ]
   },
   {
@@ -830,7 +896,7 @@
     "text": "Overview\nThis guide walks through setting up PySpark on a single Amazon EC2 instance. It is intended for development, testing, lightweight analysis, and small jobs.\nFor production-scale Spark workloads, consider Amazon EMR, AWS Glue, Databricks, or another managed Spark platform instead of hand-rolling a standalone EC2 setup.",
     "crumbs": [
       "Useful guides",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
     ]
   },
   {
@@ -841,7 +907,7 @@
     "text": "Java not found\nCheck Java:\njava -version\nIf missing:\nsudo dnf install -y java-17-amazon-corretto-devel",
     "crumbs": [
       "Useful guides",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
     ]
   },
   {
@@ -852,7 +918,7 @@
     "text": "PySpark cannot find Python\nAdd this to ~/.bashrc:\nexport PYSPARK_PYTHON=python3\nReload the shell config:\nsource ~/.bashrc",
     "crumbs": [
       "Useful guides",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
     ]
   },
   {
@@ -863,7 +929,7 @@
     "text": "EC2 runs out of memory\nUse a larger instance or limit Spark driver memory:\nspark = (\n    SparkSession.builder\n    .appName(\"memory-limited-job\")\n    .master(\"local[*]\")\n    .config(\"spark.driver.memory\", \"4g\")\n    .getOrCreate()\n)",
     "crumbs": [
       "Useful guides",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
     ]
   },
   {
@@ -874,7 +940,40 @@
     "text": "Disk fills up\nCheck disk usage:\ndf -h\ndu -sh ~/.cache /tmp 2&gt;/dev/null\nClean package cache:\nsudo dnf clean all",
     "crumbs": [
       "Useful guides",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "0c-airflow-mwaa-setup.html",
+    "href": "0c-airflow-mwaa-setup.html",
+    "title": "Setting Up MWAA Environment on EC2",
+    "section": "",
+    "text": "Overview\nThis guide walks through setting up MWAA Environment on AWS.",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Setting Up MWAA Environment on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "0c-airflow-mwaa-setup.html#step-1-create-an-s3-bucket",
+    "href": "0c-airflow-mwaa-setup.html#step-1-create-an-s3-bucket",
+    "title": "Setting Up MWAA Environment on EC2",
+    "section": "Step 1: Create an S3 Bucket",
+    "text": "Step 1: Create an S3 Bucket\nMWAA uses S3 to store your DAGs, plugins, and requirements.\n\nGo to S3 in the AWS Console and create a new bucket (e.g., de300-airflow-lastnames).\nVersioning should be enabled by default on the bucket. Double check, this is required by MWAA.\nCreate the following folder structure inside the bucket:\n\nmy-mwaa-bucket/\n├── dags/\n├── plugins/        # optional\n└── requirements.txt  # optional",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Setting Up MWAA Environment on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "0c-airflow-mwaa-setup.html#step-2-create-the-mwaa-environment",
+    "href": "0c-airflow-mwaa-setup.html#step-2-create-the-mwaa-environment",
+    "title": "Setting Up MWAA Environment on EC2",
+    "section": "Step 2: Create the MWAA Environment",
+    "text": "Step 2: Create the MWAA Environment\n\nNavigate to Amazon MWAA in the AWS Console and click Create environment.\nFill in the configuration:\n\n\n\n\nSetting\nValue\n\n\n\n\nName\nde300-airflow-lastnames\n\n\nAirflow version\nLatest stable (e.g., 2.9.x)\n\n\nS3 bucket\ns3://YOUR-BUCKET/\n\n\nDAGs folder\ns3://YOUR-BUCKET/dags/\n\n\nExecution role\narn:.....MWAA.....\n\n\nVPC / Subnets\nChoose the VPC that indicates MWAA\n\n\n\n\nUnder Network access, choose:\n\nPublic — accessible over the internet (simpler for getting started)\n\nChange Maximum number of workers to 4.\nClick Create environment and wait 20–30 minutes for provisioning.",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Setting Up MWAA Environment on EC2</span>"
     ]
   },
   {

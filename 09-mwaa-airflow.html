@@ -1,0 +1,2614 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MWAA and Airflow Workflow Orchestration – DATA_ENG 300: Data Engineering Studio</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./a0-project-specification.html" rel="next">
+<link href="./08-pyspark_ec2_random_forest.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-mwaa-airflow.html">Managed workflow with Airflow</a></li><li class="breadcrumb-item"><a href="./09-mwaa-airflow.html"><span class="chapter-title">MWAA and Airflow Workflow Orchestration</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">DATA_ENG 300: Data Engineering Studio</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">DATA_ENG 300: Data Engineering Studio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro-data-engineering.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introduction to Data Engineering</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./class-notebooks/02-exploratory-data-analysis-class.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Intro to EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notes/02-exploratory-data-analysis-complete.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Intro to EDA, filled</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./class-notebooks/03-missing-data-class.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Handling missing data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./class-notebooks/03-missing-data-filled.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Handling missing data, filled</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-rec-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Handling missing data in recommendation systems</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parallelization of computing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-spark.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Intro to parallelized computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-rdd.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Resilient distributed datasets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-pyspark-ml.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Machine learning examples in PySpark</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-pyspark_ec2_random_forest.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Fitting and Plotting a Random Forest Model with PySpark on EC2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Managed workflow with Airflow</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-mwaa-airflow.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">MWAA and Airflow Workflow Orchestration</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a0-project-specification.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Project Specification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1-presentation-rubric.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Presentation reference rubric</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Useful guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./0a-jupyter-ec2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Setting up EC2 instance for jupyter notebook</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./0b-access-keyspaces.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Setting up access to Keyspace in Jupyter notebook</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./0d-pyspark_ec2_setup_manual.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Setting Up PySpark on EC2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./0c-airflow-mwaa-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Setting Up MWAA Environment on EC2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#why-workflow-orchestration-exists" id="toc-why-workflow-orchestration-exists" class="nav-link active" data-scroll-target="#why-workflow-orchestration-exists">Why Workflow Orchestration Exists</a>
+  <ul class="collapse">
+  <li><a href="#example-a-simple-data-pipeline" id="toc-example-a-simple-data-pipeline" class="nav-link" data-scroll-target="#example-a-simple-data-pipeline">Example: A Simple Data Pipeline</a></li>
+  <li><a href="#orchestration-solves-coordination-problems" id="toc-orchestration-solves-coordination-problems" class="nav-link" data-scroll-target="#orchestration-solves-coordination-problems">Orchestration Solves Coordination Problems</a></li>
+  <li><a href="#orchestration-vs-execution" id="toc-orchestration-vs-execution" class="nav-link" data-scroll-target="#orchestration-vs-execution">Orchestration vs Execution</a></li>
+  <li><a href="#mental-model" id="toc-mental-model" class="nav-link" data-scroll-target="#mental-model">Mental Model</a></li>
+  </ul></li>
+  <li><a href="#what-is-apache-airflow" id="toc-what-is-apache-airflow" class="nav-link" data-scroll-target="#what-is-apache-airflow">What Is Apache Airflow?</a>
+  <ul class="collapse">
+  <li><a href="#dag-theory" id="toc-dag-theory" class="nav-link" data-scroll-target="#dag-theory">DAG Theory</a></li>
+  <li><a href="#valid-dag" id="toc-valid-dag" class="nav-link" data-scroll-target="#valid-dag">Valid DAG</a></li>
+  <li><a href="#invalid-dag-cycle" id="toc-invalid-dag-cycle" class="nav-link" data-scroll-target="#invalid-dag-cycle">Invalid DAG: Cycle</a></li>
+  <li><a href="#why-acyclic-matters" id="toc-why-acyclic-matters" class="nav-link" data-scroll-target="#why-acyclic-matters">Why Acyclic Matters</a></li>
+  <li><a href="#parallelism-from-dag-structure" id="toc-parallelism-from-dag-structure" class="nav-link" data-scroll-target="#parallelism-from-dag-structure">Parallelism from DAG Structure</a></li>
+  <li><a href="#dags-enable-fault-isolation" id="toc-dags-enable-fault-isolation" class="nav-link" data-scroll-target="#dags-enable-fault-isolation">DAGs Enable Fault Isolation</a></li>
+  </ul></li>
+  <li><a href="#airflow-core-concepts" id="toc-airflow-core-concepts" class="nav-link" data-scroll-target="#airflow-core-concepts">Airflow Core Concepts</a>
+  <ul class="collapse">
+  <li><a href="#dag-vs-dag-run" id="toc-dag-vs-dag-run" class="nav-link" data-scroll-target="#dag-vs-dag-run">DAG vs DAG Run</a></li>
+  <li><a href="#task-vs-task-instance" id="toc-task-vs-task-instance" class="nav-link" data-scroll-target="#task-vs-task-instance">Task vs Task Instance</a></li>
+  <li><a href="#airflow-architecture" id="toc-airflow-architecture" class="nav-link" data-scroll-target="#airflow-architecture">Airflow Architecture</a></li>
+  <li><a href="#component-scheduler" id="toc-component-scheduler" class="nav-link" data-scroll-target="#component-scheduler">Component: Scheduler</a></li>
+  <li><a href="#component-metadata-database" id="toc-component-metadata-database" class="nav-link" data-scroll-target="#component-metadata-database">Component: Metadata Database</a></li>
+  <li><a href="#component-workers" id="toc-component-workers" class="nav-link" data-scroll-target="#component-workers">Component: Workers</a></li>
+  <li><a href="#component-webserver-ui" id="toc-component-webserver-ui" class="nav-link" data-scroll-target="#component-webserver-ui">Component: Webserver / UI</a></li>
+  <li><a href="#executor-concept" id="toc-executor-concept" class="nav-link" data-scroll-target="#executor-concept">Executor Concept</a></li>
+  </ul></li>
+  <li><a href="#why-mwaa" id="toc-why-mwaa" class="nav-link" data-scroll-target="#why-mwaa">Why MWAA?</a>
+  <ul class="collapse">
+  <li><a href="#mwaa-architecture" id="toc-mwaa-architecture" class="nav-link" data-scroll-target="#mwaa-architecture">MWAA Architecture</a></li>
+  <li><a href="#what-mwaa-manages" id="toc-what-mwaa-manages" class="nav-link" data-scroll-target="#what-mwaa-manages">What MWAA Manages</a></li>
+  <li><a href="#mwaa-deployment-model" id="toc-mwaa-deployment-model" class="nav-link" data-scroll-target="#mwaa-deployment-model">MWAA Deployment Model</a></li>
+  <li><a href="#mwaa-and-s3" id="toc-mwaa-and-s3" class="nav-link" data-scroll-target="#mwaa-and-s3">MWAA and S3</a></li>
+  <li><a href="#mwaa-and-iam" id="toc-mwaa-and-iam" class="nav-link" data-scroll-target="#mwaa-and-iam">MWAA and IAM</a></li>
+  <li><a href="#mwaa-and-vpc" id="toc-mwaa-and-vpc" class="nav-link" data-scroll-target="#mwaa-and-vpc">MWAA and VPC</a></li>
+  </ul></li>
+  <li><a href="#airflow-execution-lifecycle" id="toc-airflow-execution-lifecycle" class="nav-link" data-scroll-target="#airflow-execution-lifecycle">Airflow Execution Lifecycle</a>
+  <ul class="collapse">
+  <li><a href="#debugging-by-lifecycle-stage" id="toc-debugging-by-lifecycle-stage" class="nav-link" data-scroll-target="#debugging-by-lifecycle-stage">Debugging by Lifecycle Stage</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-mwaa-airflow.html">Managed workflow with Airflow</a></li><li class="breadcrumb-item"><a href="./09-mwaa-airflow.html"><span class="chapter-title">MWAA and Airflow Workflow Orchestration</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">MWAA and Airflow Workflow Orchestration</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- 
+## Course Map
+
+This module is designed as **two 75-minute lectures**.
+
+| Lecture | Focus | Outcome |
+|---|---|---|
+| 1 | Workflow orchestration theory + Airflow/MWAA architecture | Students can explain what Airflow orchestrates and how MWAA runs it |
+| 2 | XCom-based DAG authoring + scheduling, branching, scaling, and operations | Students can reason about production DAG behavior and debug common issues |
+
+::: notes
+Use this opening slide to set expectations. Lecture 1 is conceptual and architectural. Lecture 2 is applied and operational.
+:::
+
+---
+
+# Lecture 1 — Foundations of Workflow Orchestration
+
+**Target duration:** 75 minutes
+
+**Theme:** Why orchestration exists, how DAGs work, and how MWAA manages Airflow on AWS.
+
+---
+
+## Lecture 1 Timing Plan
+
+| Time | Topic |
+|---:|---|
+| 0–10 min | Motivation: why orchestration exists |
+| 10–25 min | DAG theory and dependency modeling |
+| 25–45 min | Airflow architecture |
+| 45–60 min | MWAA architecture on AWS |
+| 60–70 min | Execution lifecycle and debugging mental model |
+| 70–75 min | Checkpoint questions |
+
+---
+
+## Learning Objectives — Lecture 1
+
+By the end of Lecture 1, students should be able to:
+
+- Explain the difference between **orchestration** and **execution**
+- Define a DAG and explain why cycles are not allowed
+- Identify the major Airflow components
+- Explain what MWAA manages on behalf of the user
+- Trace the lifecycle of a task from DAG file to worker execution
+
+--- -->
+<section id="why-workflow-orchestration-exists" class="level2">
+<h2 class="anchored" data-anchor-id="why-workflow-orchestration-exists">Why Workflow Orchestration Exists</h2>
+<p>Modern data systems are rarely one-step scripts.</p>
+<p>They usually require:</p>
+<ul>
+<li>Ingesting data from multiple systems</li>
+<li>Validating data quality</li>
+<li>Transforming raw data into useful models</li>
+<li>Loading outputs into warehouses or applications</li>
+<li>Notifying downstream consumers</li>
+<li>Retrying failures safely</li>
+</ul>
+<hr>
+<p>Without orchestration, workflows become fragile collections of scripts, jobs, and manual checks.</p>
+<section id="example-a-simple-data-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="example-a-simple-data-pipeline">Example: A Simple Data Pipeline</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  A["Download data"] --&gt; B["Validate schema"]
+  B --&gt; C[Transform]
+  C --&gt; D[Load table]
+  D --&gt; E[Send alert]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This looks simple, but production adds complexity:</p>
+<ul>
+<li>What if validation fails?</li>
+<li>What if the warehouse is temporarily unavailable?</li>
+<li>What if yesterday’s data needs to be reprocessed?</li>
+<li>What if two tasks can run in parallel?</li>
+</ul>
+<hr>
+</section>
+<section id="orchestration-solves-coordination-problems" class="level3">
+<h3 class="anchored" data-anchor-id="orchestration-solves-coordination-problems">Orchestration Solves Coordination Problems</h3>
+<p>Workflow orchestration coordinates:</p>
+<ol type="1">
+<li>Task order</li>
+<li>Scheduling</li>
+<li>Dependencies</li>
+<li>Retries</li>
+<li>Failure handling</li>
+<li>Parallelism</li>
+<li>State tracking</li>
+<li>Observability</li>
+</ol>
+<p>The orchestrator answers:</p>
+<blockquote class="blockquote">
+<p>What should run next, when, and under what conditions?</p>
+</blockquote>
+<hr>
+</section>
+<section id="orchestration-vs-execution" class="level3">
+<h3 class="anchored" data-anchor-id="orchestration-vs-execution">Orchestration vs Execution</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Main responsibility</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Orchestration</td>
+<td>Coordinates workflow logic</td>
+<td>Airflow decides task order</td>
+</tr>
+<tr class="even">
+<td>Execution</td>
+<td>Performs actual work</td>
+<td>Spark transforms a dataset</td>
+</tr>
+</tbody>
+</table>
+<p>Airflow is primarily an <strong>orchestrator</strong>.</p>
+<p>It can run Python code, but it is not designed to be a distributed compute engine for large-scale data processing.</p>
+<hr>
+</section>
+<section id="mental-model" class="level3">
+<h3 class="anchored" data-anchor-id="mental-model">Mental Model</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Airflow DAG] --&gt; B[Submit Spark Job]
+  A --&gt; C[Trigger Glue Job]
+  A --&gt; D[Call API]
+  A --&gt; E[Run Python Task]
+
+  B --&gt; F[Compute Happens Elsewhere]
+  C --&gt; F
+  D --&gt; F
+  E --&gt; G[Compute Happens on Worker]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Airflow coordinates the workflow; the compute may happen on workers or in external systems.</p>
+<hr>
+</section>
+</section>
+<section id="what-is-apache-airflow" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-apache-airflow">What Is Apache Airflow?</h2>
+<p>Apache Airflow is an open-source platform to:</p>
+<ul>
+<li>Author workflows as Python code</li>
+<li>Schedule workflows</li>
+<li>Manage dependencies</li>
+<li>Retry failed tasks</li>
+<li>Monitor task state</li>
+<li>Backfill historical runs</li>
+</ul>
+<p>Airflow models workflows as <strong>DAGs</strong>.</p>
+<p>A DAG is the central abstraction.</p>
+<hr>
+<section id="dag-theory" class="level3">
+<h3 class="anchored" data-anchor-id="dag-theory">DAG Theory</h3>
+<p>A DAG is a <strong>Directed Acyclic Graph</strong>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Meaning in Airflow</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Directed</td>
+<td>Edges have direction; order matters</td>
+</tr>
+<tr class="even">
+<td>Acyclic</td>
+<td>No circular dependencies</td>
+</tr>
+<tr class="odd">
+<td>Graph</td>
+<td>Tasks connected by dependencies</td>
+</tr>
+<tr class="even">
+<td>Node</td>
+<td>A task</td>
+</tr>
+<tr class="odd">
+<td>Edge</td>
+<td>A dependency</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="valid-dag" class="level3">
+<h3 class="anchored" data-anchor-id="valid-dag">Valid DAG</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  Extract --&gt; Transform --&gt; Load
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This is valid because dependencies move in one direction and never loop back.</p>
+<hr>
+</section>
+<section id="invalid-dag-cycle" class="level3">
+<h3 class="anchored" data-anchor-id="invalid-dag-cycle">Invalid DAG: Cycle</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Task A] --&gt; B[Task B]
+  B --&gt; C[Task C]
+  C --&gt; A
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This is invalid because Task A depends indirectly on itself.</p>
+<p>Airflow cannot create a stable execution order from this graph.</p>
+<hr>
+</section>
+<section id="why-acyclic-matters" class="level3">
+<h3 class="anchored" data-anchor-id="why-acyclic-matters">Why Acyclic Matters</h3>
+<p>Acyclic graphs allow Airflow to determine:</p>
+<ul>
+<li>Which tasks have no unmet dependencies</li>
+<li>Which tasks can run now</li>
+<li>Which tasks must wait</li>
+<li>Which tasks are blocked by failures</li>
+<li>When the whole DAG run is complete</li>
+</ul>
+<p>Cycles make this impossible.</p>
+<hr>
+</section>
+<section id="parallelism-from-dag-structure" class="level3">
+<h3 class="anchored" data-anchor-id="parallelism-from-dag-structure">Parallelism from DAG Structure</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  A[Extract source data] --&gt; B[Transform sales]
+  A --&gt; C[Transform inventory]
+  A --&gt; D[Transform customers]
+  B --&gt; E[Load warehouse]
+  C --&gt; E
+  D --&gt; E
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Tasks B, C, and D can run in parallel after A succeeds.</p>
+<p>Parallelism is determined by both:</p>
+<ul>
+<li>DAG structure</li>
+<li>Runtime concurrency limits</li>
+</ul>
+<hr>
+</section>
+<section id="dags-enable-fault-isolation" class="level3">
+<h3 class="anchored" data-anchor-id="dags-enable-fault-isolation">DAGs Enable Fault Isolation</h3>
+<p>If one task fails, Airflow can isolate the failure.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Extract] --&gt; B[Transform]
+  B --&gt; C[Load]
+  B --&gt; D[Quality Report]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>If D fails, Airflow does not necessarily need to rerun A, B, and C.</p>
+<p>This is one reason task granularity matters.</p>
+<hr>
+</section>
+</section>
+<section id="airflow-core-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="airflow-core-concepts">Airflow Core Concepts</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DAG</td>
+<td>Workflow definition</td>
+</tr>
+<tr class="even">
+<td>DAG Run</td>
+<td>One execution of a DAG</td>
+</tr>
+<tr class="odd">
+<td>Task</td>
+<td>Unit of work in a DAG</td>
+</tr>
+<tr class="even">
+<td>Task Instance</td>
+<td>One execution of a task in a specific DAG Run</td>
+</tr>
+<tr class="odd">
+<td>Operator</td>
+<td>Template for a task action</td>
+</tr>
+<tr class="even">
+<td>XCom</td>
+<td>Small cross-task message</td>
+</tr>
+<tr class="odd">
+<td>Scheduler</td>
+<td>Decides what should run</td>
+</tr>
+<tr class="even">
+<td>Worker</td>
+<td>Executes tasks</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<section id="dag-vs-dag-run" class="level3">
+<h3 class="anchored" data-anchor-id="dag-vs-dag-run">DAG vs DAG Run</h3>
+<p>A DAG is the blueprint.</p>
+<p>A DAG Run is a specific execution of that blueprint.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  D[DAG: daily_sales_pipeline] --&gt; R1[DAG Run: 2026-05-10]
+  D --&gt; R2[DAG Run: 2026-05-11]
+  D --&gt; R3[DAG Run: 2026-05-12]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="task-vs-task-instance" class="level3">
+<h3 class="anchored" data-anchor-id="task-vs-task-instance">Task vs Task Instance</h3>
+<p>A task is defined once in code.</p>
+<p>A task instance is created each time the task runs.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  T[Task: validate_sales] --&gt; I1[Task Instance for 2026-05-10]
+  T --&gt; I2[Task Instance for 2026-05-11]
+  T --&gt; I3[Task Instance for 2026-05-12]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This distinction is essential for debugging Airflow state.</p>
+<hr>
+</section>
+<section id="airflow-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="airflow-architecture">Airflow Architecture</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  DAGs[DAG Files] --&gt; Scheduler[Scheduler]
+  Scheduler --&gt; Metadata[(Metadata DB)]
+  Scheduler --&gt; Queue[Executor Queue]
+  Queue --&gt; Workers[Workers]
+  Workers --&gt; Metadata
+  Webserver[Webserver / UI] --&gt; Metadata
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The scheduler decides what should run.</p>
+<p>Workers execute tasks.</p>
+<p>The metadata database stores the truth about workflow state.</p>
+<hr>
+</section>
+<section id="component-scheduler" class="level3">
+<h3 class="anchored" data-anchor-id="component-scheduler">Component: Scheduler</h3>
+<p>The scheduler is the orchestration brain.</p>
+<p>Responsibilities:</p>
+<ul>
+<li>Parse DAG files</li>
+<li>Create DAG Runs</li>
+<li>Evaluate dependencies</li>
+<li>Queue runnable tasks</li>
+<li>Respect concurrency limits</li>
+<li>Update scheduling state</li>
+</ul>
+<p>Important mental model:</p>
+<blockquote class="blockquote">
+<p>The scheduler continuously evaluates whether task instances are ready to run.</p>
+</blockquote>
+<hr>
+</section>
+<section id="component-metadata-database" class="level3">
+<h3 class="anchored" data-anchor-id="component-metadata-database">Component: Metadata Database</h3>
+<p>The metadata database stores:</p>
+<ul>
+<li>DAG definitions and serialized metadata</li>
+<li>DAG Run state</li>
+<li>Task Instance state</li>
+<li>Retry history</li>
+<li>XCom values</li>
+<li>Connection and variable metadata</li>
+</ul>
+<p>Airflow is a <strong>state-driven system</strong>.</p>
+<p>The metadata database is the source of truth.</p>
+<hr>
+</section>
+<section id="component-workers" class="level3">
+<h3 class="anchored" data-anchor-id="component-workers">Component: Workers</h3>
+<p>Workers execute tasks.</p>
+<p>Tasks may:</p>
+<ul>
+<li>Run Python functions</li>
+<li>Execute shell commands</li>
+<li>Call APIs</li>
+<li>Submit jobs to AWS Glue, EMR, ECS, Lambda, or Spark</li>
+<li>Read/write to databases or object storage</li>
+</ul>
+<p>Workers report state and logs back to Airflow infrastructure.</p>
+<hr>
+</section>
+<section id="component-webserver-ui" class="level3">
+<h3 class="anchored" data-anchor-id="component-webserver-ui">Component: Webserver / UI</h3>
+<p>The Airflow UI helps users inspect:</p>
+<ul>
+<li>DAG list</li>
+<li>Graph view</li>
+<li>Grid view</li>
+<li>Logs</li>
+<li>Import errors</li>
+<li>XComs</li>
+<li>Retries</li>
+<li>Task duration</li>
+<li>Connections, variables, and pools</li>
+</ul>
+<p>The UI mostly reads state from the metadata database.</p>
+<hr>
+</section>
+<section id="executor-concept" class="level3">
+<h3 class="anchored" data-anchor-id="executor-concept">Executor Concept</h3>
+<p>The executor determines <strong>how Airflow launches tasks</strong>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Executor</th>
+<th>Common use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SequentialExecutor</td>
+<td>Local single-task testing</td>
+</tr>
+<tr class="even">
+<td>LocalExecutor</td>
+<td>Parallel local execution</td>
+</tr>
+<tr class="odd">
+<td>CeleryExecutor</td>
+<td>Distributed workers</td>
+</tr>
+<tr class="even">
+<td>KubernetesExecutor</td>
+<td>Task-per-pod execution</td>
+</tr>
+</tbody>
+</table>
+<p>MWAA abstracts much of this infrastructure away from the user.</p>
+<hr>
+</section>
+</section>
+<section id="why-mwaa" class="level2">
+<h2 class="anchored" data-anchor-id="why-mwaa">Why MWAA?</h2>
+<p>Amazon Managed Workflows for Apache Airflow is AWS’s managed Airflow service.</p>
+<p>MWAA reduces the need to operate:</p>
+<ul>
+<li>Scheduler infrastructure</li>
+<li>Webserver infrastructure</li>
+<li>Worker infrastructure</li>
+<li>Metadata database</li>
+<li>Logging integration</li>
+<li>Scaling infrastructure</li>
+<li>AWS networking integration</li>
+</ul>
+<hr>
+<section id="mwaa-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="mwaa-architecture">MWAA Architecture</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+  S3[S3 Bucket: DAGs / plugins / requirements] --&gt; MWAA[MWAA Environment]
+  MWAA --&gt; CW[CloudWatch Logs]
+  MWAA --&gt; RDS[(Managed Metadata DB)]
+  IAM[IAM Execution Role] --- MWAA
+  VPC[Customer VPC] --- MWAA
+  MWAA --&gt; AWS[AWS Services]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>MWAA connects Airflow to AWS-native infrastructure.</p>
+<hr>
+</section>
+<section id="what-mwaa-manages" class="level3">
+<h3 class="anchored" data-anchor-id="what-mwaa-manages">What MWAA Manages</h3>
+<p>MWAA manages:</p>
+<ul>
+<li>Airflow scheduler</li>
+<li>Airflow webserver</li>
+<li>Worker environment</li>
+<li>Metadata database infrastructure</li>
+<li>Logs to CloudWatch</li>
+<li>Environment scaling integration</li>
+<li>Airflow environment lifecycle</li>
+</ul>
+<p>You still manage:</p>
+<ul>
+<li>DAG code</li>
+<li>Dependencies</li>
+<li>IAM permissions</li>
+<li>S3 deployment structure</li>
+<li>VPC connectivity choices</li>
+<li>Airflow configuration choices</li>
+</ul>
+<hr>
+</section>
+<section id="mwaa-deployment-model" class="level3">
+<h3 class="anchored" data-anchor-id="mwaa-deployment-model">MWAA Deployment Model</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+  participant Dev as Developer
+  participant S3 as S3 Bucket
+  participant MWAA as MWAA Scheduler
+  participant Worker as MWAA Worker
+  participant Logs as CloudWatch
+
+  Dev-&gt;&gt;S3: Upload DAG file
+  MWAA-&gt;&gt;S3: Sync and parse DAGs
+  MWAA-&gt;&gt;Worker: Queue runnable task
+  Worker-&gt;&gt;Logs: Stream task logs
+  Worker-&gt;&gt;MWAA: Report task state
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The DAG file is deployed to S3, then MWAA parses and schedules it.</p>
+<hr>
+</section>
+<section id="mwaa-and-s3" class="level3">
+<h3 class="anchored" data-anchor-id="mwaa-and-s3">MWAA and S3</h3>
+<p>Typical S3 layout:</p>
+<pre class="text"><code>s3://your-mwaa-bucket/
+  dags/
+    example_dag.py
+  plugins/
+    custom_plugin.zip
+  requirements.txt</code></pre>
+<p>S3 is the source location for DAGs and environment dependencies.</p>
+<p>Common issue:</p>
+<blockquote class="blockquote">
+<p>The DAG is uploaded, but Airflow does not show it because of path, parsing, or dependency errors.</p>
+</blockquote>
+<hr>
+</section>
+<section id="mwaa-and-iam" class="level3">
+<h3 class="anchored" data-anchor-id="mwaa-and-iam">MWAA and IAM</h3>
+<p>IAM controls what your Airflow environment can access.</p>
+<p>Examples:</p>
+<ul>
+<li>Read/write S3 objects</li>
+<li>Start AWS Glue jobs</li>
+<li>Access Secrets Manager</li>
+<li>Publish CloudWatch logs</li>
+<li>Query Redshift or Athena</li>
+</ul>
+<p>Many MWAA task failures are not Airflow logic failures.</p>
+<p>They are permissions failures.</p>
+<hr>
+</section>
+<section id="mwaa-and-vpc" class="level3">
+<h3 class="anchored" data-anchor-id="mwaa-and-vpc">MWAA and VPC</h3>
+<p>VPC configuration controls network reachability.</p>
+<p>Airflow tasks may need access to:</p>
+<ul>
+<li>Private databases</li>
+<li>Internal APIs</li>
+<li>VPC endpoints</li>
+<li>AWS services</li>
+<li>Internet endpoints</li>
+</ul>
+<p>Common failure:</p>
+<blockquote class="blockquote">
+<p>A task is logically correct but cannot reach the service it needs because of subnet, route table, endpoint, or security group configuration.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="airflow-execution-lifecycle" class="level2">
+<h2 class="anchored" data-anchor-id="airflow-execution-lifecycle">Airflow Execution Lifecycle</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+  A[Parse DAG File] --&gt; B[Register DAG]
+  B --&gt; C[Create DAG Run]
+  C --&gt; D[Resolve Dependencies]
+  D --&gt; E[Queue Task Instance]
+  E --&gt; F[Worker Executes Task]
+  F --&gt; G[Persist State]
+  F --&gt; H[Emit Logs]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Use this lifecycle to debug almost every Airflow issue.</p>
+<hr>
+<section id="debugging-by-lifecycle-stage" class="level3">
+<h3 class="anchored" data-anchor-id="debugging-by-lifecycle-stage">Debugging by Lifecycle Stage</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Common symptom</th>
+<th>First place to check</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Parse DAG</td>
+<td>DAG missing</td>
+<td>Import Errors</td>
+</tr>
+<tr class="even">
+<td>Schedule DAG Run</td>
+<td>No run appears</td>
+<td>schedule, start_date, pause state</td>
+</tr>
+<tr class="odd">
+<td>Queue task</td>
+<td>Task stuck queued</td>
+<td>workers, pools, concurrency</td>
+</tr>
+<tr class="even">
+<td>Execute task</td>
+<td>Task fails</td>
+<td>task logs</td>
+</tr>
+<tr class="odd">
+<td>Access AWS service</td>
+<td>Access denied</td>
+<td>IAM execution role</td>
+</tr>
+<tr class="even">
+<td>Network call</td>
+<td>Timeout</td>
+<td>VPC, route, endpoint, security group</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>Discuss with a neighbor:</p>
+<ol type="1">
+<li>What is different between Airflow and PySpark?</li>
+<li>What breaks if a workflow graph contains a cycle?</li>
+<li>Why does Airflow need a metadata database?</li>
+<li>What does MWAA manage, and what does the DAG author still own?</li>
+<li>Where would you look first if a DAG does not appear in the UI?</li>
+</ol>
+<hr>
+<!-- 
+# Lecture 2 — XCom, Scheduling, Scaling, and Production Operations
+
+**Target duration:** 75 minutes
+
+**Theme:** Author DAGs with classic Airflow operators, pass small messages with XCom, reason about execution behavior, and operate workflows safely.
+
+---
+
+## Lecture 2 Timing Plan
+
+| Time | Topic |
+|---:|---|
+| 0–10 min | Review and mental model warm-up |
+| 10–30 min | Classic operator DAG authoring and XCom |
+| 30–45 min | Scheduling, data intervals, catchup, and backfills |
+| 45–60 min | Branching, retries, trigger rules, and idempotency |
+| 60–70 min | Concurrency, scaling, pools, and MWAA operations |
+| 70–75 min | Final checklist and questions |
+
+---
+
+## Learning Objectives — Lecture 2
+
+By the end of Lecture 2, students should be able to:
+
+- Write a simple Airflow DAG using classic operators
+- Push and pull small values with XCom
+- Explain how operator dependencies define workflow order
+- Use params and runtime context
+- Explain Airflow data intervals and catchup
+- Apply retry and idempotency principles
+- Diagnose common MWAA production failures
+
+--- -->
+<!-- 
+## Review: Airflow Mental Model
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart TD
+  DAG[DAG Definition] --&gt; Run[DAG Run]
+  Run --&gt; TI[Task Instances]
+  TI --&gt; State[State Transitions]
+  State --&gt; UI[Airflow UI]
+  State --&gt; Scheduler[Scheduler Decisions]
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+Airflow is not just running scripts.
+
+It is managing state transitions across a dependency graph.
+
+---
+
+## Classic Operator DAG Authoring
+
+A classic Airflow DAG is usually built from:
+
+- A `DAG` object
+- Operators such as `PythonOperator` and `BranchPythonOperator`
+- Explicit dependencies using `>>` and `<<`
+- XCom for small cross-task messages
+
+Core pattern:
+
+```python
+with DAG(...) as dag:
+    task_a = PythonOperator(...)
+    task_b = PythonOperator(...)
+
+    task_a >> task_b
+```
+
+---
+
+## Operator Concept
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Python callable] --&gt; B[PythonOperator]
+  B --&gt; C[Airflow task definition]
+  C --&gt; D[Task instance at runtime]
+  D --&gt; E[State + logs + optional XCom]
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+The operator defines what work should happen.
+
+The task instance is one runtime attempt of that operator inside one DAG Run.
+
+---
+
+## XCom Concept
+
+XCom means **cross-communication**.
+
+It lets one task pass a small value to another task through Airflow's metadata layer.
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Task A] --&gt;|xcom_push small value| DB[(Metadata DB)]
+  DB --&gt;|xcom_pull value| B[Task B]
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+Use XCom for metadata, not bulk data.
+
+---
+
+## Demo DAG Goal
+
+We will build a small DAG that demonstrates production-like concepts:
+
+- Daily schedule
+- Runtime parameter
+- Retry behavior
+- Manual XCom push and pull
+- Branching
+- Logging
+
+Workflow:
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart TD
+  G[generate_numbers] --&gt; M[multiply_numbers]
+  M --&gt; B[choose_path]
+  B --&gt;|sum &gt; 50| L[large_total]
+  B --&gt;|sum &lt;= 50| S[small_total]
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+---
+
+## DAG Definition
+
+```python
+from datetime import datetime, timedelta
+import logging
+import random
+
+from airflow import DAG
+from airflow.models.param import Param
+from airflow.operators.python import PythonOperator, BranchPythonOperator
+
+with DAG(
+    dag_id="xcom_mwaa_demo",
+    schedule="@daily",
+    start_date=datetime(2026, 1, 1),
+    catchup=False,
+    tags=["mwaa", "xcom", "demo"],
+    params={"multiplier": Param(2, type="integer")},
+    default_args={"retries": 2, "retry_delay": timedelta(minutes=5)},
+) as dag:
+    ...
+```
+
+---
+
+## DAG Definition: Concepts
+
+| Field | Meaning |
+|---|---|
+| `dag_id` | Unique workflow identifier |
+| `schedule` | How often Airflow creates scheduled runs |
+| `start_date` | Earliest logical date for DAG runs |
+| `catchup` | Whether Airflow creates historical runs |
+| `tags` | UI organization metadata |
+| `params` | Runtime configuration values |
+| `default_args` | Shared task defaults such as retries |
+
+`catchup=False` is common for demos and many operational DAGs.
+
+---
+
+## Task 1 — Generate Numbers
+
+```python
+def generate_numbers(**context):
+    numbers = [random.randint(1, 10) for _ in range(5)]
+    logging.info("Generated numbers: %s", numbers)
+
+    context["ti"].xcom_push(
+        key="numbers",
+        value=numbers,
+    )
+
+
+generate_numbers_task = PythonOperator(
+    task_id="generate_numbers",
+    python_callable=generate_numbers,
+)
+```
+
+Concepts:
+
+- `PythonOperator` runs a Python callable
+- `context["ti"]` gives access to the task instance
+- `xcom_push` stores a small value for downstream tasks
+
+---
+
+## XCom Push Anatomy
+
+```python
+context["ti"].xcom_push(
+    key="numbers",
+    value=numbers,
+)
+```
+
+| Part | Meaning |
+|---|---|
+| `ti` | Current task instance |
+| `key` | Name used to retrieve the value |
+| `value` | Small serializable payload |
+
+XCom is stored in Airflow metadata.
+
+It should not be used as a data lake, file store, or dataframe transport layer.
+
+---
+
+## Task 2 — Transform with Runtime Context
+
+```python
+def multiply_numbers(**context):
+    ti = context["ti"]
+    params = context["params"]
+
+    numbers = ti.xcom_pull(
+        task_ids="generate_numbers",
+        key="numbers",
+    )
+
+    multiplier = params["multiplier"]
+    result = [n * multiplier for n in numbers]
+    logging.info("Multiplied result: %s", result)
+
+    ti.xcom_push(key="multiplied_numbers", value=result)
+
+
+multiply_numbers_task = PythonOperator(
+    task_id="multiply_numbers",
+    python_callable=multiply_numbers,
+)
+```
+
+---
+
+## XCom Pull Anatomy
+
+```python
+numbers = ti.xcom_pull(
+    task_ids="generate_numbers",
+    key="numbers",
+)
+```
+
+| Part | Meaning |
+|---|---|
+| `task_ids` | Upstream task to read from |
+| `key` | XCom key to retrieve |
+| return value | Value previously pushed by that task |
+
+This creates a data dependency in the code.
+
+The workflow dependency still needs to be explicit in the DAG graph.
+
+---
+
+## Dependency Is Not the Same as XCom
+
+Important distinction:
+
+| Concept | Purpose |
+|---|---|
+| Dependency edge | Determines execution order |
+| XCom value | Passes a small message |
+
+This is wrong:
+
+```python
+# Pulling XCom does not automatically create a graph edge.
+```
+
+This is right:
+
+```python
+generate_numbers_task >> multiply_numbers_task
+```
+
+Always make dependencies explicit.
+
+---
+
+## What XCom Is and Is Not
+
+Use XCom for:
+
+- Small values
+- IDs
+- Paths
+- Counts
+- Flags
+- Configuration outputs
+- Branching decisions
+
+Avoid XCom for:
+
+- Large datasets
+- DataFrames
+- Binary files
+- Long API responses
+- Sensitive secrets
+
+Better pattern:
+
+```text
+Task A writes data to S3
+Task A pushes S3 path to XCom
+Task B pulls path from XCom
+Task B reads data from S3
+```
+
+---
+
+## Branching with XCom
+
+```python
+def choose_path(**context):
+    numbers = context["ti"].xcom_pull(
+        task_ids="multiply_numbers",
+        key="multiplied_numbers",
+    )
+
+    total = sum(numbers)
+    logging.info("Total sum: %s", total)
+
+    return "large_total" if total > 50 else "small_total"
+
+
+choose_path_task = BranchPythonOperator(
+    task_id="choose_path",
+    python_callable=choose_path,
+)
+```
+
+The branch function returns the `task_id` that should run next.
+
+---
+
+## Branching State Flow
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart TD
+  A[choose_path succeeds] --&gt; B{total &gt; 50?}
+  B --&gt;|yes| C[large_total: runs]
+  B --&gt;|yes| D[small_total: skipped]
+  B --&gt;|no| E[small_total: runs]
+  B --&gt;|no| F[large_total: skipped]
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+Branching makes the graph dynamic at runtime.
+
+Non-selected downstream tasks are marked as `skipped`.
+
+Skipped is intentional state, not failure.
+
+---
+
+## Final Tasks
+
+```python
+def large_total():
+    logging.info("Sum is large")
+
+
+def small_total():
+    logging.info("Sum is small")
+
+
+large_total_task = PythonOperator(
+    task_id="large_total",
+    python_callable=large_total,
+)
+
+small_total_task = PythonOperator(
+    task_id="small_total",
+    python_callable=small_total,
+)
+```
+
+Each operator becomes a node in the DAG graph.
+
+---
+
+## Wiring the DAG
+
+```python
+generate_numbers_task >> multiply_numbers_task
+multiply_numbers_task >> choose_path_task
+choose_path_task >> [large_total_task, small_total_task]
+```
+
+The dependency graph is explicit.
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart TD
+  A[generate_numbers] --&gt; B[multiply_numbers]
+  B --&gt; C[choose_path]
+  C --&gt;|returns large_total| D[large_total]
+  C --&gt;|returns small_total| E[small_total]
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+---
+
+## Full Classic Operator DAG
+
+```python
+with DAG(...) as dag:
+    generate_numbers_task = PythonOperator(...)
+    multiply_numbers_task = PythonOperator(...)
+    choose_path_task = BranchPythonOperator(...)
+    large_total_task = PythonOperator(...)
+    small_total_task = PythonOperator(...)
+
+    generate_numbers_task >> multiply_numbers_task
+    multiply_numbers_task >> choose_path_task
+    choose_path_task >> [large_total_task, small_total_task]
+```
+
+Airflow records every task instance separately for every DAG Run.
+
+---
+
+## XCom Design Rules
+
+A good XCom payload is:
+
+- Small
+- Serializable
+- Non-sensitive
+- Easy to inspect
+- Useful for downstream decisions
+
+A bad XCom payload is:
+
+- A whole dataset
+- A pandas dataframe
+- A large API response
+- A credential or secret
+- The only copy of important data
+
+---
+
+## Scheduling Theory
+
+Airflow scheduling is based on data intervals.
+
+A scheduled DAG run usually occurs **after the interval closes**.
+
+Example:
+
+```python
+schedule="@daily"
+```
+
+A run for a daily interval is created after that day is complete.
+
+This supports deterministic processing of complete data windows.
+
+---
+
+## Data Interval Example
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart LR
+  A[2026-05-10 00:00] --&gt; B[2026-05-11 00:00]
+  B --&gt; C[Scheduled run is eligible after interval ends]
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+The DAG Run processes the completed interval.
+
+This is why Airflow can appear to run "one interval late" when viewed casually.
+
+---
+
+## Catchup
+
+```python
+catchup=False
+```
+
+Means Airflow will not automatically create all historical scheduled DAG Runs since `start_date`.
+
+With catchup enabled:
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart LR
+  A[start_date] --&gt; B[Run 1]
+  B --&gt; C[Run 2]
+  C --&gt; D[Run 3]
+  D --&gt; E[Latest Run]
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+Catchup can be powerful but dangerous for expensive pipelines.
+
+---
+
+## Backfills
+
+Backfills are deliberate historical reprocessing.
+
+Use cases:
+
+- Fixing a bug in transformation logic
+- Reprocessing corrected source data
+- Filling missing partitions
+- Migrating outputs to a new schema
+
+Risk:
+
+- Backfills can overload downstream systems
+- Backfills can create duplicate data if tasks are not idempotent
+
+---
+
+## Idempotency
+
+A task is idempotent if running it multiple times produces the same intended outcome.
+
+Bad pattern:
+
+```text
+append all records again every retry
+```
+
+Better pattern:
+
+```text
+overwrite partition for deterministic date
+```
+
+Best pattern:
+
+```text
+write to staging, validate, then atomically promote
+```
+
+Idempotency is essential because retries and backfills are normal in Airflow.
+
+---
+
+## Retry Strategy
+
+Retries are useful for transient failures.
+
+| Failure | Retry? | Why |
+|---|---|---|
+| Network timeout | Yes | Usually transient |
+| Temporary API 503 | Yes | Service may recover |
+| Rate limit | Maybe | Use backoff and pools |
+| Syntax error | No | Code will not fix itself |
+| Bad schema | Usually no | Requires data or code fix |
+| Access denied | Usually no | IAM must be fixed |
+
+---
+
+## Retry Design Pattern
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart TD
+  A[Task fails] --&gt; B{Transient?}
+  B --&gt;|yes| C[Retry with delay/backoff]
+  C --&gt; D{Retry limit reached?}
+  D --&gt;|no| E[Run again]
+  D --&gt;|yes| F[Fail task]
+  B --&gt;|no| F
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+Retries should be paired with:
+
+- Retry limits
+- Backoff
+- Idempotent writes
+- Good logging
+
+---
+
+## Trigger Rules
+
+Trigger rules determine when downstream tasks run.
+
+Common examples:
+
+| Trigger rule | Meaning |
+|---|---|
+| `all_success` | Run only if all upstream tasks succeed |
+| `all_failed` | Run only if all upstream tasks fail |
+| `all_done` | Run after upstream tasks finish in any state |
+| `one_success` | Run when at least one upstream task succeeds |
+| `none_failed_min_one_success` | Useful join rule after branching |
+
+Trigger rules matter after branching because some paths are intentionally skipped.
+
+---
+
+## Join After Branching
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart TD
+  A[choose_path] --&gt; B[path_a]
+  A --&gt; C[path_b]
+  B --&gt; D[join]
+  C --&gt; D
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+A join task after branching often should not use the default `all_success` trigger rule.
+
+Use a trigger rule such as:
+
+```python
+trigger_rule="none_failed_min_one_success"
+```
+
+This allows the join to run when one branch succeeds and the other branch is skipped.
+
+---
+
+## Concurrency and Scaling
+
+Airflow controls how much work can run at once.
+
+MWAA may scale workers, but Airflow limits still apply.
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart TB
+  P[Global parallelism] --&gt; C[Effective task capacity]
+  D[DAG-level limits] --&gt; C
+  T[Task-level limits] --&gt; C
+  Pools[Pools] --&gt; C
+  W[MWAA worker autoscaling] --&gt; C
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+More workers do not automatically mean unlimited throughput.
+
+---
+
+## Pools
+
+Pools protect constrained systems.
+
+Example:
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart TD
+  A[20 DAG tasks want API access] --&gt; B[Pool: api_pool size 3]
+  B --&gt; C[Only 3 API tasks run at once]
+  C --&gt; D[Downstream system protected]
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+Use pools for:
+
+- Rate-limited APIs
+- Shared databases
+- Expensive cloud services
+- Legacy systems
+
+---
+
+## MWAA Autoscaling vs Airflow Concurrency
+
+MWAA autoscaling changes available worker capacity.
+
+Airflow concurrency settings determine how much work is allowed.
+
+Both matter.
+
+| Situation | Likely bottleneck |
+|---|---|
+| Many queued tasks, few workers | Worker capacity |
+| Many workers idle, tasks not running | Airflow concurrency or dependencies |
+| Tasks fail with throttling | Downstream service capacity |
+| Scheduler slow to queue tasks | Scheduler parsing/load/config |
+
+---
+
+## Observability in the Airflow UI
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">mindmap
+  root(Airflow UI)
+    DAGs List
+      Import Errors
+      Paused State
+      Tags
+    Grid View
+      Run History
+      Duration
+      Failures
+    Graph View
+      Dependencies
+      Branches
+    Task Instance
+      Logs
+      Retries
+      XCom
+    Admin
+      Connections
+      Variables
+      Pools
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+The UI is the fastest way to map symptoms to lifecycle stage.
+
+---
+
+## Debugging Playbook
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart TD
+  A[Problem observed] --&gt; B{DAG visible?}
+  B --&gt;|no| C[Check Import Errors]
+  B --&gt;|yes| D{DAG Run created?}
+  D --&gt;|no| E[Check schedule, start_date, pause state]
+  D --&gt;|yes| F{Task queued or running?}
+  F --&gt;|queued| G[Check workers, pools, concurrency]
+  F --&gt;|failed| H[Check task logs]
+  H --&gt; I{AWS access or network?}
+  I --&gt;|access denied| J[Check IAM]
+  I --&gt;|timeout| K[Check VPC/network]
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+---
+
+## XCom Debugging Playbook
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart TD
+  A[Downstream task got None] --&gt; B{Did upstream push XCom?}
+  B --&gt;|no| C[Check upstream logs]
+  B --&gt;|yes| D{Correct task_id?}
+  D --&gt;|no| E[Fix task_ids in xcom_pull]
+  D --&gt;|yes| F{Correct key?}
+  F --&gt;|no| G[Fix XCom key]
+  F --&gt;|yes| H{Value serializable and small?}
+  H --&gt;|no| I[Store data externally and push pointer]
+  H --&gt;|yes| J[Inspect XCom in UI]
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+---
+
+## Common MWAA Failure Modes
+
+| Symptom | Likely cause |
+|---|---|
+| DAG does not appear | Parse error, wrong S3 path, dependency issue |
+| DAG appears but does not run | Paused DAG, schedule/start date issue |
+| Task stuck queued | Worker capacity, pool, concurrency limit |
+| Task fails with AccessDenied | IAM execution role issue |
+| Task times out connecting | VPC, security group, endpoint, route issue |
+| Import error only in MWAA | Missing package in requirements.txt |
+| XCom pull returns `None` | Wrong task ID, key, or upstream failed/skipped |
+| Logs missing | CloudWatch/logging configuration issue |
+
+---
+
+## Production DAG Design Principles
+
+Good production DAGs are:
+
+- Small enough to debug
+- Modular enough to test
+- Idempotent across retries
+- Observable through logs and metrics
+- Parameterized where useful
+- Protected by pools and concurrency limits
+- Explicit about failure behavior
+- Careful about what they place in XCom
+
+---
+
+## Anti-Patterns
+
+Avoid:
+
+- Huge monolithic tasks
+- Passing large data through XCom
+- Treating XCom as permanent storage
+- Top-level code that performs network calls during DAG parsing
+- Unbounded backfills
+- Blind retries for non-transient failures
+- Hidden dependencies not represented in the DAG
+- Writing duplicate records on retry
+
+---
+
+## Mini-Lab Prompt
+
+Modify the demo DAG conceptually:
+
+1. Add a parameter called `threshold`
+2. Branch based on `sum(numbers) > threshold`
+3. Add a third path called `medium_total`
+4. Add a pool to protect a fake external API task
+5. Push only the S3 path or summary statistics through XCom
+6. Explain which tasks must be idempotent and why
+
+Use the graph first, then modify code.
+
+---
+
+## Mini-Lab Target Graph
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart TD
+  G[generate_numbers] --&gt; M[multiply_numbers]
+  M --&gt; B[choose_path]
+  B --&gt;|sum &gt; high threshold| H[large_total]
+  B --&gt;|between thresholds| Med[medium_total]
+  B --&gt;|below threshold| S[small_total]
+  H --&gt; API[notify_external_api]
+  Med --&gt; API
+  S --&gt; API
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+Discussion question:
+
+What trigger rule should `notify_external_api` use after branching?
+
+---
+
+## Final Mental Model
+
+
+::::::{.cell layout-align="default"}
+
+:::::{.cell-output-display}
+
+::::{}
+`<figure class=''>`{=html}
+
+:::{}
+
+<pre class="mermaid mermaid-js">flowchart TB
+  A[Python DAG Code] --&gt; B[Parsed by Scheduler]
+  B --&gt; C[DAG Runs]
+  C --&gt; D[Task Instances]
+  D --&gt; E[Queued Work]
+  E --&gt; F[Workers Execute]
+  F --&gt; G[State Stored in Metadata DB]
+  G --&gt; H[UI / Logs / XCom Debugging]
+  H --&gt; B
+</pre>
+:::
+`</figure>`{=html}
+::::
+:::::
+::::::
+
+Airflow is a state machine for workflows.
+
+MWAA is the AWS-managed operating environment for that state machine.
+
+---
+
+## Final Takeaways
+
+1. Airflow orchestrates workflows; it is not primarily a distributed compute engine.
+2. DAGs make dependencies explicit and prevent circular execution logic.
+3. XCom passes small messages between tasks, not large datasets.
+4. Dependencies and XCom are related but not the same thing.
+5. MWAA reduces infrastructure burden but does not remove DAG engineering responsibility.
+6. Production DAGs require idempotency, observability, retry discipline, and concurrency control.
+
+---
+
+## Reference Notes
+
+Primary topics aligned to:
+
+- Apache Airflow DAGs, DAG Runs, Task Instances, classic operators, XCom, scheduler, and scheduling concepts
+- Amazon MWAA architecture, S3 deployment model, IAM, VPC, CloudWatch logs, and managed metadata database concepts -->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./08-pyspark_ec2_random_forest.html" class="pagination-link" aria-label="Fitting and Plotting a Random Forest Model with PySpark on EC2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Fitting and Plotting a Random Forest Model with PySpark on EC2</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./a0-project-specification.html" class="pagination-link" aria-label="Project Specification">
+        <span class="nav-page-text"><span class="chapter-title">Project Specification</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
