@@ -1,0 +1,989 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DATA_ENG 300: Data Engineering Studio",
+    "section": "",
+    "text": "Course Outline\nInstructor: Moses Chan, moses.chan@northwestern.edu\nTA: Dinglin Xia\nOffice Hours: See Canvas.\nPrerequisites: DATA_ENG 200, Statistics Foundations course; CS150; CS 214 or 217; IEMS 304 or CS 349.\nIntroduction to the foundation and modern tools of data engineering. Topics include:",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>DATA_ENG 300: Data Engineering Studio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#inclusivity",
+    "href": "index.html#inclusivity",
+    "title": "DATA_ENG 300: Data Engineering Studio",
+    "section": "Inclusivity",
+    "text": "Inclusivity\nThis course strives to be an inclusive learning community, respecting those of differing backgrounds and beliefs. As a community, we aim to be respectful to all students in this class, regardless of race, ethnicity, socio-economic status, religion, gender identity or sexual orientation.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>DATA_ENG 300: Data Engineering Studio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#office-hours",
+    "href": "index.html#office-hours",
+    "title": "DATA_ENG 300: Data Engineering Studio",
+    "section": "Office Hours",
+    "text": "Office Hours\nWeekly office hours are a dedicated time that the teaching team is available to answer your questions, discuss course content, and generally be of support. If none of the offered times in the syllabus works for you, please email the instructor to schedule an appointment.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>DATA_ENG 300: Data Engineering Studio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#late-days",
+    "href": "index.html#late-days",
+    "title": "DATA_ENG 300: Data Engineering Studio",
+    "section": "Late Days",
+    "text": "Late Days\nYou have 3 late days total for the quarter that you may use on homeworks. Late days are automatically applied.\nA late day covers up to 24 hours after the deadline (or any part of that 24-hour period). Submissions covered by available late days are accepted with no penalty. No assignment is accepted more than 48 hours late, i.e., at most 2 late days can be used on one assignment.\nIf you have no late days remaining, late work will incur a penalty:\n\nLess than 24 hours late: 20% deduction\n24–48 hours late: 40% deduction\nMore than 48 hours late: not accepted\n\nPlease contact Professor Chan in the case of an emergency and discuss a plan.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>DATA_ENG 300: Data Engineering Studio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#communications",
+    "href": "index.html#communications",
+    "title": "DATA_ENG 300: Data Engineering Studio",
+    "section": "Communications",
+    "text": "Communications\nCanvas, where the syllabus, class announcements, exams, notes, and assignments are posted.\nPiazza, where questions and discussions are directed.\nEmails should lead with a title including DE300, followed by the matter of concern. Formal communications should be directed to emails, e.g., accommodation, progress discussion. The teaching team observes a 24-workhour response policy.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>DATA_ENG 300: Data Engineering Studio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#collaboration",
+    "href": "index.html#collaboration",
+    "title": "DATA_ENG 300: Data Engineering Studio",
+    "section": "Collaboration",
+    "text": "Collaboration\nYou are encouraged to work with classmates on homeworks and labs. Discussing ideas, comparing approaches, and helping each other debug are all part of learning.\nYou are required to submit your own homeworks and labs written in your own words and presented in your own ways. Do not copy or paraphrase any other write-up other than your own, or share code files and solutions to others intended for direct usage.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>DATA_ENG 300: Data Engineering Studio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#generative-ai-policy",
+    "href": "index.html#generative-ai-policy",
+    "title": "DATA_ENG 300: Data Engineering Studio",
+    "section": "Generative AI Policy",
+    "text": "Generative AI Policy\nGenAI tools (e.g., ChatGPT, Copilot) may be used to support learning and productivity, but you are considered the engineer of record: you are fully responsible for the correctness, reproducibility, and integrity of all work you submit, and you must be able to explain and justify your design choices (e.g., schema/modeling, data processing choices, cost/performance, security/privacy).\nAllowed uses: brainstorming pipeline designs and tradeoffs; debugging; drafting documentation; generating small code snippets that you can adapt and verify; identifying strengths and weaknesses of code.\nRequired disclosure: each submission must include an AI Usage note stating: (1) tool(s) used, (2) the key prompt(s), and (3) what you changed and how you verified the results. If none, write: “AI Usage: None.”\nNot allowed: submitting work you do not understand or cannot explain; fabricating results, benchmarks, or citations; sharing credentials, private data, or any restricted datasets with GenAI tools.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>DATA_ENG 300: Data Engineering Studio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#accessibility",
+    "href": "index.html#accessibility",
+    "title": "DATA_ENG 300: Data Engineering Studio",
+    "section": "Accessibility",
+    "text": "Accessibility\nNorthwestern University is committed to providing a supportive environment for students with disabilities. Should you anticipate or experience disability-related barriers in the academic setting, please contact AccessibleNU to move forward with the university’s established accommodation process. If you already have established accommodations with AccessibleNU, please let your instructor know as soon as possible, preferably within the first two weeks of the term, so we can work with you to implement your disability accommodations. Disability information, including academic accommodations, is confidential under the Family Educational Rights and Privacy Act.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>DATA_ENG 300: Data Engineering Studio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#northwestern-university-syllabus-standards",
+    "href": "index.html#northwestern-university-syllabus-standards",
+    "title": "DATA_ENG 300: Data Engineering Studio",
+    "section": "Northwestern University Syllabus Standards",
+    "text": "Northwestern University Syllabus Standards\nIn addition, this course follows the Northwestern University Syllabus Standards. Students are responsible for familiarizing themselves with this information.\n\n\n\n\nReis, Joe, and Matt Housley. 2022. Fundamentals of Data Engineering. O’Reilly Media, Inc.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>DATA_ENG 300: Data Engineering Studio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "DATA_ENG 300: Data Engineering Studio",
+    "section": "",
+    "text": "The lowest lab and the lowest (or missed) in-class participation will be dropped.↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>DATA_ENG 300: Data Engineering Studio</span>"
+    ]
+  },
+  {
+    "objectID": "01-intro-data-engineering.html",
+    "href": "01-intro-data-engineering.html",
+    "title": "Introduction to Data Engineering",
+    "section": "",
+    "text": "Data Engineering Lifecycle\nThis notebook summarizes the data engineering lifecycle, and emphasizes the components covered in DATA_ENG 300.\nReis and Housley (2022) describes the data engineering lifecycle with five main stages:\n. . .",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Data Engineering</span>"
+    ]
+  },
+  {
+    "objectID": "01-intro-data-engineering.html#data-engineering-lifecycle",
+    "href": "01-intro-data-engineering.html#data-engineering-lifecycle",
+    "title": "Introduction to Data Engineering",
+    "section": "",
+    "text": "Generation\nStorage\nIngestion\nTransformation\nServing data\n\n\n\n\n\n\n\n\n\n\nData engineering lifecycle components Reis and Housley (2022)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Data Engineering</span>"
+    ]
+  },
+  {
+    "objectID": "01-intro-data-engineering.html#preparation-for-next-week",
+    "href": "01-intro-data-engineering.html#preparation-for-next-week",
+    "title": "Introduction to Data Engineering",
+    "section": "Preparation for next week",
+    "text": "Preparation for next week\n\nLabs are on Tuesdays 4 - 6PM\nFamiliarize with Github (if you have not, register for an account.)\nFamiliarize with colab / jupyter notebook\n\n\n\n\n\nReis, Joe, and Matt Housley. 2022. Fundamentals of Data Engineering. O’Reilly Media, Inc.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Data Engineering</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/02-exploratory-data-analysis-class.html",
+    "href": "class-notebooks/02-exploratory-data-analysis-class.html",
+    "title": "Intro to EDA",
+    "section": "",
+    "text": "Goals\nExploratory data analysis, or EDA, is a standard practice prior to any data manipulation and analysis.\nRecall that data engineering is primarily about data preparation to serve smooth and effective data analysis. Exploratory data analysis generally refers to the step of understanding the data:\nThis document primarily deals with the first two items.\nIn the exploratory phase, these are for people behind the scenes to see.\nThe main goals here are:\nWhat does this translate to, technically?",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to EDA</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/02-exploratory-data-analysis-class.html#goals",
+    "href": "class-notebooks/02-exploratory-data-analysis-class.html#goals",
+    "title": "Intro to EDA",
+    "section": "",
+    "text": "capture main message\n(relatively) quick exploration across many summaries (including plots)\nnot intended for a client or presentation\n\n\n\neach summary should have meaningful information\nlabel your plots",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to EDA</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/02-exploratory-data-analysis-class.html#data-summary",
+    "href": "class-notebooks/02-exploratory-data-analysis-class.html#data-summary",
+    "title": "Intro to EDA",
+    "section": "Data summary",
+    "text": "Data summary\nAs a starting point, simply looking at the data is worth the while. Some common questions to consider are the following:\n\nGeneral dataset info: size, dtypes\n\nMissing values?\n\nDuplicate data?\n\nContinuous variables\n\nCategorical variables\n\nBivariate relationships\n\nPotential data quality issues, e.g., inconsistency, special NA characters\n\n\n# !pip install pandas seaborn matplotlib\n\n\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\n\n\n\n\n\n\n\n\nThe origin of sns.",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to EDA</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/02-exploratory-data-analysis-class.html#earthquake-dataset",
+    "href": "class-notebooks/02-exploratory-data-analysis-class.html#earthquake-dataset",
+    "title": "Intro to EDA",
+    "section": "Earthquake dataset",
+    "text": "Earthquake dataset\nSource Link\n\n# load and save a copy of the earthquake dataset\nearthquake = pd.read_csv('https://raw.githubusercontent.com/mosesyhc/de300-2026wi/refs/heads/main/datasets/Canadian-Earthquakes-2010-2019.csv')\n\n\n# take a glimpse of the data\nearthquake.head()\n\n\n\n\n\n\n\n\nmagnitude_codelist\nmagnitude\nmagnitude_type\ndate\nplace\ndepth\nlatitude\nlongitude\nOBJECTID\nlongitude_geom\nlatitude_geom\n\n\n\n\n0\n&lt;2\n1.7\nML\n2010-01-01T00:16:49+0000\n81 km NE  of Seattle\n0.0\n48.192001\n-121.677002\n1\n-121.677315\n48.191706\n\n\n1\n2\n2.2\nMN\n2010-01-01T00:52:50+0000\n86 km NW from Maniwaki\n18.0\n47.028999\n-76.583000\n2\n-76.583303\n47.028909\n\n\n2\n&lt;2\n1.8\nMN\n2010-01-01T03:21:58+0000\n21 km NW from Mont-Laurier\n18.0\n46.651001\n-75.734001\n3\n-75.733902\n46.650809\n\n\n3\n&lt;2\n1.5\nMN\n2010-01-01T04:14:51+0000\nCHARLEVOIX SEISMIC ZONE\n13.0\n47.740002\n-69.741997\n4\n-69.742000\n47.740210\n\n\n4\n&lt;2\n1.6\nML\n2010-01-01T04:15:17+0000\n83 km W   of Gold R.\n11.6\n49.500999\n-127.222000\n5\n-127.222216\n49.500705\n\n\n\n\n\n\n\n\n# view a summary of the full data\nearthquake.info()\n\n&lt;class 'pandas.DataFrame'&gt;\nRangeIndex: 44561 entries, 0 to 44560\nData columns (total 11 columns):\n #   Column              Non-Null Count  Dtype  \n---  ------              --------------  -----  \n 0   magnitude_codelist  44561 non-null  str    \n 1   magnitude           44561 non-null  float64\n 2   magnitude_type      44462 non-null  str    \n 3   date                44561 non-null  str    \n 4   place               44561 non-null  str    \n 5   depth               44561 non-null  float64\n 6   latitude            44561 non-null  float64\n 7   longitude           44561 non-null  float64\n 8   OBJECTID            44561 non-null  int64  \n 9   longitude_geom      44561 non-null  float64\n 10  latitude_geom       44561 non-null  float64\ndtypes: float64(6), int64(1), str(4)\nmemory usage: 5.8 MB\n\n\n\n# checks for duplicates (also ask if duplicates make sense)\nearthquake.duplicated()\n\n# .loc / .iloc\n\n0        False\n1        False\n2        False\n3        False\n4        False\n         ...  \n44556    False\n44557    False\n44558    False\n44559    False\n44560    False\nLength: 44561, dtype: bool\n\n\n\n# duplicates\n\n\n# a quick numerical summary \nearthquake.describe(include='all')\n\n\n\n\n\n\n\n\nmagnitude_codelist\nmagnitude\nmagnitude_type\ndate\nplace\ndepth\nlatitude\nlongitude\nOBJECTID\nlongitude_geom\nlatitude_geom\n\n\n\n\ncount\n44561\n44561.000000\n44462\n44561\n44561\n44561.000000\n44561.000000\n44561.000000\n44561.000000\n44561.000000\n44561.000000\n\n\nunique\n6\nNaN\n7\n44481\n18639\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\ntop\n&lt;2\nNaN\nML\n2018-07-02T04:08:13+0000\nCHARLEVOIX SEISMIC ZONE\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nfreq\n19764\nNaN\n29509\n3\n1250\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nmean\nNaN\n2.134070\nNaN\nNaN\nNaN\n12.852194\n53.351863\n-118.953322\n22281.000000\n-118.953299\n53.351830\n\n\nstd\nNaN\n0.828096\nNaN\nNaN\nNaN\n9.963145\n6.214464\n23.696484\n12863.797009\n23.696493\n6.214465\n\n\nmin\nNaN\n-1.400000\nNaN\nNaN\nNaN\n-0.500000\n40.808998\n-148.811005\n1.000000\n-148.810526\n40.808509\n\n\n25%\nNaN\n1.600000\nNaN\nNaN\nNaN\n5.000000\n49.169998\n-132.427994\n11141.000000\n-132.427618\n49.170009\n\n\n50%\nNaN\n2.100000\nNaN\nNaN\nNaN\n10.000000\n52.137001\n-129.671997\n22281.000000\n-129.672016\n52.136507\n\n\n75%\nNaN\n2.700000\nNaN\nNaN\nNaN\n18.000000\n56.514999\n-121.947998\n33421.000000\n-121.948318\n56.515206\n\n\nmax\nNaN\n7.700000\nNaN\nNaN\nNaN\n214.000000\n82.608002\n-39.320000\n44561.000000\n-39.319968\n82.607812\n\n\n\n\n\n\n\n\n# checks for possible statistical assumption(s)\nimport scipy.stats as sps\n\nsps.normaltest(earthquake['magnitude'])\n\nNormaltestResult(statistic=np.float64(1597.6658124732553), pvalue=np.float64(0.0))\n\n\n\n# extract only numeric variables\nearthquake\n\n\n# for example, normality test\nsps.shapiro(earthquake['magnitude'])\n\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\scipy\\stats\\_axis_nan_policy.py:592: UserWarning: scipy.stats.shapiro: For N &gt; 5000, computed p-value may not be accurate. Current N is 44561.\n  res = hypotest_fun_out(*samples, **kwds)\n\n\nShapiroResult(statistic=np.float64(0.9877396508026011), pvalue=np.float64(1.179774985585813e-49))\n\n\n\n# for example, another normality test\n\n\n# pairwise correlation\nearthquake_num = earthquake.select_dtypes('number')\nimport numpy as np\nnp.corrcoef(earthquake_num.iloc[:500])",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to EDA</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/02-exploratory-data-analysis-class.html#data-visualization",
+    "href": "class-notebooks/02-exploratory-data-analysis-class.html#data-visualization",
+    "title": "Intro to EDA",
+    "section": "Data visualization",
+    "text": "Data visualization\n\nsns.set(context='talk', style='ticks')  # simply for aesthetics\nsns.set_palette('magma')\n%matplotlib inline \n\n# earthquake = earthquake.sample(n=500)  # (if too slow) for illustration purposes\n\n\n# histogram for continuous variables using pandas built-in plots \n\n\n# relative frequency? ...\n\n\n# histogram of masses by group\n\n\n# other types of plots\n\n\n# counts for categorical variables\n\n\n# barplots by group\n\n\n# bivariate plots\n\n\n# bivariate plots (log-log)\n\n\n# pairwise plots  (time-consuming)\n\n\n# another pairwise plot by group",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to EDA</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/02-exploratory-data-analysis-class.html#in-class-activity",
+    "href": "class-notebooks/02-exploratory-data-analysis-class.html#in-class-activity",
+    "title": "Intro to EDA",
+    "section": "In-class activity",
+    "text": "In-class activity\nRefer to the following figure, choose two subfigures to reproduce with the earthquake dataset.",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to EDA</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/02-exploratory-data-analysis-class.html#in-case-you-need-this-jupyter-notebook-setup",
+    "href": "class-notebooks/02-exploratory-data-analysis-class.html#in-case-you-need-this-jupyter-notebook-setup",
+    "title": "Intro to EDA",
+    "section": "(In case you need this) Jupyter notebook setup",
+    "text": "(In case you need this) Jupyter notebook setup\nVisit https://docs.jupyter.org/en/latest/install/notebook-classic.html for some guidance to set up jupyter notebook.\n\nNote: These notes are adapted from a blog post on Tom’s Blog.",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to EDA</span>"
+    ]
+  },
+  {
+    "objectID": "notes/02-exploratory-data-analysis-complete.html",
+    "href": "notes/02-exploratory-data-analysis-complete.html",
+    "title": "Intro to EDA, filled",
+    "section": "",
+    "text": "Goals\nDownload the source notebook\nExploratory data analysis, or EDA, is a standard practice prior to any data manipulation and analysis.\nRecall that data engineering is primarily about data preparation to serve smooth and effective data analysis. Exploratory data analysis generally refers to the step of understanding the data:\nThis document primarily deals with the first two items.\nIn the exploratory phase, these are for people behind the scenes to see.\nThe main goals here are:\nWhat does this translate to, technically?",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Intro to EDA, filled</span>"
+    ]
+  },
+  {
+    "objectID": "notes/02-exploratory-data-analysis-complete.html#goals",
+    "href": "notes/02-exploratory-data-analysis-complete.html#goals",
+    "title": "Intro to EDA, filled",
+    "section": "",
+    "text": "capture main message\n(relatively) quick exploration across many summaries (including plots)\nnot intended for a client or presentation\n\n\n\neach summary should have meaningful information\nlabel your plots",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Intro to EDA, filled</span>"
+    ]
+  },
+  {
+    "objectID": "notes/02-exploratory-data-analysis-complete.html#data-summary",
+    "href": "notes/02-exploratory-data-analysis-complete.html#data-summary",
+    "title": "Intro to EDA, filled",
+    "section": "Data summary",
+    "text": "Data summary\nAs a starting point, simply looking at the data is worth the while. Some common questions to consider are the following:\n\nGeneral dataset info: size, dtypes\n\nMissing values?\n\nDuplicate data?\n\nContinuous variables\n\nCategorical variables\n\nBivariate relationships\n\nPotential data quality issues, e.g., inconsistency, special NA characters\n\n\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\n\n\n\n\n\n\n\n\nThe origin of sns.",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Intro to EDA, filled</span>"
+    ]
+  },
+  {
+    "objectID": "notes/02-exploratory-data-analysis-complete.html#earthquake-dataset",
+    "href": "notes/02-exploratory-data-analysis-complete.html#earthquake-dataset",
+    "title": "Intro to EDA, filled",
+    "section": "Earthquake dataset",
+    "text": "Earthquake dataset\nSource Link\n\n# load and save a copy of the earthquake dataset\nearthquake = pd.read_csv('https://raw.githubusercontent.com/mosesyhc/de300-2026wi/refs/heads/main/datasets/Canadian-Earthquakes-2010-2019.csv')\n\n\n# take a glimpse of the data\nearthquake.head()\nearthquake.tail()\n\n\n\n\n\n\n\n\nmagnitude_codelist\nmagnitude\nmagnitude_type\ndate\nplace\ndepth\nlatitude\nlongitude\nOBJECTID\nlongitude_geom\nlatitude_geom\n\n\n\n\n44556\n&lt;2\n1.8\nML\n2019-12-31T18:37:24+0000\n31 km SE of Ashcroft, BC\n14.0\n50.487999\n-121.035004\n44557\n-121.035415\n50.487806\n\n\n44557\n2\n2.4\nMN\n2019-12-31T22:18:53+0000\nBlast, Laronde Mine, QC\n0.0\n48.250000\n-78.448997\n44558\n-78.449004\n48.250409\n\n\n44558\n2\n2.0\nML\n2019-12-31T23:11:07+0000\n29 km SE of Ashcroft, BC\n10.5\n50.526001\n-121.005997\n44559\n-121.006115\n50.526206\n\n\n44559\n&lt;2\n1.9\nMN\n2019-12-31T23:53:23+0000\n6 km N from Cornwall, ON\n18.0\n45.083000\n-74.718002\n44560\n-74.718302\n45.083409\n\n\n44560\n&lt;2\n1.3\nMN\n2019-12-31T23:54:02+0000\nCHARLEVOIX SEISMIC ZONE, QC.\n3.8\n47.492001\n-70.412003\n44561\n-70.412401\n47.491910\n\n\n\n\n\n\n\n\n# view a summary of the full data\nearthquake.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 44561 entries, 0 to 44560\nData columns (total 11 columns):\n #   Column              Non-Null Count  Dtype  \n---  ------              --------------  -----  \n 0   magnitude_codelist  44561 non-null  object \n 1   magnitude           44561 non-null  float64\n 2   magnitude_type      44462 non-null  object \n 3   date                44561 non-null  object \n 4   place               44561 non-null  object \n 5   depth               44561 non-null  float64\n 6   latitude            44561 non-null  float64\n 7   longitude           44561 non-null  float64\n 8   OBJECTID            44561 non-null  int64  \n 9   longitude_geom      44561 non-null  float64\n 10  latitude_geom       44561 non-null  float64\ndtypes: float64(6), int64(1), object(4)\nmemory usage: 3.7+ MB\n\n\n\n# checks for duplicates (also ask if duplicates make sense)\nearthquake.duplicated().any()\n\nFalse\n\n\n\n# duplicates\nearthquake[earthquake.duplicated()]\n\n\n# a quick numerical summary \nearthquake.describe()\n\n\n\n\n\n\n\n\nmagnitude\ndepth\nlatitude\nlongitude\nOBJECTID\nlongitude_geom\nlatitude_geom\n\n\n\n\ncount\n44561.000000\n44561.000000\n44561.000000\n44561.000000\n44561.000000\n44561.000000\n44561.000000\n\n\nmean\n2.134070\n12.852194\n53.351863\n-118.953322\n22281.000000\n-118.953299\n53.351830\n\n\nstd\n0.828096\n9.963145\n6.214464\n23.696484\n12863.797009\n23.696493\n6.214465\n\n\nmin\n-1.400000\n-0.500000\n40.808998\n-148.811005\n1.000000\n-148.810526\n40.808509\n\n\n25%\n1.600000\n5.000000\n49.169998\n-132.427994\n11141.000000\n-132.427618\n49.170009\n\n\n50%\n2.100000\n10.000000\n52.137001\n-129.671997\n22281.000000\n-129.672016\n52.136507\n\n\n75%\n2.700000\n18.000000\n56.514999\n-121.947998\n33421.000000\n-121.948318\n56.515206\n\n\nmax\n7.700000\n214.000000\n82.608002\n-39.320000\n44561.000000\n-39.319968\n82.607812\n\n\n\n\n\n\n\n\n# checks for possible statistical assumption(s)\nimport scipy.stats as sps\n\n\n# extract only numeric variables\nearthquake_num = earthquake.select_dtypes('number')\n\n\nearthquake_num.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 44561 entries, 0 to 44560\nData columns (total 7 columns):\n #   Column          Non-Null Count  Dtype  \n---  ------          --------------  -----  \n 0   magnitude       44561 non-null  float64\n 1   depth           44561 non-null  float64\n 2   latitude        44561 non-null  float64\n 3   longitude       44561 non-null  float64\n 4   OBJECTID        44561 non-null  int64  \n 5   longitude_geom  44561 non-null  float64\n 6   latitude_geom   44561 non-null  float64\ndtypes: float64(6), int64(1)\nmemory usage: 2.4 MB\n\n\n\n# for example, normality test\nsps.normaltest(earthquake_num)\n\nNormaltestResult(statistic=array([ 1597.66581247, 15302.56967363,  9387.86913782,  8551.48250207,\n       39401.07756051,  8551.48413702,  9387.85609679]), pvalue=array([0., 0., 0., 0., 0., 0., 0.]))\n\n\n\n# for example, another normality test\nsps.shapiro(earthquake_num.iloc[:, 1])\n\n\n# pairwise correlation\nearthquake_num.corr()\n\n\n\n\n\n\n\n\nmagnitude\ndepth\nlatitude\nlongitude\nOBJECTID\nlongitude_geom\nlatitude_geom\n\n\n\n\nmagnitude\n1.000000\n-0.127958\n0.196699\n-0.110731\n-0.006523\n-0.110731\n0.196699\n\n\ndepth\n-0.127958\n1.000000\n-0.107744\n-0.005796\n-0.103983\n-0.005796\n-0.107744\n\n\nlatitude\n0.196699\n-0.107744\n1.000000\n-0.266265\n-0.000391\n-0.266265\n1.000000\n\n\nlongitude\n-0.110731\n-0.005796\n-0.266265\n1.000000\n0.049094\n1.000000\n-0.266265\n\n\nOBJECTID\n-0.006523\n-0.103983\n-0.000391\n0.049094\n1.000000\n0.049093\n-0.000390\n\n\nlongitude_geom\n-0.110731\n-0.005796\n-0.266265\n1.000000\n0.049093\n1.000000\n-0.266265\n\n\nlatitude_geom\n0.196699\n-0.107744\n1.000000\n-0.266265\n-0.000390\n-0.266265\n1.000000",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Intro to EDA, filled</span>"
+    ]
+  },
+  {
+    "objectID": "notes/02-exploratory-data-analysis-complete.html#data-visualization",
+    "href": "notes/02-exploratory-data-analysis-complete.html#data-visualization",
+    "title": "Intro to EDA, filled",
+    "section": "Data visualization",
+    "text": "Data visualization\n\nsns.set(context='talk', style='ticks')  # simply for aesthetics\nsns.set_palette('magma')\n%matplotlib inline \n\nearthquake = earthquake.sample(n=500)  # (if too slow) for illustration purposes\n\n\n# histogram for continuous variables using pandas built-in plots \n\nearthquake.plot.hist(column='depth')\n\n\n\n\n\n\n\n\n\n# relative frequency? ...\nsns.histplot(x='depth', data=earthquake, stat='probability')\n\n\n\n\n\n\n\n\n\n# histogram of masses by group\nearthquake.info()\ng = sns.FacetGrid(earthquake, col='magnitude_type')\ng.map(sns.histplot, 'depth', stat='probability')\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 44561 entries, 0 to 44560\nData columns (total 11 columns):\n #   Column              Non-Null Count  Dtype  \n---  ------              --------------  -----  \n 0   magnitude_codelist  44561 non-null  object \n 1   magnitude           44561 non-null  float64\n 2   magnitude_type      44462 non-null  object \n 3   date                44561 non-null  object \n 4   place               44561 non-null  object \n 5   depth               44561 non-null  float64\n 6   latitude            44561 non-null  float64\n 7   longitude           44561 non-null  float64\n 8   OBJECTID            44561 non-null  int64  \n 9   longitude_geom      44561 non-null  float64\n 10  latitude_geom       44561 non-null  float64\ndtypes: float64(6), int64(1), object(4)\nmemory usage: 3.7+ MB\n\n\n\n\n\n\n\n\n\n\n# other types of plots\ng = sns.FacetGrid(earthquake, col='magnitude_type', sharex=False)\ng.map(sns.violinplot, 'depth')\n\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\axisgrid.py:718: UserWarning: Using the violinplot function without specifying `order` is likely to produce an incorrect plot.\n  warnings.warn(warning)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\n\n\n\n\n\n\n\n\n\n\n# counts for categorical variables\nsns.countplot(x='magnitude_type', data=earthquake)\n\n\n\n\n\n\n\n\n\n# barplots by group\nsns.barplot(x='magnitude_type', y='depth', data=earthquake)\n\n\n\n\n\n\n\n\n\n# bivariate plots\nsns.jointplot(x='depth', y='magnitude', data=earthquake)\n\n\n\n\n\n\n\n\n\n# bivariate plots (log-log)\nsns.jointplot(x='depth', y='magnitude', data=earthquake)\nplt.xscale('log')\nplt.yscale('log')\n\n\n\n\n\n\n\n\n\n# pairwise plots  (time-consuming)\ng = sns.pairplot(earthquake.sample(500))\n\n\n\n\n\n\n\n\n\n# another pairwise plot by group\ng = sns.pairplot(earthquake.sample(500), hue='magnitude_type', \n                 diag_kind='hist', diag_kws={'multiple': 'stack', 'bins': 10},\n                 plot_kws={'alpha':0.5})\n\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)\nC:\\Users\\moses\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\seaborn\\_base.py:949: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.\n  data_subset = grouped_data.get_group(pd_key)",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Intro to EDA, filled</span>"
+    ]
+  },
+  {
+    "objectID": "notes/02-exploratory-data-analysis-complete.html#in-class-activity",
+    "href": "notes/02-exploratory-data-analysis-complete.html#in-class-activity",
+    "title": "Intro to EDA, filled",
+    "section": "In-class activity",
+    "text": "In-class activity\nRefer to the following figure, choose two subfigures to reproduce with the earthquake dataset.",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Intro to EDA, filled</span>"
+    ]
+  },
+  {
+    "objectID": "notes/02-exploratory-data-analysis-complete.html#in-case-you-need-this-jupyter-notebook-setup",
+    "href": "notes/02-exploratory-data-analysis-complete.html#in-case-you-need-this-jupyter-notebook-setup",
+    "title": "Intro to EDA, filled",
+    "section": "(In case you need this) Jupyter notebook setup",
+    "text": "(In case you need this) Jupyter notebook setup\nVisit https://docs.jupyter.org/en/latest/install/notebook-classic.html for some guidance to set up jupyter notebook.\n\nNote: These notes are adapted from a blog post on Tom’s Blog.",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Intro to EDA, filled</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/03-missing-data-class.html",
+    "href": "class-notebooks/03-missing-data-class.html",
+    "title": "Handling missing data",
+    "section": "",
+    "text": "Classical categories of missing data\nThis document (briefly) introduces the concept, categorization, and treatment of missing data.\nIf we know how the missing data are generated, so-called missing data mechanisms, we can take into account why data are missing in data analysis.\nA particularly useful (and wide-known) framework for missingness categorizes missingness into the following three categories (Little and Rudin, 2019):\nCaveat… the category namings are… confusing\nMCAR (missing completely at random): how data are missing is independent with any aspect of the data\nMAR (missing at random): how data are missing depends on observed quantities, so-called predictors, or independent variables\nMNAR (missing not at random): how data are missing depends on the unobserved quantities\nUnderstanding the causes of missing data helps designing algorithms to handle missing data. However, in reality, we often do not know the causes, or multiple causes exist in producing a data set.\nCautionary note: Where the data are missing matters, i.e., is a response value missing, is a predictor value missing, or do we not know what our analysis questions are yet?",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Handling missing data</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/03-missing-data-class.html#classical-categories-of-missing-data",
+    "href": "class-notebooks/03-missing-data-class.html#classical-categories-of-missing-data",
+    "title": "Handling missing data",
+    "section": "",
+    "text": "e.g., a person with certain characteristics (known) may not answer certain questions on a survey, imagine reporting salary for different socio-economic classes\ne.g., for certain inputs, a simulation model may crash or produce nonsensical outputs\n\n\n\ne.g., a pollutant sensor can only detect particles that are \\(&gt; 0.1\\mu\\mathrm{m}\\)\n\ne.g., storm surges only occur in areas that get below the water level",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Handling missing data</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/03-missing-data-class.html#treatment-of-missing-data",
+    "href": "class-notebooks/03-missing-data-class.html#treatment-of-missing-data",
+    "title": "Handling missing data",
+    "section": "Treatment of missing data",
+    "text": "Treatment of missing data\nStarting with an example of “completing the data”\n\n\n\n\n\n\n\n\n\n\n\nReplace with the mean\n\n\n\n\n\n\n\n\n\n\n\n\n\nReplace with the mean + noise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReplace with the mean + noise + parameter uncertainty\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMore information + replace with mean + noise\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredictive mean matching\n\n\n\n\n\n\n\n\n\nExample of missingness impacting analysis from Daniel et al. (2012), reproducing Figure 4 in the paper:\n\n\n\n\n\n\n\n\nEffect of missingness mechanism on data analysis.\n\n\n\n\nGeneral rules for treating missing data:\n\nUnder MCAR, focusing on complete cases or employing imputation methods tend to be sufficient.\nUnder MAR, some methods are valid choices:\n\nIf the missingness is independent of the response conditional on the predictor, linear regression is still “valid”.\nImputation methods tend to introduce biases, depending on the data analysis methods.\n\nUnder MNAR, the missingness should be explicitly modeled.\n\ne.g., censored observations in survival analysis.",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Handling missing data</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/03-missing-data-class.html#imputation-methods",
+    "href": "class-notebooks/03-missing-data-class.html#imputation-methods",
+    "title": "Handling missing data",
+    "section": "Imputation methods",
+    "text": "Imputation methods\nWe introduce a (limited) list of imputation methods in this section, using the titanic dataset as an example:\n\n!pip install missingno miceforest nineplot\n\n\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\npd.set_option('display.precision', 3)\n\ntitanic = sns.load_dataset('titanic', cache=True, data_home='datasets/')\n\n\nIdentifying missingness\nWe have covered some basic ways how to identify missingness in the EDA module. Here is one other option with the help of missingno.\n\n# !pip install missingno  \n# in case you need to install the package\n\nimport missingno as msno\n\n\ntitanic.info()\n\n\nimport missingno as msno\n# visualization of available/missing data\nmsno.bar(titanic)\nmsno.matrix(titanic)\n\n\n\nRemoving data\nWe have discussed that removing data is typically not ideal, but nothing stops us from doing that…\n\n# retaining titanic dataset with complete data\ntitanic_agecomp = titanic.dropna(subset='age', how='any')\ntitanic_agecomp.info()\n\n\n# comparing the correlation with / without missing data\ncorr = titanic.select_dtypes('number').corr()\ncorr_agecomp = titanic_agecomp.select_dtypes('number').corr()\n\n# changes in correlation matrix with / without age missingness\ncorr - corr_agecomp\n\n\n# one other possibility (that includes boolean)\n\n# changes in correlation matrix with / without age missingness\n\n\n\nSimple imputation with a constant\n\n# !pip install scikit-learn\nfrom sklearn.impute import SimpleImputer\n\n\ntitanic_constant = titanic.copy()\n\n# set constant, completing data\nconstant_imputer = SimpleImputer(strategy='constant')\nconstant_imputer.fill_value = 100\n\ntitanic_constant['age'] = constant_imputer.fit_transform(titanic_constant[['age']])\n\n# visualize completed data\nsns.histplot(titanic_constant['age'])\n\n\ntitanic_median = titanic.copy()\n\n# example with median, admitting only numeric columns\n\n\n# visualize completed data\nfig, ax = plt.subplots(1, 1)\nsns.histplot(titanic_median['age'], binwidth=5, alpha=0.3, color='k', label='imputed w/ median')\nsns.histplot(titanic['age'], binwidth=5, alpha=0.3, color='purple', label='unimputed')\nax.legend()\n\n\n\nMultiple imputation\nMultiple imputation is a technique to generate multiple realizations of imputation values, often modeled by a probability distribution.\nOne method is the multiple imputation by chained equations, or MICE. miceforest uses LightBGM as its training algorithm for MICE.\n\n# !pip install -U miceforest plotnine\n\n\nimport miceforest as mf\n\n# miceforest requires a real matrix. \n# For illustrative purposes, we only use the numerical columns.\n\n# set up a kernel to produce `num_datasets` imputed datasets\nnum_datasets = 4\nkernel = mf.ImputationKernel(\n    \n)\n\n\n# run the MICE algorithm\nkernel.mice(iterations=10)\n\n\n\nkernel.plot_imputed_distributions()\n\n\n# retrieve completed data\ntitanic_mf = kernel.complete_data\n\n\n# code for plotting mice completed dataset\ndef plot_hist(kernel, completed_titanic, original_titanic, num_plot):\n    num_datasets = kernel.num_datasets\n    num_plot = min(num_datasets, num_plot)\n    for k in range(num_plot):  # 1, 2, 3, num_datasets\n        sns.histplot(completed_titanic(dataset=k)['age'], binwidth=5, stat='probability', color='k', label='imputed sample', alpha=0.3)\n    \n    sns.histplot(original_titanic['age'], binwidth=5, stat='probability', color='purple', label='unimputed', alpha=0.2)\n    \n    plt.title('{:d} realizations of imputed age'.format(num_plot))\n    plt.legend()\n    plt.tight_layout()\n    plt.show()\n\n\n# retrieving each imputed dataset (recall that M in MICE means multiple)\nplot_hist(kernel=kernel, completed_titanic=titanic_mf, original_titanic=titanic, num_plot=num_datasets)\n\n\n# comparing the original and imputed dataset\nfig, ax = plt.subplots(ncols=5)\n\nfor k, axi in enumerate(ax.flatten()):\n    if k &lt; num_datasets:\n        sns.boxplot(titanic_mf(dataset=k)['age'], ax=axi)\n    else:\n        sns.boxplot(titanic['age'], ax=axi, color='purple')\n\nplt.tight_layout()\n\n\n# Generate more datasets \n\n# Visualize the result variable density/histogram\n\n\n\nPredictive mean matiching (MICE) [Last figure in the gas consumption example]\n\nkernel_pmm = mf.ImputationKernel(\n    \n)\n\n\n\n\\(k\\) Nearest Neighbor\n\ntitanic_knn = titanic.select_dtypes('number').copy()\n\nfrom sklearn.impute import KNNImputer\n# set up imputing for KNN\n\ntitanic_knn_df =\n\n# visualize completed data\nfig, ax = plt.subplots(1, 1)\nsns.histplot(titanic_knn_df['age'], binwidth=5, stat='probability', alpha=0.3, color='k', label='knn imputation')\nsns.histplot(titanic['age'], binwidth=5, stat='probability', alpha=0.3, color='purple', label='unimputed')\nax.legend()",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Handling missing data</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/03-missing-data-class.html#exercise-imputation-of-tips",
+    "href": "class-notebooks/03-missing-data-class.html#exercise-imputation-of-tips",
+    "title": "Handling missing data",
+    "section": "(Exercise) Imputation of tips",
+    "text": "(Exercise) Imputation of tips\nConsider the taxis dataset from seaborn, practice the imputation methods on the tip column for the dataset subtaxi_missing, given below:\n\nComplete the data using\n\nmean simple imputation,\nmedian simple imputation,\nk-nearest neighbor, and\npredictive mean matching.\n\nCompute the root mean squared error for each imputation method (because you know the truth). Which one is the best in this case?\nExamine the correlation matrix among the numerical columns. Which methods preserve the correlation among variables?\n\n\nimport seaborn as sns\n\ntaxi = sns.load_dataset('taxis')\ntaxi.info()\nsubtaxi = taxi.loc[:, ['passengers', 'distance', 'fare', 'tip', 'tolls', 'total']]\n\n\nimport numpy as np\n# create missingness\nnp.random.seed(42)\nmask1 = subtaxi.total &gt; 25\nmask2 = np.random.rand(subtaxi.shape[0]) &lt; 0.7\n\nsubtaxi_missing = subtaxi.copy()\nsubtaxi_missing.loc[mask1 & mask2, 'tip'] = np.nan\n\n\nmsno.matrix(subtaxi_missing.sort_values('total'))",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Handling missing data</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/03-missing-data-class.html#exercise-imputation-of-crop-recommendation",
+    "href": "class-notebooks/03-missing-data-class.html#exercise-imputation-of-crop-recommendation",
+    "title": "Handling missing data",
+    "section": "(Exercise) Imputation of crop recommendation",
+    "text": "(Exercise) Imputation of crop recommendation\nInvestigate the dataset for crop recommendation.\n\nCreate a function that can induce some missingness (start with missing completely at random).\nCreate a logistic regression model (or any prediction model) for the column label.\nCreate a function that can take in an “imputation type” argument and return an imputed dataset.\nCompare the different imputation types in prediction accuracy of label and correlation conservation.\n\n\nimport pandas as pd\ncrop = pd.read_csv('https://raw.githubusercontent.com/mosesyhc/de300-2026wi/refs/heads/main/datasets/crop_recommendation.csv')",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Handling missing data</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/03-missing-data-filled.html",
+    "href": "class-notebooks/03-missing-data-filled.html",
+    "title": "Handling missing data, filled",
+    "section": "",
+    "text": "Classical categories of missing data\nThis document (briefly) introduces the concept, categorization, and treatment of missing data.\nIf we know how the missing data are generated, so-called missing data mechanisms, we can take into account why data are missing in data analysis.\nA particularly useful (and wide-known) framework for missingness categorizes missingness into the following three categories (Little and Rudin, 2019):\nCaveat… the category namings are… confusing\nMCAR (missing completely at random): how data are missing is independent with any aspect of the data\nMAR (missing at random): how data are missing depends on observed quantities, so-called predictors, or independent variables - e.g., a person with certain characteristics (known) may not answer certain questions on a survey, imagine reporting salary for different socio-economic classes - e.g., for certain inputs, a simulation model may crash or produce nonsensical outputs\nMNAR (missing not at random): how data are missing depends on the unobserved quantities - e.g., a pollutant sensor can only detect particles that are \\(&gt; 0.1\\mu\\mathrm{m}\\)\n- e.g., storm surges only occur in areas that get below the water level\nUnderstanding the causes of missing data helps designing algorithms to handle missing data. However, in reality, we often do not know the causes, or multiple causes exist in producing a data set.\nCautionary note: Where the data are missing matters, i.e., is a response value missing, is a predictor value missing, or do we not know what our analysis questions are yet?",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Handling missing data, filled</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/03-missing-data-filled.html#treatment-of-missing-data",
+    "href": "class-notebooks/03-missing-data-filled.html#treatment-of-missing-data",
+    "title": "Handling missing data, filled",
+    "section": "Treatment of missing data",
+    "text": "Treatment of missing data\nStarting with an example of “completing the data”\n\n\n\n\n\n\n\n\n\n\n\nReplace with the mean\n\n\n\n\n\n\n\n\n\n\n\n\n\nReplace with the mean + noise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReplace with the mean + noise + parameter uncertainty\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMore information + replace with mean + noise\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredictive mean matching\n\n\n\n\n\n\n\n\n\nExample of missingness impacting analysis from Daniel et al. (2012), reproducing Figure 4 in the paper:\n\n\n\n\n\n\n\n\nEffect of missingness mechanism on data analysis.\n\n\n\n\nGeneral rules for treating missing data:\n\nUnder MCAR, focusing on complete cases or employing imputation methods tend to be sufficient.\nUnder MAR, some methods are valid choices:\n\nIf the missingness is independent of the response conditional on the predictor, linear regression is still “valid”.\nImputation methods tend to introduce biases, depending on the data analysis methods.\n\nUnder MNAR, the missingness should be explicitly modeled.\n\ne.g., censored observations in survival analysis.",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Handling missing data, filled</span>"
+    ]
+  },
+  {
+    "objectID": "class-notebooks/03-missing-data-filled.html#imputation-methods",
+    "href": "class-notebooks/03-missing-data-filled.html#imputation-methods",
+    "title": "Handling missing data, filled",
+    "section": "Imputation methods",
+    "text": "Imputation methods\nWe introduce a (limited) list of imputation methods in this section, using the titanic dataset as an example:\n\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\npd.set_option('display.precision', 3)\n\ntitanic = sns.load_dataset('titanic', cache=True, data_home='dataset/')\n\n\nIdentifying missingness\nWe have covered some basic ways how to identify missingness in the EDA module. Here is one other option with the help of missingno.\n\n# !pip install missingno  \n# in case you need to install the package\nimport missingno as msno\n\n# visualization of available/missing data\nmsno.bar(titanic)\nmsno.matrix(titanic)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRemoving data\nWe have discussed that removing data is typically not ideal, but nothing stops us from doing that…\n\ntitanic_agecomp = titanic.dropna(subset='age', how='any')\nmsno.matrix(titanic_agecomp)\n\n\n\n\n\n\n\n\n\ncorr = titanic.select_dtypes('number').corr()\ncorr_agecomp = titanic_agecomp.select_dtypes('number').corr()\n\n# changes in correlation matrix with / without age missingness\ncorr - corr_agecomp\n\n\n\n\n\n\n\n\nsurvived\npclass\nage\nsibsp\nparch\nfare\n\n\n\n\nsurvived\n0.000\n0.021\n0.0\n-0.018\n-0.012\n-0.011\n\n\npclass\n0.021\n0.000\n0.0\n0.016\n-0.007\n0.005\n\n\nage\n0.000\n0.000\n0.0\n0.000\n0.000\n0.000\n\n\nsibsp\n-0.018\n0.016\n0.0\n0.000\n0.031\n0.021\n\n\nparch\n-0.012\n-0.007\n0.0\n0.031\n0.000\n0.011\n\n\nfare\n-0.011\n0.005\n0.0\n0.021\n0.011\n0.000\n\n\n\n\n\n\n\n\n\nSimple imputation with a constant\n\n# !pip install scikit-learn\nfrom sklearn.impute import SimpleImputer\nconstant_imputer = SimpleImputer(strategy='constant')  # 'median', 'most_frequent', 'constant'\n\n\ntitanic_constant = titanic.copy()\n\n# set constant\nconstant_imputer.fill_value = 100\ntitanic_constant['age'] = constant_imputer.fit_transform(titanic_constant[['age']])\n\nsns.histplot(titanic_constant['age'])\n\n\n\n\n\n\n\n\n\n# example with median, admitting only numeric columns\nmedian_imputer = SimpleImputer(strategy='median')\ntitanic_median = titanic.copy()\ntitanic_median['age'] = median_imputer.fit_transform(titanic_median[['age']])\n# another option\n# titanic_median['age'] = titanic_median['age'].fillna(titanic_median['age'].median())\n\nfig, ax = plt.subplots(1, 1)\nsns.histplot(titanic_median['age'], binwidth=5, alpha=0.25, color='k', label='imputed w/ median')\nsns.histplot(titanic['age'], binwidth=5, alpha=0.25, color='purple', label='unimputed')\nax.legend()\n\n\n\n\n\n\n\n\n\n\nMultiple imputation\nMultiple imputation is a technique to generate multiple realizations of imputation values, often modeled by a probability distribution.\nOne method is the multiple imputation by chained equations, or MICE. miceforest uses LightBGM as its training algorithm for MICE.\n\n# !pip install --upgrade miceforest plotnine\nimport miceforest as mf\n\n# miceforest requires a real matrix. \n# For illustrative purposes, we only use the numerical columns.\n\n# set up a kernel to produce `num_datasets` imputed datasets\nnum_datasets = 4\nkernel = mf.ImputationKernel(\n  titanic.select_dtypes('number'),\n  num_datasets=num_datasets,\n  save_all_iterations_data=False,\n  random_state=1\n)\n\n\n# run the MICE algorithm\nkernel.mice(iterations=10)\n\n\n# plot imputed distributions\nkernel.plot_imputed_distributions()\n\n\n\n\n\n\n\n\n\ntitanic_mf = kernel.complete_data\ntitanic_mf\n\n&lt;bound method ImputedData.complete_data of \n              Class: ImputationKernel\n            Datasets: 4\n          Iterations: 10\n        Data Samples: 891\n        Data Columns: 6\n   Imputed Variables: 1\n   Modeled Variables: 1\nAll Iterations Saved: False\n        &gt;\n\n\n\ndef plot_hist(kernel, completed_titanic, original_titanic, num_plot):\n    num_datasets = kernel.num_datasets\n    num_plot = min(num_datasets, num_plot)\n    for k in range(num_plot):  # 1, 2, 3, num_datasets\n        sns.histplot(completed_titanic(dataset=k)['age'], binwidth=5, stat='probability', color='k', label='imputed sample', alpha=0.3)\n    \n    sns.histplot(original_titanic['age'], binwidth=5, stat='probability', color='purple', label='unimputed', alpha=0.2)\n    \n    plt.title('{:d} realizations of imputed age'.format(num_plot))\n    plt.legend()\n    plt.tight_layout()\n    plt.show()\n\n\n# retrieving each imputed dataset\nimport matplotlib.pyplot as plt\n\nplot_hist(kernel=kernel, completed_titanic=titanic_mf, original_titanic=titanic, num_plot=4)\n\n\n\n\n\n\n\n\n\nfig, ax = plt.subplots(ncols=5)\n\nfor k, axi in enumerate(ax.flatten()):\n    if k &lt; num_datasets:\n        sns.boxplot(titanic_mf(dataset=k)['age'], ax=axi)\n    else:\n        sns.boxplot(titanic['age'], ax=axi, color='purple')\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\nPredictive mean matching\n\nkernel_pmm = mf.ImputationKernel(\n    data=titanic.select_dtypes('number'),\n    num_datasets=50,\n    mean_match_candidates=3,\n    random_state=1,\n    save_all_iterations_data=False\n)\n\n\nkernel_pmm.mice(iterations=10)\n\n\nkernel_pmm.plot_imputed_distributions()\n\n\n\n\n\n\n\n\n\nkernel_pmm.tune_parameters()\n\n\ntitanic_pmm = kernel_pmm.complete_data\n\n\nplot_hist(kernel=kernel, completed_titanic=titanic_pmm, original_titanic=titanic, num_plot=4)\n\n\n\n\\(k\\) Nearest Neighbor\n\nfrom sklearn.impute import KNNImputer\ntitanic_knn = titanic.select_dtypes('number').copy()\n\nknn_imputer = KNNImputer(n_neighbors=3)\ntitanic_knn_impute = knn_imputer.fit_transform(titanic_knn)\ntitanic_knn_df = pd.DataFrame(titanic_knn_impute, columns=titanic_knn.columns)\n\nfig, ax = plt.subplots(1, 1)\nsns.histplot(titanic_knn_df['age'], binwidth=5, stat='probability', alpha=0.3, color='k', label='knn imputation')\nsns.histplot(titanic['age'], binwidth=5, stat='probability', alpha=0.3, color='purple', label='unimputed')\nax.legend()",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Handling missing data, filled</span>"
+    ]
+  },
+  {
+    "objectID": "04-rec-system.html",
+    "href": "04-rec-system.html",
+    "title": "Handling missing data in recommendation systems",
+    "section": "",
+    "text": "Matrix completion\nMatrix completion typically assumes some low-rank structure within the dataset.\nExamples of usage:",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Handling missing data in recommendation systems</span>"
+    ]
+  },
+  {
+    "objectID": "04-rec-system.html#matrix-completion",
+    "href": "04-rec-system.html#matrix-completion",
+    "title": "Handling missing data in recommendation systems",
+    "section": "",
+    "text": "recommendation system\nimage restoration\ngenerative image",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Handling missing data in recommendation systems</span>"
+    ]
+  },
+  {
+    "objectID": "04-rec-system.html#alternating-least-squares",
+    "href": "04-rec-system.html#alternating-least-squares",
+    "title": "Handling missing data in recommendation systems",
+    "section": "Alternating Least Squares",
+    "text": "Alternating Least Squares\nOne particular algorithm that has garnered considerable interest is the Alternating Least Squares algorithm (Hastie et al. 2015).\nSuppose we have a matrix \\(R \\in \\mathbb{R}^{n\\times m}\\) that contains user ratings for items. The matrix completion or factorziation problem typically solves for some matrices \\(X \\in \\mathbb{R}^{k\\times n}, Y \\in \\mathbb{R}^{k\\times m}\\) such that \\(R \\approx X^\\mathsf{T} Y\\), through the optimization problem\n\\[\\min_{X, Y} \\ell(X, Y) := \\underbrace{\\frac{1}{2} \\|R - X^\\mathsf{T} Y\\|^2_F}_\\text{recovery} + \\underbrace{\\frac{\\lambda}{2} (\\|X\\|^2_F + \\|Y\\|^2_F)}_\\text{regularization}.\\]\n\nObservation:\n\n\\(\\ell(X, Y)\\) is non-convex.\n\\(\\ell(X, Y)\\) is bi-convex, meaning that fixing either \\(X\\), or \\(Y\\) leads to a convex function.\n\nThe bi-convexity leads to an alternating algorithm (for a full \\(R\\)). But the missing locations do introduce nuances to the algorithm. See details in Theorem 3.1 of (Hastie et al. 2015).",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Handling missing data in recommendation systems</span>"
+    ]
+  },
+  {
+    "objectID": "04-rec-system.html#bidirectional-encoder-representations-bert-devlin2019bert",
+    "href": "04-rec-system.html#bidirectional-encoder-representations-bert-devlin2019bert",
+    "title": "Handling missing data in recommendation systems",
+    "section": "Bidirectional Encoder Representations (BERT) (Devlin et al. 2019)",
+    "text": "Bidirectional Encoder Representations (BERT) (Devlin et al. 2019)\nModern methods replace explicit low-rank assumptions with contextual representation learning, especially through masked prediction and self-attention.\nInstead of predicting a single entry or factorizing the matrix directly, consider a full row as a sequence:\n\\[\\mathbf{r}_i = (r_{i1}, r_{i2}, \\dots, r_{im})\\]\nwith missing entries treated as masked tokens.\nThe question becomes:\nhow do we predict a missing entry using all other entries in the row?\nConsider a contextual encoder (BERT):\n\\[(\\mathbf{h}_{i1}, \\dots, \\mathbf{h}_{im})=\\mathrm{BERT}_\\theta(\\mathbf{r}_i)\\]\nwhere each \\(\\mathbf{h}_{ij}\\) depends on both left and right context.\nPrediction is made from a contextual embedding, e.g.,:\n\\[\\hat{R}_{ij} = W \\mathbf{h}_{ij}\\]\nTraining is performed via masked reconstruction (randomly drop data in training):\n\\[\\min_\\theta \\underbrace{\\sum_{(i,j)\\in\\Omega_{\\text{mask}}}\\ell\\big(\\hat{R}_{ij}, R_{ij}\\big)}_{\\text{predict masked entries}}\\]\nCompare with classical matrix completion:\n\\[\\min_{X,Y}\\underbrace{\\tfrac12 \\|R - X^\\mathsf{T}Y\\|_F^2}_{\\text{low-rank structure}} + \\underbrace{\\tfrac{\\lambda}{2}(\\|X\\|_F^2+\\|Y\\|_F^2)}_{\\text{regularization}}\\]",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Handling missing data in recommendation systems</span>"
+    ]
+  },
+  {
+    "objectID": "04-rec-system.html#low-rank-adaptation-hu2022lora",
+    "href": "04-rec-system.html#low-rank-adaptation-hu2022lora",
+    "title": "Handling missing data in recommendation systems",
+    "section": "Low rank adaptation (Shen et al., n.d.)",
+    "text": "Low rank adaptation (Shen et al., n.d.)\nModern methods consider “pre-trained” data and adaptation to previously trained models, especially in the large language model perspective.\nInstead of viewing all data at once, consider the prediction of row \\(i\\) of the matrix \\(R\\):\n\\[ \\mathbf{r}_i = W \\underbrace{\\mathbf{e}_i}_{\\text{unit vec.}} \\]\nThe question becomes, how do we learn the weight matrix \\(W\\)?\nSuppose there is a pre-trained estimate \\(W_0\\), then matrix completion technique is used in estimating the residual:\n\\[ \\min_{X, Y} \\ell(X, Y; W_0) := \\underbrace{\\frac{1}{2} \\|R - W_0 - X^\\mathsf{T} Y\\|^2_F}_\\text{fit residual} + \\underbrace{\\frac{\\lambda}{2} (\\|X\\|^2_F + \\|Y\\|^2_F)}_\\text{regularization} \\]\nCompare with:\n\\[ \\min_{X, Y} \\ell(X, Y) := \\underbrace{\\frac{1}{2} \\|R - X^\\mathsf{T} Y\\|^2_F}_\\text{recovery} + \\underbrace{\\frac{\\lambda}{2} (\\|X\\|^2_F + \\|Y\\|^2_F)}_\\text{regularization}. \\]\n\n\n\n\n\n\nDevlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. “Bert: Pre-Training of Deep Bidirectional Transformers for Language Understanding.” Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers), 4171–86.\n\n\nHastie, Trevor, Rahul Mazumder, Jason D Lee, and Reza Zadeh. 2015. “Matrix Completion and Low-Rank SVD via Fast Alternating Least Squares.” The Journal of Machine Learning Research 16 (1): 3367–402.\n\n\nShen, Yelong, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, et al. n.d. Lora: Low-Rank Adaptation of Large Language Models.",
+    "crumbs": [
+      "Exploratory data analysis",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Handling missing data in recommendation systems</span>"
+    ]
+  },
+  {
+    "objectID": "05-spark.html",
+    "href": "05-spark.html",
+    "title": "Intro to parallelized computing",
+    "section": "",
+    "text": "Separation of compute from storage\nThis document covers the key elements for modern distributed computing, specifically a quick word on Hadoop and Spark.\nTraditionally compute and storage are colocated, e.g.,\nThen why separate compute and storage?",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Intro to parallelized computing</span>"
+    ]
+  },
+  {
+    "objectID": "05-spark.html#separation-of-compute-from-storage",
+    "href": "05-spark.html#separation-of-compute-from-storage",
+    "title": "Intro to parallelized computing",
+    "section": "",
+    "text": "a transactional database leverages its low-latency disk reads and high bandwidth.\neven for distributed jobs, a map job locates the location of data and runs the map local to the data.\n\n\n\nAvailability of cloud computing and storage purchase\n\nCost: It is cheap to buy and host a server than to rent if the server is up 24/7, minus maintenance cost\nTowards ephermerality: Spin up an instance, use, and stop when done.\nTowards scalability: If you only need to run this titan job once a month, only pay for the resources then.\n\nData durability and availability\n\nFault tolerance: Replication of data increases availability and mitgates a write operation that destroys data.\n\n\n\n\nHybridization of separation and colocation\nIn reality, compute and storage are not either separated or colocated, e.g.,\n\nAWS elastic mapreduce (EMR) and S3\nSpark infrastructure dependence on RAM\n\n\n\n\nInstances as a processing cache in an ephemeral Hadoop cluster, Fig 6.7 from Reis and Housley (2022)",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Intro to parallelized computing</span>"
+    ]
+  },
+  {
+    "objectID": "05-spark.html#hadoop",
+    "href": "05-spark.html#hadoop",
+    "title": "Intro to parallelized computing",
+    "section": "Hadoop",
+    "text": "Hadoop\nDeveloped in 2006 to process data with the MapReduce programming model Dean and Ghemawat (2008), with the “big data” processing idea.\nMain components of Apache Hadoop:\n\nHadoop Distributed File System (HDFS): Manages large data sets running on commodity hardware (with data replication)\nYet Another Resource Negotiator (YARN)\nHadoop MapReduce: Splits data into blocks, distributes across different nodes, then runs task on each block in parallel\nHadoop Common (Hadoop Core): Common libraries and utilities\n\nWhy Hadoop is not enough?\n\nHadoop utilizes external storage. Read/write latency is high.\nAll codes must be restricted to a map and reduce constructs.",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Intro to parallelized computing</span>"
+    ]
+  },
+  {
+    "objectID": "05-spark.html#spark",
+    "href": "05-spark.html#spark",
+    "title": "Intro to parallelized computing",
+    "section": "Spark",
+    "text": "Spark\nMain components:\n\nSpark Core: Execution engine for resource coordination\nSpark SQL\nMachine Learning Library (MLlib)\nSpark Streaming: Capability for processing streaming data\nGraphX: Capability for processing graph-based data\n\nSpark essentially tackles only where Hadoop does not perform well, by using an in-memory distributed computing engine,\n\nmaking use of Resilient Distributed Dataset (RDD)\nemploying dynamic RAM in processing\n\n\n\n\nMapReduce schema from Tian and Zhao (2015).\n\n\n\n\n\n\n\n\nDean, Jeffrey, and Sanjay Ghemawat. 2008. “MapReduce: Simplified Data Processing on Large Clusters.” Communications of the ACM 51 (1): 107–13.\n\n\nReis, Joe, and Matt Housley. 2022. Fundamentals of Data Engineering. O’Reilly Media, Inc.\n\n\nTian, Wenhong, and Yong Zhao. 2015. “9 - Energy Efficiency Scheduling in Hadoop.” In Optimized Cloud Resource Management and Scheduling, edited by Wenhong Tian and Yong Zhao. Morgan Kaufmann. https://doi.org/https://doi.org/10.1016/B978-0-12-801476-9.00009-4.",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Intro to parallelized computing</span>"
+    ]
+  },
+  {
+    "objectID": "06-rdd.html",
+    "href": "06-rdd.html",
+    "title": "Resilient distributed datasets",
+    "section": "",
+    "text": "What is RDD?\nResilient distributed datasets, or RDDs, are the fundamental blocks in PySpark.\nRDD is essentially a collection of unordered objects,\nimport os\nos.environ[\"JAVA_HOME\"] = r\"C:\\Program Files\\Java\\jdk-24\"\nos.environ[\"SPARK_HOME\"] = r\"C:\\Program Files\\Spark\\spark-4.1.1-bin-hadoop3\"\nfrom pyspark.sql import SparkSession\n \nspark = SparkSession.builder.getOrCreate()\n\ncollection = [1, \"two\", 3.0, (\"four\", 4), {\"five\": 5}]  # generic list\n \nsc = spark.sparkContext\n \ncollection_rdd = sc.parallelize(collection)  # list promoted to RDD\n\nprint(collection_rdd)\n\nParallelCollectionRDD[0] at readRDDFromFile at PythonRDD.scala:299\ncollection_rdd.collect()\n\n[1, 'two', 3.0, ('four', 4), {'five': 5}]",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Resilient distributed datasets</span>"
+    ]
+  },
+  {
+    "objectID": "06-rdd.html#what-is-rdd",
+    "href": "06-rdd.html#what-is-rdd",
+    "title": "Resilient distributed datasets",
+    "section": "",
+    "text": "or a mathematical set,\nor a Python list of objects,\nor similar to a JSON.",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Resilient distributed datasets</span>"
+    ]
+  },
+  {
+    "objectID": "06-rdd.html#why-rdd-if-we-have-dataframes",
+    "href": "06-rdd.html#why-rdd-if-we-have-dataframes",
+    "title": "Resilient distributed datasets",
+    "section": "Why RDD if we have dataframes?",
+    "text": "Why RDD if we have dataframes?\n\nIf the data at hand are more freeformed, using an RDD allows for storage of various types of objects.\nCompared to dataframe, which will attempt (and fail) to find a common denominator to fit the data above.",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Resilient distributed datasets</span>"
+    ]
+  },
+  {
+    "objectID": "06-rdd.html#main-ingredients-of-rdd-manipulation",
+    "href": "06-rdd.html#main-ingredients-of-rdd-manipulation",
+    "title": "Resilient distributed datasets",
+    "section": "Main ingredients of RDD manipulation",
+    "text": "Main ingredients of RDD manipulation\nWe cover three main building blocks for using RDDs, inheriting the concept of a MapReduce scheme.\nEach of the following building blocks (functions) takes a functional input:\n\nmap()\nfilter()\nreduce()\n\n\nmap through an example\nmap() applies the given function to each element of the RDD.\n\nfrom py4j.protocol import Py4JJavaError\n\ndef add_one(value):\n    return value + 1\n\ncollection_rdd_p1 = collection_rdd.map(add_one)\n\n\ncollection_rdd_p1.collect()\n\n\ntry: \n    print(collection_rdd_p1.collect())\nexcept Py4JJavaError as e:\n    print(e)\n\n# You'll get one of the following:\n# TypeError: can only concatenate str (not \"int\") to str\n# TypeError: unsupported operand type(s) for +: 'dict' and 'int'\n# TypeError: can only concatenate tuple (not \"int\") to tuple\n\n\n\n\n\n\n\n\n\n\n\n\nApplying add_one() to each element of RDD through map() (Fig 8.2 in Rioux, 2022).\n\n\n\nQuick note:\n\nWhy did the line throw an error?\nWhen was the error thrown?\n\nA potential fix:\n\ndef safer_add_one(value):\n    try:\n        return value + 1\n    except TypeError:\n        return value\n\ncollection_rdd_p1_again = collection_rdd.map(safer_add_one)\n\n\ncollection_rdd_p1_again.collect()\n\nLesson here:\n\nPySpark does not warn you about the content of the RDD.\nAs the developer, we are responsible for how to deal with the data given to an RDD.\n\n\n\nfilter through an example\nfilter() takes a function that returns True/False based on any conditions.\n\ncollection_rdd_filter = collection_rdd.filter(\n    lambda elem: isinstance(elem, (float, int))\n)\n\n\nprint(collection_rdd_filter.collect())\n\n\n\n\n\n\n\n\n\nApplying filter() to the RDD (Fig 8.3 in Rioux, 2022).\n\n\n\nA word about lambda function\n\n\n\n\n\n\n\n\nThe use of lambda function (Rioux, 2022).\n\n\n\n\n\nreduce through an example\nreduce() summarizes the RDD by sequentially applying the given function.\n\nsimilar to groupby() in a dataframe.\n\n\nfrom operator import add\n\ncollection_rdd2 = sc.parallelize([4, 7, 9.2, 5.6, -20])\n\n\ncollection_rdd2.reduce(add)\n\n\n# collection_rdd2.reduce(\n#     lambda a, b: a + b\n# )\n\n\n\n\n\n\n\n\n\nApplying add through reduce() to the RDD (Fig 8.4 in Rioux, 2022).\n\n\n\nWarnings about reduce()\n\nWhat functions are reasonable for reduce()?\ncommutative operation\nassociative operation\n\nAdditional Note:\nA dataframe is actually an RDD, e.g.,\n\ndf = spark.createDataFrame([[1], [2], [3]], schema=[\"column\"])\n \nprint(df.rdd)\n \nprint(df.rdd.collect())",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Resilient distributed datasets</span>"
+    ]
+  },
+  {
+    "objectID": "07-pyspark-ml.html",
+    "href": "07-pyspark-ml.html",
+    "title": "Machine learning examples in PySpark",
+    "section": "",
+    "text": "Linear regression refresher\nTo fit a linear regression (without any penalty or regularization) can be done via the least-squares estimation:\n\\[\\min_\\beta~\\ell(\\beta) = \\|\\mathbf{y} - \\mathbf{X} \\beta \\|_2^2,\\]\nThe corresponding analytical solution can be found by setting the partial derivatives to zero: \\[\\frac{\\partial \\ell(\\beta)}{\\partial \\beta} \\equiv 0 \\qquad \\Rightarrow \\qquad \\widehat{\\beta} = (\\mathbf{X}^\\mathsf{T}\\mathbf{X})^{-1} \\mathbf{X}^\\mathsf{T}\\mathbf{y}.\\]\nWhy do we need to think about parallelization at all?\nSay we have \\(n\\) data points, i.e. \\((\\mathbf{x}_i, y_i)_{i=1}^n\\). Take a look at the dimension of the quantities of interest: \\[\\mathbf{X} \\in \\mathbb{R}^{n \\times (d+1)}, \\mathbf{y} \\in \\mathbb{R}^n.\\]\nWhat are the major computational tasks?\nThe major computations involve three operations:\nRationale:\nLecture continues with examples linked above.",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Machine learning examples in PySpark</span>"
+    ]
+  },
+  {
+    "objectID": "07-pyspark-ml.html#linear-regression-refresher",
+    "href": "07-pyspark-ml.html#linear-regression-refresher",
+    "title": "Machine learning examples in PySpark",
+    "section": "",
+    "text": "Multiplication: \\(\\mathbf{X}^\\mathsf{T}\\mathbf{X} = \\sum_{i=1}^n \\mathbf{x}_i \\mathbf{x}_i^\\mathsf{T},\\)\nMultiplication: \\(\\mathbf{X}^\\mathsf{T}\\mathbf{y} = \\sum_{i=1}^n \\mathbf{x_i} y_i,\\)\nInversion of matrix: \\((\\mathbf{X}^\\mathsf{T}\\mathbf{X})^{-1} \\mathbf{X}^\\mathsf{T}\\mathbf{y}.\\)\n\n\n\nIn the case where \\(n\\) is extremely large, the multiplication and summation, steps (1) and (2), are slow.\nSince the inversion of matrix is driven by the size of \\(\\mathbf{X}^\\mathsf{T}\\mathbf{X}\\), which is typically a relatively small \\((d+1) \\times (d+1)\\) matrix. Step (3) is relatively cheap in terms of computation.",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Machine learning examples in PySpark</span>"
+    ]
+  },
+  {
+    "objectID": "08-pyspark_ec2_random_forest.html",
+    "href": "08-pyspark_ec2_random_forest.html",
+    "title": "Fitting and Plotting a Random Forest Model with PySpark on EC2",
+    "section": "",
+    "text": "Set up PySpark\nWith the help of PySpark EC2 Setup, you should have set up a virtual environment that has PySpark installed.\nStart the virtual environment:\nInstall any missing plotting libraries:\nSpark’s DataFrame-based MLlib API expects features to be packed into a single vector column. In PySpark, VectorAssembler is the usual tool for combining multiple numeric feature columns into one vector column. Spark’s RandomForestRegressor then trains a random forest regression model using that feature vector.",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Fitting and Plotting a Random Forest Model with PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "08-pyspark_ec2_random_forest.html#set-up-pyspark",
+    "href": "08-pyspark_ec2_random_forest.html#set-up-pyspark",
+    "title": "Fitting and Plotting a Random Forest Model with PySpark on EC2",
+    "section": "",
+    "text": "source ~/pyspark-venv/bin/activate\n\npip install pandas matplotlib\n\n\nCreate a working folder\nOn the EC2 instance:\nmkdir -p ~/pyspark-random-forest-demo\ncd ~/pyspark-random-forest-demo\nWe will write one script:\nrf_housing_demo.py",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Fitting and Plotting a Random Forest Model with PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "08-pyspark_ec2_random_forest.html#run-from-jupyter-instead",
+    "href": "08-pyspark_ec2_random_forest.html#run-from-jupyter-instead",
+    "title": "Fitting and Plotting a Random Forest Model with PySpark on EC2",
+    "section": "Run from Jupyter instead",
+    "text": "Run from Jupyter instead\nStart Jupyter on EC2:\nsource ~/pyspark-venv/bin/activate\n\njupyter notebook \\\n  --no-browser \\\n  --ip=127.0.0.1 \\\n  --port=8888\nFrom your local machine, create an SSH tunnel (again, refer to the Connect SSH info):\nssh -i my-key.pem -NL 8888:127.0.0.1:8888 ec2-user@EC2_PUBLIC_IP\nThen open:\nhttp://127.0.0.1:8888\nFrom the EC2 terminal, copy the “token” in the URL. This is your password to get into the local terminal Jupyter notebook.",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Fitting and Plotting a Random Forest Model with PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "08-pyspark_ec2_random_forest.html#what-we-want-to-build",
+    "href": "08-pyspark_ec2_random_forest.html#what-we-want-to-build",
+    "title": "Fitting and Plotting a Random Forest Model with PySpark on EC2",
+    "section": "What we want to build",
+    "text": "What we want to build\n\nSpark session\nspark = (\n    SparkSession.builder\n    .appName(\"ec2-random-forest-regression-demo\")\n    .master(\"local[*]\")\n    .config(\"spark.sql.shuffle.partitions\", \"8\")\n    .getOrCreate()\n)\nlocal[*] tells Spark to use all available CPU cores on the EC2 instance.\nThis is not a multi-node Spark cluster. It is single-machine Spark.\n\n\nSynthetic data\nThe synthetic dataset has:\nprice =\n    base price\n    + bedroom effect\n    + bathroom effect\n    + square-footage effect\n    - age penalty\n    - distance penalty\n    + noise\nThe random forest model should usually discover that sqft, distance_to_city_miles, and age_years matter.\n\n\nVectorAssembler\nSpark MLlib models usually do not accept many separate feature columns directly. Instead, they expect a single vector column.\nThis:\nassembler = VectorAssembler(\n    inputCols=feature_cols,\n    outputCol=\"features\",\n    handleInvalid=\"skip\",\n)\nturns columns like this:\nbedrooms | bathrooms | sqft | age_years | distance_to_city_miles\ninto one column like this:\nfeatures\nThe resulting features column is what RandomForestRegressor requires.\n\n\nRandom forest model\nThe model is defined here:\nrf = RandomForestRegressor(\n    featuresCol=\"features\",\n    labelCol=\"price\",\n    predictionCol=\"prediction\",\n    numTrees=80,\n    maxDepth=8,\n    seed=42,\n)\nA random forest is an ensemble of decision trees. Each tree is created with a subset of the full dataset. The final prediction averages across the trees, which usually makes the model more stable than a single decision tree.\nImportant parameters:\n\n\n\nParameter\nMeaning\n\n\n\n\nnumTrees\nNumber of trees in the forest\n\n\nmaxDepth\nMaximum depth of each tree\n\n\nfeaturesCol\nFeature vector column\n\n\nlabelCol\nTarget column\n\n\npredictionCol\nOutput prediction column\n\n\nseed\nMakes results easier to reproduce\n\n\n\n\n\nPipeline\nThe pipeline joins preprocessing and modeling:\npipeline = Pipeline(stages=[assembler, rf])\nmodel = pipeline.fit(train_df)\nDue to the pipeline usage, the fitted model contains both:\n\nThe trained feature assembler step.\nThe trained random forest model.",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Fitting and Plotting a Random Forest Model with PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "08-pyspark_ec2_random_forest.html#evaluation",
+    "href": "08-pyspark_ec2_random_forest.html#evaluation",
+    "title": "Fitting and Plotting a Random Forest Model with PySpark on EC2",
+    "section": "Evaluation",
+    "text": "Evaluation\nThe script computes:\nRMSE\nMAE\nR^2",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Fitting and Plotting a Random Forest Model with PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "08-pyspark_ec2_random_forest.html#plotting",
+    "href": "08-pyspark_ec2_random_forest.html#plotting",
+    "title": "Fitting and Plotting a Random Forest Model with PySpark on EC2",
+    "section": "Plotting",
+    "text": "Plotting\n\nConverting to Pandas\nSpark DataFrames are distributed. Matplotlib expects local arrays.\nSo this is the common pattern:\nplot_pdf = (\n    predictions\n    .select(\"price\", \"prediction\")\n    .sample(fraction=0.25, seed=7)\n    .limit(1000)\n    .toPandas()\n)\nDo not call .toPandas() on a huge Spark DataFrame.\nInstead:\n\nSelect only the columns you need.\nSample or limit the rows.\nConvert the small result to pandas.\nPlot locally.\n\n\n\nActual vs. predicted plot\nThe diagonal line represents perfect predictions.\nPoints near the line are good.\nPoints far from the line are mistakes.\nplt.scatter(plot_pdf[\"price\"], plot_pdf[\"prediction\"], alpha=0.35)\nplt.plot([min_val, max_val], [min_val, max_val], linestyle=\"--\")\nIf the model is learning well, the scatter should form a rough diagonal band.\n\n\nFeature importance plot\nRandom forest models expose feature importances:\nrf_model = model.stages[-1]\nimportances = rf_model.featureImportances.toArray()\nBecause the random forest is the last stage in the pipeline, model.stages[-1] retrieves the fitted random forest model.\nThen we match each importance score back to the original feature name:\nimportance_pdf = pd.DataFrame(\n    {\n        \"feature\": feature_cols,\n        \"importance\": importances,\n    }\n)",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Fitting and Plotting a Random Forest Model with PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "08-pyspark_ec2_random_forest.html#copy-plots-back-to-your-laptop",
+    "href": "08-pyspark_ec2_random_forest.html#copy-plots-back-to-your-laptop",
+    "title": "Fitting and Plotting a Random Forest Model with PySpark on EC2",
+    "section": "Copy plots back to your laptop",
+    "text": "Copy plots back to your laptop\nFrom your local machine, run:\nscp -i my-key.pem \\\n  ec2-user@EC2_PUBLIC_IP:~/pyspark-random-forest-demo/outputs/*.png \\\n  .\nThis copies the generated PNG files into your current local directory.",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Fitting and Plotting a Random Forest Model with PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "08-pyspark_ec2_random_forest.html#practical-ec2-tips",
+    "href": "08-pyspark_ec2_random_forest.html#practical-ec2-tips",
+    "title": "Fitting and Plotting a Random Forest Model with PySpark on EC2",
+    "section": "Practical EC2 tips",
+    "text": "Practical EC2 tips\n\nUse enough memory\nAvoid pulling huge results into pandas\n\nThis is safe:\npredictions.limit(1000).toPandas()\nThis can crash your instance:\npredictions.toPandas()\n\nKeep outputs organized\n\nA simple folder layout:\npyspark-random-forest-demo/\n├── rf_housing_demo.py\n├── data/\n└── outputs/\n    ├── actual_vs_predicted.png\n    ├── feature_importances.png\n    └── rf_housing_pipeline_model/\n\nStop the EC2 instance when finished\n\nWhen you are done experimenting, stop or terminate the instance to avoid unnecessary cost.",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Fitting and Plotting a Random Forest Model with PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "08-pyspark_ec2_random_forest.html#appendix-full-random-forest-on-ec2-pyspark-script",
+    "href": "08-pyspark_ec2_random_forest.html#appendix-full-random-forest-on-ec2-pyspark-script",
+    "title": "Fitting and Plotting a Random Forest Model with PySpark on EC2",
+    "section": "(Appendix) Full Random Forest on EC2 PySpark script",
+    "text": "(Appendix) Full Random Forest on EC2 PySpark script\nCreate the script:\ncat &gt; rf_housing_demo.py &lt;&lt;'PY'\nfrom pathlib import Path\n\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\nfrom pyspark.sql import SparkSession\nfrom pyspark.sql.functions import col, rand, round as spark_round\n\nfrom pyspark.ml import Pipeline\nfrom pyspark.ml.feature import VectorAssembler\nfrom pyspark.ml.regression import RandomForestRegressor, RandomForestRegressionModel\nfrom pyspark.ml.evaluation import RegressionEvaluator\n\n\n# ---------------------------------------------------------------------\n## Start Spark\n# ---------------------------------------------------------------------\n\nspark = (\n    SparkSession.builder\n    .appName(\"ec2-random-forest-regression-demo\")\n    .master(\"local[*]\")\n    .config(\"spark.sql.shuffle.partitions\", \"8\")\n    .getOrCreate()\n)\n\nspark.sparkContext.setLogLevel(\"WARN\")\n\noutput_dir = Path(\"outputs\")\noutput_dir.mkdir(exist_ok=True)\n\n\n# ---------------------------------------------------------------------\n## Build a synthetic housing dataset\n# ---------------------------------------------------------------------\n#\n# Imagine each row is a home listing.\n#\n# Features:\n# - bedrooms\n# - bathrooms\n# - sqft\n# - age_years\n# - distance_to_city_miles\n#\n# Label:\n# - price\n#\n# The price formula below is intentionally simple, but includes noise.\n# A random forest should learn the broad pattern without us telling it\n# the formula.\n\nn = 5000\n\ndf = (\n    spark.range(0, n)\n    .withColumn(\"bedrooms\", (1 + (rand(seed=1) * 5)).cast(\"int\"))\n    .withColumn(\"bathrooms\", spark_round(1 + rand(seed=2) * 3, 1))\n    .withColumn(\"sqft\", spark_round(650 + rand(seed=3) * 3350, 0))\n    .withColumn(\"age_years\", spark_round(rand(seed=4) * 80, 0))\n    .withColumn(\"distance_to_city_miles\", spark_round(rand(seed=5) * 40, 1))\n    .withColumn(\"noise\", spark_round((rand(seed=6) - 0.5) * 50000, 2))\n    .withColumn(\n        \"price\",\n        spark_round(\n            50000\n            + col(\"bedrooms\") * 18000\n            + col(\"bathrooms\") * 22000\n            + col(\"sqft\") * 210\n            - col(\"age_years\") * 1200\n            - col(\"distance_to_city_miles\") * 3500\n            + col(\"noise\"),\n            2,\n        ),\n    )\n    .drop(\"noise\")\n)\n\nprint(\"\\nSample data:\")\ndf.show(5, truncate=False)\n\nprint(\"\\nSchema:\")\ndf.printSchema()\n\n\n# ---------------------------------------------------------------------\n## Define features and label\n# ---------------------------------------------------------------------\n\nfeature_cols = [\n    \"bedrooms\",\n    \"bathrooms\",\n    \"sqft\",\n    \"age_years\",\n    \"distance_to_city_miles\",\n]\n\nlabel_col = \"price\"\n\nassembler = VectorAssembler(\n    inputCols=feature_cols,\n    outputCol=\"features\",\n    handleInvalid=\"skip\",\n)\n\n\n# ---------------------------------------------------------------------\n## Split into train and test data\n# ---------------------------------------------------------------------\n\ntrain_df, test_df = df.randomSplit([0.8, 0.2], seed=42)\n\nprint(f\"\\nTraining rows: {train_df.count()}\")\nprint(f\"Test rows:     {test_df.count()}\")\n\n\n# ---------------------------------------------------------------------\n## Fit a random forest regressor\n# ---------------------------------------------------------------------\n#\n# A few important parameters:\n#\n# - numTrees: number of decision trees in the forest\n# - maxDepth: maximum depth of each tree\n# - seed: makes the demo repeatable\n# - featuresCol: vector column created by VectorAssembler\n# - labelCol: target column we want to predict\n\nrf = RandomForestRegressor(\n    featuresCol=\"features\",\n    labelCol=label_col,\n    predictionCol=\"prediction\",\n    numTrees=80,\n    maxDepth=8,\n    seed=42,\n)\n\npipeline = Pipeline(stages=[assembler, rf])\n\nmodel = pipeline.fit(train_df)\n\nprint(\"\\nModel fitted.\")\n\n\n# ---------------------------------------------------------------------\n## Score the test set\n# ---------------------------------------------------------------------\n\npredictions = model.transform(test_df)\n\nprint(\"\\nPredictions:\")\npredictions.select(\n    \"bedrooms\",\n    \"bathrooms\",\n    \"sqft\",\n    \"age_years\",\n    \"distance_to_city_miles\",\n    \"price\",\n    \"prediction\",\n).show(10, truncate=False)\n\n\n# ---------------------------------------------------------------------\n## Evaluate model quality\n# ---------------------------------------------------------------------\n\nrmse_evaluator = RegressionEvaluator(\n    labelCol=label_col,\n    predictionCol=\"prediction\",\n    metricName=\"rmse\",\n)\n\nr2_evaluator = RegressionEvaluator(\n    labelCol=label_col,\n    predictionCol=\"prediction\",\n    metricName=\"r2\",\n)\n\nmae_evaluator = RegressionEvaluator(\n    labelCol=label_col,\n    predictionCol=\"prediction\",\n    metricName=\"mae\",\n)\n\nrmse = rmse_evaluator.evaluate(predictions)\nr2 = r2_evaluator.evaluate(predictions)\nmae = mae_evaluator.evaluate(predictions)\n\nprint(\"\\nEvaluation metrics:\")\nprint(f\"RMSE: ${rmse:,.2f}\")\nprint(f\"MAE:  ${mae:,.2f}\")\nprint(f\"R^2:  {r2:.4f}\")\n\n\n# ---------------------------------------------------------------------\n## Convert a small sample to pandas for plotting\n# ---------------------------------------------------------------------\n#\n# Spark is good for distributed processing.\n# Matplotlib is local.\n#\n# So the usual pattern is:\n#\n## Use Spark to train and score the large dataset.\n## Pull down only the small result needed for plotting.\n\nplot_pdf = (\n    predictions\n    .select(\"price\", \"prediction\")\n    .sample(fraction=0.25, seed=7)\n    .limit(1000)\n    .toPandas()\n)\n\n\n# ---------------------------------------------------------------------\n## Plot actual vs. predicted prices\n# ---------------------------------------------------------------------\n\nplt.figure(figsize=(8, 6))\nplt.scatter(plot_pdf[\"price\"], plot_pdf[\"prediction\"], alpha=0.35)\n\nmin_val = min(plot_pdf[\"price\"].min(), plot_pdf[\"prediction\"].min())\nmax_val = max(plot_pdf[\"price\"].max(), plot_pdf[\"prediction\"].max())\n\nplt.plot([min_val, max_val], [min_val, max_val], linestyle=\"--\")\nplt.xlabel(\"Actual price\")\nplt.ylabel(\"Predicted price\")\nplt.title(\"Random Forest: Actual vs. Predicted Housing Prices\")\nplt.tight_layout()\n\nactual_vs_predicted_path = output_dir / \"actual_vs_predicted.png\"\nplt.savefig(actual_vs_predicted_path, dpi=150)\nplt.close()\n\nprint(f\"\\nSaved plot: {actual_vs_predicted_path}\")\n\n\n# ---------------------------------------------------------------------\n## Plot feature importances\n# ---------------------------------------------------------------------\n\nrf_model = model.stages[-1]\n\nimportances = rf_model.featureImportances.toArray()\n\nimportance_pdf = (\n    pd.DataFrame(\n        {\n            \"feature\": feature_cols,\n            \"importance\": importances,\n        }\n    )\n    .sort_values(\"importance\", ascending=True)\n)\n\nplt.figure(figsize=(8, 5))\nplt.barh(importance_pdf[\"feature\"], importance_pdf[\"importance\"])\nplt.xlabel(\"Importance\")\nplt.title(\"Random Forest Feature Importances\")\nplt.tight_layout()\n\nfeature_importance_path = output_dir / \"feature_importances.png\"\nplt.savefig(feature_importance_path, dpi=150)\nplt.close()\n\nprint(f\"Saved plot: {feature_importance_path}\")\n\n\n# ---------------------------------------------------------------------\n## Save the model\n# ---------------------------------------------------------------------\n\nmodel_path = output_dir / \"rf_housing_pipeline_model\"\n\n# Overwrite if re-running the script.\nmodel.write().overwrite().save(str(model_path))\n\nprint(f\"Saved model: {model_path}\")\n\n\n# ---------------------------------------------------------------------\n## Load the model back\n# ---------------------------------------------------------------------\n\nloaded_model = model.load(str(model_path))\nloaded_predictions = loaded_model.transform(test_df.limit(5))\n\nprint(\"\\nPredictions from loaded model:\")\nloaded_predictions.select(\"price\", \"prediction\").show(truncate=False)\n\n\n# ---------------------------------------------------------------------\n## Stop Spark\n# ---------------------------------------------------------------------\n\nspark.stop()\nPY\nRun it:\npython rf_housing_demo.py\nYou should end up with this folder:\noutputs/\n├── actual_vs_predicted.png\n├── feature_importances.png\n└── rf_housing_pipeline_model/",
+    "crumbs": [
+      "Parallelization of computing",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Fitting and Plotting a Random Forest Model with PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "09-mwaa-airflow.html",
+    "href": "09-mwaa-airflow.html",
+    "title": "MWAA and Airflow Workflow Orchestration",
+    "section": "",
+    "text": "Why Workflow Orchestration Exists\nModern data systems are rarely one-step scripts.\nThey usually require:\nWithout orchestration, workflows become fragile collections of scripts, jobs, and manual checks.",
+    "crumbs": [
+      "Managed workflow with Airflow",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MWAA and Airflow Workflow Orchestration</span>"
+    ]
+  },
+  {
+    "objectID": "09-mwaa-airflow.html#why-workflow-orchestration-exists",
+    "href": "09-mwaa-airflow.html#why-workflow-orchestration-exists",
+    "title": "MWAA and Airflow Workflow Orchestration",
+    "section": "",
+    "text": "Ingesting data from multiple systems\nValidating data quality\nTransforming raw data into useful models\nLoading outputs into warehouses or applications\nNotifying downstream consumers\nRetrying failures safely\n\n\n\n\nExample: A Simple Data Pipeline\n\n\n\n\n\ngraph LR\n  A[\"Download data\"] --&gt; B[\"Validate schema\"]\n  B --&gt; C[Transform]\n  C --&gt; D[Load table]\n  D --&gt; E[Send alert]\n\n\n\n\n\n\nThis looks simple, but production adds complexity:\n\nWhat if validation fails?\nWhat if the warehouse is temporarily unavailable?\nWhat if yesterday’s data needs to be reprocessed?\nWhat if two tasks can run in parallel?\n\n\n\n\nOrchestration Solves Coordination Problems\nWorkflow orchestration coordinates:\n\nTask order\nScheduling\nDependencies\nRetries\nFailure handling\nParallelism\nState tracking\nObservability\n\nThe orchestrator answers:\n\nWhat should run next, when, and under what conditions?\n\n\n\n\nOrchestration vs Execution\n\n\n\n\n\n\n\n\nConcept\nMain responsibility\nExample\n\n\n\n\nOrchestration\nCoordinates workflow logic\nAirflow decides task order\n\n\nExecution\nPerforms actual work\nSpark transforms a dataset\n\n\n\nAirflow is primarily an orchestrator.\nIt can run Python code, but it is not designed to be a distributed compute engine for large-scale data processing.\n\n\n\nMental Model\n\n\n\n\n\nflowchart LR\n  A[Airflow DAG] --&gt; B[Submit Spark Job]\n  A --&gt; C[Trigger Glue Job]\n  A --&gt; D[Call API]\n  A --&gt; E[Run Python Task]\n\n  B --&gt; F[Compute Happens Elsewhere]\n  C --&gt; F\n  D --&gt; F\n  E --&gt; G[Compute Happens on Worker]\n\n\n\n\n\n\nAirflow coordinates the workflow; the compute may happen on workers or in external systems.",
+    "crumbs": [
+      "Managed workflow with Airflow",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MWAA and Airflow Workflow Orchestration</span>"
+    ]
+  },
+  {
+    "objectID": "09-mwaa-airflow.html#what-is-apache-airflow",
+    "href": "09-mwaa-airflow.html#what-is-apache-airflow",
+    "title": "MWAA and Airflow Workflow Orchestration",
+    "section": "What Is Apache Airflow?",
+    "text": "What Is Apache Airflow?\nApache Airflow is an open-source platform to:\n\nAuthor workflows as Python code\nSchedule workflows\nManage dependencies\nRetry failed tasks\nMonitor task state\nBackfill historical runs\n\nAirflow models workflows as DAGs.\nA DAG is the central abstraction.\n\n\nDAG Theory\nA DAG is a Directed Acyclic Graph.\n\n\n\nTerm\nMeaning in Airflow\n\n\n\n\nDirected\nEdges have direction; order matters\n\n\nAcyclic\nNo circular dependencies\n\n\nGraph\nTasks connected by dependencies\n\n\nNode\nA task\n\n\nEdge\nA dependency\n\n\n\n\n\n\nValid DAG\n\n\n\n\n\nflowchart LR\n  Extract --&gt; Transform --&gt; Load\n\n\n\n\n\n\nThis is valid because dependencies move in one direction and never loop back.\n\n\n\nInvalid DAG: Cycle\n\n\n\n\n\nflowchart LR\n  A[Task A] --&gt; B[Task B]\n  B --&gt; C[Task C]\n  C --&gt; A\n\n\n\n\n\n\nThis is invalid because Task A depends indirectly on itself.\nAirflow cannot create a stable execution order from this graph.\n\n\n\nWhy Acyclic Matters\nAcyclic graphs allow Airflow to determine:\n\nWhich tasks have no unmet dependencies\nWhich tasks can run now\nWhich tasks must wait\nWhich tasks are blocked by failures\nWhen the whole DAG run is complete\n\nCycles make this impossible.\n\n\n\nParallelism from DAG Structure\n\n\n\n\n\nflowchart TD\n  A[Extract source data] --&gt; B[Transform sales]\n  A --&gt; C[Transform inventory]\n  A --&gt; D[Transform customers]\n  B --&gt; E[Load warehouse]\n  C --&gt; E\n  D --&gt; E\n\n\n\n\n\n\nTasks B, C, and D can run in parallel after A succeeds.\nParallelism is determined by both:\n\nDAG structure\nRuntime concurrency limits\n\n\n\n\nDAGs Enable Fault Isolation\nIf one task fails, Airflow can isolate the failure.\n\n\n\n\n\nflowchart LR\n  A[Extract] --&gt; B[Transform]\n  B --&gt; C[Load]\n  B --&gt; D[Quality Report]\n\n\n\n\n\n\nIf D fails, Airflow does not necessarily need to rerun A, B, and C.\nThis is one reason task granularity matters.",
+    "crumbs": [
+      "Managed workflow with Airflow",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MWAA and Airflow Workflow Orchestration</span>"
+    ]
+  },
+  {
+    "objectID": "09-mwaa-airflow.html#airflow-core-concepts",
+    "href": "09-mwaa-airflow.html#airflow-core-concepts",
+    "title": "MWAA and Airflow Workflow Orchestration",
+    "section": "Airflow Core Concepts",
+    "text": "Airflow Core Concepts\n\n\n\nConcept\nMeaning\n\n\n\n\nDAG\nWorkflow definition\n\n\nDAG Run\nOne execution of a DAG\n\n\nTask\nUnit of work in a DAG\n\n\nTask Instance\nOne execution of a task in a specific DAG Run\n\n\nOperator\nTemplate for a task action\n\n\nXCom\nSmall cross-task message\n\n\nScheduler\nDecides what should run\n\n\nWorker\nExecutes tasks\n\n\n\n\n\nDAG vs DAG Run\nA DAG is the blueprint.\nA DAG Run is a specific execution of that blueprint.\n\n\n\n\n\nflowchart TD\n  D[DAG: daily_sales_pipeline] --&gt; R1[DAG Run: 2026-05-10]\n  D --&gt; R2[DAG Run: 2026-05-11]\n  D --&gt; R3[DAG Run: 2026-05-12]\n\n\n\n\n\n\n\n\n\nTask vs Task Instance\nA task is defined once in code.\nA task instance is created each time the task runs.\n\n\n\n\n\nflowchart TD\n  T[Task: validate_sales] --&gt; I1[Task Instance for 2026-05-10]\n  T --&gt; I2[Task Instance for 2026-05-11]\n  T --&gt; I3[Task Instance for 2026-05-12]\n\n\n\n\n\n\nThis distinction is essential for debugging Airflow state.\n\n\n\nAirflow Architecture\n\n\n\n\n\nflowchart LR\n  DAGs[DAG Files] --&gt; Scheduler[Scheduler]\n  Scheduler --&gt; Metadata[(Metadata DB)]\n  Scheduler --&gt; Queue[Executor Queue]\n  Queue --&gt; Workers[Workers]\n  Workers --&gt; Metadata\n  Webserver[Webserver / UI] --&gt; Metadata\n\n\n\n\n\n\nThe scheduler decides what should run.\nWorkers execute tasks.\nThe metadata database stores the truth about workflow state.\n\n\n\nComponent: Scheduler\nThe scheduler is the orchestration brain.\nResponsibilities:\n\nParse DAG files\nCreate DAG Runs\nEvaluate dependencies\nQueue runnable tasks\nRespect concurrency limits\nUpdate scheduling state\n\nImportant mental model:\n\nThe scheduler continuously evaluates whether task instances are ready to run.\n\n\n\n\nComponent: Metadata Database\nThe metadata database stores:\n\nDAG definitions and serialized metadata\nDAG Run state\nTask Instance state\nRetry history\nXCom values\nConnection and variable metadata\n\nAirflow is a state-driven system.\nThe metadata database is the source of truth.\n\n\n\nComponent: Workers\nWorkers execute tasks.\nTasks may:\n\nRun Python functions\nExecute shell commands\nCall APIs\nSubmit jobs to AWS Glue, EMR, ECS, Lambda, or Spark\nRead/write to databases or object storage\n\nWorkers report state and logs back to Airflow infrastructure.\n\n\n\nComponent: Webserver / UI\nThe Airflow UI helps users inspect:\n\nDAG list\nGraph view\nGrid view\nLogs\nImport errors\nXComs\nRetries\nTask duration\nConnections, variables, and pools\n\nThe UI mostly reads state from the metadata database.\n\n\n\nExecutor Concept\nThe executor determines how Airflow launches tasks.\n\n\n\nExecutor\nCommon use\n\n\n\n\nSequentialExecutor\nLocal single-task testing\n\n\nLocalExecutor\nParallel local execution\n\n\nCeleryExecutor\nDistributed workers\n\n\nKubernetesExecutor\nTask-per-pod execution\n\n\n\nMWAA abstracts much of this infrastructure away from the user.",
+    "crumbs": [
+      "Managed workflow with Airflow",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MWAA and Airflow Workflow Orchestration</span>"
+    ]
+  },
+  {
+    "objectID": "09-mwaa-airflow.html#why-mwaa",
+    "href": "09-mwaa-airflow.html#why-mwaa",
+    "title": "MWAA and Airflow Workflow Orchestration",
+    "section": "Why MWAA?",
+    "text": "Why MWAA?\nAmazon Managed Workflows for Apache Airflow is AWS’s managed Airflow service.\nMWAA reduces the need to operate:\n\nScheduler infrastructure\nWebserver infrastructure\nWorker infrastructure\nMetadata database\nLogging integration\nScaling infrastructure\nAWS networking integration\n\n\n\nMWAA Architecture\n\n\n\n\n\nflowchart TB\n  S3[S3 Bucket: DAGs / plugins / requirements] --&gt; MWAA[MWAA Environment]\n  MWAA --&gt; CW[CloudWatch Logs]\n  MWAA --&gt; RDS[(Managed Metadata DB)]\n  IAM[IAM Execution Role] --- MWAA\n  VPC[Customer VPC] --- MWAA\n  MWAA --&gt; AWS[AWS Services]\n\n\n\n\n\n\nMWAA connects Airflow to AWS-native infrastructure.\n\n\n\nWhat MWAA Manages\nMWAA manages:\n\nAirflow scheduler\nAirflow webserver\nWorker environment\nMetadata database infrastructure\nLogs to CloudWatch\nEnvironment scaling integration\nAirflow environment lifecycle\n\nYou still manage:\n\nDAG code\nDependencies\nIAM permissions\nS3 deployment structure\nVPC connectivity choices\nAirflow configuration choices\n\n\n\n\nMWAA Deployment Model\n\n\n\n\n\nsequenceDiagram\n  participant Dev as Developer\n  participant S3 as S3 Bucket\n  participant MWAA as MWAA Scheduler\n  participant Worker as MWAA Worker\n  participant Logs as CloudWatch\n\n  Dev-&gt;&gt;S3: Upload DAG file\n  MWAA-&gt;&gt;S3: Sync and parse DAGs\n  MWAA-&gt;&gt;Worker: Queue runnable task\n  Worker-&gt;&gt;Logs: Stream task logs\n  Worker-&gt;&gt;MWAA: Report task state\n\n\n\n\n\n\nThe DAG file is deployed to S3, then MWAA parses and schedules it.\n\n\n\nMWAA and S3\nTypical S3 layout:\ns3://your-mwaa-bucket/\n  dags/\n    example_dag.py\n  plugins/\n    custom_plugin.zip\n  requirements.txt\nS3 is the source location for DAGs and environment dependencies.\nCommon issue:\n\nThe DAG is uploaded, but Airflow does not show it because of path, parsing, or dependency errors.\n\n\n\n\nMWAA and IAM\nIAM controls what your Airflow environment can access.\nExamples:\n\nRead/write S3 objects\nStart AWS Glue jobs\nAccess Secrets Manager\nPublish CloudWatch logs\nQuery Redshift or Athena\n\nMany MWAA task failures are not Airflow logic failures.\nThey are permissions failures.\n\n\n\nMWAA and VPC\nVPC configuration controls network reachability.\nAirflow tasks may need access to:\n\nPrivate databases\nInternal APIs\nVPC endpoints\nAWS services\nInternet endpoints\n\nCommon failure:\n\nA task is logically correct but cannot reach the service it needs because of subnet, route table, endpoint, or security group configuration.",
+    "crumbs": [
+      "Managed workflow with Airflow",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MWAA and Airflow Workflow Orchestration</span>"
+    ]
+  },
+  {
+    "objectID": "09-mwaa-airflow.html#airflow-execution-lifecycle",
+    "href": "09-mwaa-airflow.html#airflow-execution-lifecycle",
+    "title": "MWAA and Airflow Workflow Orchestration",
+    "section": "Airflow Execution Lifecycle",
+    "text": "Airflow Execution Lifecycle\n\n\n\n\n\nflowchart TB\n  A[Parse DAG File] --&gt; B[Register DAG]\n  B --&gt; C[Create DAG Run]\n  C --&gt; D[Resolve Dependencies]\n  D --&gt; E[Queue Task Instance]\n  E --&gt; F[Worker Executes Task]\n  F --&gt; G[Persist State]\n  F --&gt; H[Emit Logs]\n\n\n\n\n\n\nUse this lifecycle to debug almost every Airflow issue.\n\n\nDebugging by Lifecycle Stage\n\n\n\n\n\n\n\n\nStage\nCommon symptom\nFirst place to check\n\n\n\n\nParse DAG\nDAG missing\nImport Errors\n\n\nSchedule DAG Run\nNo run appears\nschedule, start_date, pause state\n\n\nQueue task\nTask stuck queued\nworkers, pools, concurrency\n\n\nExecute task\nTask fails\ntask logs\n\n\nAccess AWS service\nAccess denied\nIAM execution role\n\n\nNetwork call\nTimeout\nVPC, route, endpoint, security group\n\n\n\n\nDiscuss with a neighbor:\n\nWhat is different between Airflow and PySpark?\nWhat breaks if a workflow graph contains a cycle?\nWhy does Airflow need a metadata database?\nWhat does MWAA manage, and what does the DAG author still own?\nWhere would you look first if a DAG does not appear in the UI?",
+    "crumbs": [
+      "Managed workflow with Airflow",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MWAA and Airflow Workflow Orchestration</span>"
+    ]
+  },
+  {
+    "objectID": "a0-project-specification.html",
+    "href": "a0-project-specification.html",
+    "title": "Project Specification",
+    "section": "",
+    "text": "Group formation\nThe project group may consist of up to 3 students.",
+    "crumbs": [
+      "Project",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
+    ]
+  },
+  {
+    "objectID": "a0-project-specification.html#project-grading",
+    "href": "a0-project-specification.html#project-grading",
+    "title": "Project Specification",
+    "section": "Project grading",
+    "text": "Project grading\nThe project is worth 35% of the class grade, with the following details:\n\n\n\n\nDue date\nProportion (%)\n\n\nProposal\nMay 5\n10\n\n\nCheck-up\nMay 19\n10\n\n\nPresentation\nJune 2 and 4\n25\n\n\nReport\nJune 10\n45\n\n\nPeer experience summary\nJune 10\n10\n\n\nTotal\n\n100",
+    "crumbs": [
+      "Project",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
+    ]
+  },
+  {
+    "objectID": "a0-project-specification.html#project-proposal",
+    "href": "a0-project-specification.html#project-proposal",
+    "title": "Project Specification",
+    "section": "Project proposal",
+    "text": "Project proposal\nDevelop a proposal that includes your topic, the selection of relevant dataset(s), and a plan to answer questions of interests. Keep in mind the timeline of the quarter and set achievable goals.\n\nGuidelines for proposal\nReview the guidelines below carefully.\nOverarching theme: Design a data process that involves ingesting data, preprocessing, analysis, and service. Consider a process that can scale and can be reused given data update.\nThe proposal should follow this format (5 points):\n\nInclude full names of all teammates.\nBetween 1 to 2 pages, single-spaced, 11-point type, 1-inch margins.\nDo not include graphics.\nDecide on the name of your group. A pdf named [GroupName]_proposal.pdf should be submitted.\n\nThe proposal should cover the following components (but in a narrative format, not Q/A):\n\nIntroduction (12 points): Introduce your project and motivation, e.g.,\n\nWhat is the main issue you are interested in?\nWhy is this topic important?\nIn what way does this project provide a solution?\n\nData source(s) (10 points): Describe the data sources you have chosen, e.g.,\n\nHow can the data be retrieved?\nHow are the data related to the topic?\nState the amount of data you will be working with.\n\nGoal definitions (18 points): State two to three goals you are interested in achieving with the selected data sources.\nAs you tackle the goals, you should use at least one of the data engineering techniques covered in class:\n\nMissing data imputation\nDatabase system (relational or non-relational)\nDistributed computing framework (e.g., pyspark)\nFor each goal, answer the following:\nHow do you intend to achieve your goal?\nHow do you intend to use the above techniques?\nWhat can you answer (and not answer) with the proposed datasets?\n\nReference (5 points): Provide valid references for your data source(s). (Reference does not count toward the page limit.)\n\nFor example, using APA guidelines, the MIMIC-III database can be cited as &gt; Johnson, A., Pollard, T., & Mark, R. (2016). MIMIC-III Clinical Database (version 1.4). PhysioNet. https://doi.org/10.13026/C2XW26.\nor the original article &gt; Johnson, A. E., Pollard, T. J., Shen, L., Lehman, L. W. H., Feng, M., Ghassemi, M., … & Mark, R. G. (2016). MIMIC-III, a freely accessible critical care database. Scientific data, 3(1), 1-9.",
+    "crumbs": [
+      "Project",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
+    ]
+  },
+  {
+    "objectID": "a0-project-specification.html#potential-data-sources",
+    "href": "a0-project-specification.html#potential-data-sources",
+    "title": "Project Specification",
+    "section": "Potential data sources",
+    "text": "Potential data sources\nBelow are some possible avenues for finding data sources:\n\nGoogle dataset search\nAwesome public datasets\nBuzzFeed news repository\nRecommendation systems reference\nOpen data challenge",
+    "crumbs": [
+      "Project",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
+    ]
+  },
+  {
+    "objectID": "a0-project-specification.html#example-project-topics",
+    "href": "a0-project-specification.html#example-project-topics",
+    "title": "Project Specification",
+    "section": "Example project topics",
+    "text": "Example project topics\n\nCTA Bus delay analysis\nWater quality monitoring across US\nTrend analysis of song / artist popularity\nElectric grid and price forecasting",
+    "crumbs": [
+      "Project",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
+    ]
+  },
+  {
+    "objectID": "a0-project-specification.html#project-check-up",
+    "href": "a0-project-specification.html#project-check-up",
+    "title": "Project Specification",
+    "section": "Project check-up",
+    "text": "Project check-up\nTwo elements are required for the project check-up:\n\nGroup, submitted on Canvas as a pdf. (30 points)\n\nFor each of your set goals in the proposal, provide a brief summary of progress. If you have not worked on a particular goal yet, feel free to say that you have not made progress there.\nInclude any questions or roadblocks you are encountering and require assistance.\nIf you find it helpful to set up a time to meet with Prof. Chan, indicate so.\n\nIndividual. (20 points)\n\nComplete the following Google form: DE300 Project check-up Google Form, Link to come\n\n\nNote: While the check-up form would not necessarily change your individual project grades, adjustments will be considered combining the feedback from the check-up and the peer experience summary.",
+    "crumbs": [
+      "Project",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
+    ]
+  },
+  {
+    "objectID": "a0-project-specification.html#presentation",
+    "href": "a0-project-specification.html#presentation",
+    "title": "Project Specification",
+    "section": "Presentation",
+    "text": "Presentation\nA presentation will be due on the last day of class. The presentation should follow these guidelines:\n\nUp to fifteen minutes.\nTips: Distribute your content and do a quick dry run in advance. This will smoothen out your presentation.\n\nThe presentation should include but not limited to the following:\n\nMotivation of your project.\nIntroduction to your dataset(s) and its relevance.\nGoals, method of analyses, and findings.\nSummary.\n\nThe presentation is evaluated via the following criteria (20 each):\n\nOrganization of content\nAppropriate use of language\nDelivery\nUse of supporting materials (visuals, statistics, etc.)\nClarity of central idea\n\nNote that while the evaluation is primarily for the entire group, evaluation may differ among students if significant discrepancy is observed. You may refer to the sample reference rubric for details.",
+    "crumbs": [
+      "Project",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
+    ]
+  },
+  {
+    "objectID": "a0-project-specification.html#report",
+    "href": "a0-project-specification.html#report",
+    "title": "Project Specification",
+    "section": "Report",
+    "text": "Report\nPrepare a project report to clearly outline your project choice and its importance, your approach to achieving the set of goals, your results, and a summary.\nThe report should follow these guidlines:\n\nInclude full names of all teammates.\n\nThis is a reminder that it is an academic violation to include your name on any work you have not contributed or performed.\n\nUp to 15 pages (not including Appendix), single-spaced, 11-point type, 1-inch margins.\n\nSubmission: A single pdf named [Groupname]_report.pdf should be submitted.\nInclude all of your code in a zipped folder in your submission. Make sure your codes and code organization are understandable.\n\nThe report should include the following components in a narrative format:\n\nIntroduction (5 points): Introduce your project and motivation, e.g.,\n\nWhat is the main issue you are interested in?\nWhy is this topic important?\nIn what way does this project provide a solution?\n\nData source(s) (5 points): Describe the data sources you have chosen, e.g.,\n\nHow can the data be retrieved?\nHow are the data related to the topic?\nState the amount of data you will be working with.\n\nGoals and approaches (60 points): State the specific goals you are attempting to achieve with the selected data sources. For each goal, provide the approach in achieving said goal, its implementation, and your results. Use any graph, table, or other visualization to support your narrative.\nSummary (10 points): Provide a brief summary of your project, and describe any loose ends or future opportunities.\nGenerative AI statement and reference (10 points):\n\nGenerative AI statement: If you have, in any way, employed the use of generative AI tools, report all usage according to the syllabus. This statement does not count toward the page limit.\nReference: Provide valid references for your data source(s). (Does not count toward the page limit.)\n\nFor example, using APA guidelines, the MIMIC-III database can be cited as &gt; Johnson, A., Pollard, T., & Mark, R. (2016). MIMIC-III Clinical Database (version 1.4). PhysioNet. https://doi.org/10.13026/C2XW26.\nor the original article &gt; Johnson, A. E., Pollard, T. J., Shen, L., Lehman, L. W. H., Feng, M., Ghassemi, M., … & Mark, R. G. (2016). MIMIC-III, a freely accessible critical care database. Scientific data, 3(1), 1-9.\n\n\nCode legibility and organization (10 points): Give a brief summary or provide a README to use and evaluate your code. (Does not count toward the page limit.)",
+    "crumbs": [
+      "Project",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Specification</span>"
+    ]
+  },
+  {
+    "objectID": "a1-presentation-rubric.html",
+    "href": "a1-presentation-rubric.html",
+    "title": "Presentation reference rubric",
+    "section": "",
+    "text": "Thorough Understanding\nGood Understanding\nBasic Understanding\nPoor/No Understanding\n\n\n\n\nOrganization\nOrganizational pattern (specific introduction and conclusion, sequenced material within the body, and transitions) is clearly and consistently observable and is skillful and makes the content of the presentation cohesive.\nOrganizational pattern (specific introduction and conclusion, sequenced material within the body, and transitions) is clearly and consistently observable within the presentation.\nOrganizational pattern (specific introduction and conclusion, sequenced material within the body, and transitions) is intermittently observable within the presentation.\nOrganizational pattern (specific introduction and conclusion, sequenced material within the body, and transitions) is not observable within the presentation.\n\n\nLanguage\nLanguage choices are memorable, compelling, and enhance the effectiveness of the presentation. Language in presentation is appropriate to audience.\nLanguage choices are thoughtful and generally support the effectiveness of the presentation. Language in presentation is appropriate to audience.\nLanguage choices are mundane and commonplace and partially support the effectiveness of the presentation. Language in presentation is appropriate to audience.\nLanguage choices are unclear and minimally support the effectiveness of the presentation. Language in presentation is not appropriate to audience.\n\n\nDelivery\nDelivery techniques (posture, gesture, eye contact, and vocal expressiveness) make the presentation compelling, and speaker appears polished and confident.\nDelivery techniques (posture, gesture, eye contact, and vocal expressiveness) make the presentation interesting, and speaker appears comfortable.\nDelivery techniques (posture, gesture, eye contact, and vocal expressiveness) make the presentation understandable, and speaker appears tentative.\nDelivery techniques (posture, gesture, eye contact, and vocal expressiveness) detract from the understandability of the presentation, and speaker appears uncomfortable.\n\n\nSupporting Material\nA variety of types of supporting materials (explanations, illustrations, statistics) make appropriate reference to information or analysis that significantly supports the presentation or establishes the presenter’s credibility/authority on the topic.\nSupporting materials (explanations, illustrations, statistics) make appropriate reference to information or analysis that generally supports the presentation or establishes the presenter’s credibility/authority on the topic.\nSupporting materials (explanations, illustrations, statistics) make appropriate reference to information or analysis that partially supports the presentation or establishes the presenter’s credibility/authority on the topic.\nInsufficient supporting materials (explanations, illustrations, statistics) make reference to information or analysis that minimally supports the presentation or establishes the presenter’s credibility/authority on the topic.\n\n\nCentral Message\nCentral message is precisely stated and strongly supported.\nCentral message is clear and consistent with the supporting material.\nCentral message is basically understandable but is not memorable.\nCentral message can be deduced, but is not explicitly stated in the presentation.",
+    "crumbs": [
+      "Project",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Presentation reference rubric</span>"
+    ]
+  },
+  {
+    "objectID": "0a-jupyter-ec2.html",
+    "href": "0a-jupyter-ec2.html",
+    "title": "Setting up EC2 instance for jupyter notebook",
+    "section": "",
+    "text": "Reconnect to EC2 Jupyter notebook\nImportant: Whenever you are not running anything (for more than 15 minutes), you should stop the EC2 instance on the AWS Instances page.",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Setting up EC2 instance for jupyter notebook</span>"
+    ]
+  },
+  {
+    "objectID": "0a-jupyter-ec2.html#reconnect-to-ec2-jupyter-notebook",
+    "href": "0a-jupyter-ec2.html#reconnect-to-ec2-jupyter-notebook",
+    "title": "Setting up EC2 instance for jupyter notebook",
+    "section": "",
+    "text": "Start your EC2 instance from https://nu-sso.awsapps.com/start/. (The one you have a private key for.)\nOnce the EC2 instance is running, connect to the instance via SSH\n\nUnder the SSH client tab, you will see the instructions to connect to the EC2 instance via SSH on your console.\n\nIf your EC2 console shows (base) before your cursor, it indicates that conda environment is already running.\n\nIf not, you have to run eval \"$($CONDA_PATH/bin/conda shell.bash hook)\" to activate the conda environment.\n\nSSH into Jupyter notebook on EC2 (as in step 7 above.)",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Setting up EC2 instance for jupyter notebook</span>"
+    ]
+  },
+  {
+    "objectID": "0b-access-keyspaces.html",
+    "href": "0b-access-keyspaces.html",
+    "title": "Setting up access to Keyspace in Jupyter notebook",
+    "section": "",
+    "text": "Prerequisites\nTwo files are required for accessing Keyspace in Jupyter notebook:\nMore details about the setup can be found in Using a Cassandra Python client.",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
+    ]
+  },
+  {
+    "objectID": "0b-access-keyspaces.html#prerequisites",
+    "href": "0b-access-keyspaces.html#prerequisites",
+    "title": "Setting up access to Keyspace in Jupyter notebook",
+    "section": "",
+    "text": "Starfield digital certificate\nAWS credentials for Keyspace\n\n\n\nStarfield digital certificate\nThe digital certificate can be downloaded by:\n\n!curl -O https://www.amazontrust.com/repository/AmazonRootCA1.pem\n!curl -O https://www.amazontrust.com/repository/AmazonRootCA2.pem\n!curl -O https://www.amazontrust.com/repository/AmazonRootCA3.pem\n!curl -O https://www.amazontrust.com/repository/AmazonRootCA4.pem\n!curl -O https://certs.secureserver.net/repository/sf-class2-root.crt\n\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100  1188  100  1188    0     0  18569      0 --:--:-- --:--:-- --:--:-- 19800\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100  1883  100  1883    0     0  59867      0 --:--:-- --:--:-- --:--:-- 69740\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100   656  100   656    0     0  14694      0 --:--:-- --:--:-- --:--:-- 16000\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100   737  100   737    0     0  13336      0 --:--:-- --:--:-- --:--:-- 14450\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100  1468  100  1468    0     0   5144      0 --:--:-- --:--:-- --:--:--  5187\n\n\n\n# combine key files\n!type AmazonRootCA1.pem AmazonRootCA2.pem AmazonRootCA3.pem AmazonRootCA4.pem sf-class2-root.crt &gt; keyspaces-bundle.pem\n\n\nAmazonRootCA1.pem\n\n\n\nAmazonRootCA2.pem\n\n\n\nAmazonRootCA3.pem\n\n\n\nAmazonRootCA4.pem\n\n\n\nsf-class2-root.crt\n\n\n\n\n\n\nAWS credentials\nThe AWS credentials file can be downloaded via Canvas. Place this credentials file under .aws/ folder on your local machine, or your EC2 instance, so that AWS knows where to look for the credentials.\nMAJOR NOTE: Do not store this credentials anywhere that is publicly accessible, github, public S3 bucket, etc. That is the primary reason why this file is only available on Canvas.",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
+    ]
+  },
+  {
+    "objectID": "0b-access-keyspaces.html#sample-code-for-connection",
+    "href": "0b-access-keyspaces.html#sample-code-for-connection",
+    "title": "Setting up access to Keyspace in Jupyter notebook",
+    "section": "Sample code for connection",
+    "text": "Sample code for connection\n\nInstall cassandra-sigv4 via the following command:\n\n\n!pip install cassandra-sigv4\n\n\nSet up a boto3 session and a Cassandra cluster (the Python way of interacting with AWS).\n\n\nfrom cassandra.cluster import Cluster\nfrom ssl import SSLContext, PROTOCOL_TLSv1_2 , CERT_REQUIRED\nimport boto3\nfrom cassandra_sigv4.auth import SigV4AuthProvider\n\nssl_context = SSLContext(PROTOCOL_TLSv1_2)\nssl_context.load_verify_locations('keyspaces-bundle.pem')\nssl_context.verify_mode = CERT_REQUIRED\n\n&lt;positron-console-cell-5&gt;:6: DeprecationWarning: ssl.PROTOCOL_TLSv1_2 is deprecated\n\n\n\nimport pandas as pd\naccess_key = pd.read_csv('../admin/de300-keyspaces_accessKeys.csv')\n\n\n# use this if you want to use Boto to set the session parameters.\nboto_session = boto3.Session(aws_access_key_id=\"AKIAYAAO5HRMC6K3K34T\",\n                             aws_secret_access_key=access_key['Secret access key'].values[0],\n                            #  aws_session_token=\"AQoDYXdzEJr...&lt;remainder of token&gt;\",\n                             region_name=\"us-east-1\")\nauth_provider = SigV4AuthProvider(boto_session)\n\ncluster = Cluster(['cassandra.us-east-1.amazonaws.com'], \n                  ssl_context=ssl_context, \n                  auth_provider=auth_provider,\n                  port=9142)\nsession = cluster.connect()\nr = session.execute('select * from system_schema.keyspaces')\nprint(r.current_rows)\n\n[Row(keyspace_name='system_schema', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='system_schema_mcs', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='system', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='system_multiregion_info', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_acharya', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_chan', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_demo', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_fingerson', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_lacombefarina', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_sokolenko', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_wilks', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')]))]",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
+    ]
+  },
+  {
+    "objectID": "0b-access-keyspaces.html#working-with-cassandra-aws-keyspace",
+    "href": "0b-access-keyspaces.html#working-with-cassandra-aws-keyspace",
+    "title": "Setting up access to Keyspace in Jupyter notebook",
+    "section": "Working with Cassandra (AWS Keyspace)",
+    "text": "Working with Cassandra (AWS Keyspace)\n\n# establishing connection to Keyspace\nsession = cluster.connect()\n\n\n# Insert any CQL queries between .connect() and .shutdown()\n\n# For example, show all keyspaces created\nr = session.execute('''\n    SELECT * FROM system_schema.keyspaces;\n    ''')\nprint(r.current_rows)\n\n[Row(keyspace_name='system_schema', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='system_schema_mcs', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='system', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='system_multiregion_info', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_acharya', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_chan', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_demo', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_fingerson', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_lacombefarina', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_sokolenko', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')])), Row(keyspace_name='de300_wilks', durable_writes=True, replication=OrderedMapSerializedKey([('class', 'org.apache.cassandra.locator.SimpleStrategy'), ('replication_factor', '3')]))]\n\n\n\nq = '''\nSELECT * FROM de300_chan.test_table;\n'''\n\nr = session.execute(q)\n\n\nr.current_rows\n\n[Row(country='US', user_id=1002, gender='F'),\n Row(country='GB', user_id=1001, gender='M')]\n\n\n\nfrom cassandra import ConsistencyLevel\nsession.default_consistency_level = ConsistencyLevel.LOCAL_QUORUM\n\nq = '''\nINSERT INTO de300_chan.test_table (country, gender, user_id) VALUES ('US', 'F', 1002);\n'''\n\nr = session.execute(q)\n\n\n\n# For example, create a keyspace for HW2\nr = session.execute('''\n    CREATE KEYSPACE IF NOT EXISTS de300_demo \n    WITH replication = {'class': 'SingleRegionStrategy'};\n    ''')\nprint(r.current_rows)",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
+    ]
+  },
+  {
+    "objectID": "0b-access-keyspaces.html#shutdown-your-cassandra-connection",
+    "href": "0b-access-keyspaces.html#shutdown-your-cassandra-connection",
+    "title": "Setting up access to Keyspace in Jupyter notebook",
+    "section": "Shutdown your Cassandra connection",
+    "text": "Shutdown your Cassandra connection\n\nsession.shutdown()",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Setting up access to Keyspace in Jupyter notebook</span>"
+    ]
+  },
+  {
+    "objectID": "0d-pyspark_ec2_setup_manual.html",
+    "href": "0d-pyspark_ec2_setup_manual.html",
+    "title": "Setting Up PySpark on EC2",
+    "section": "",
+    "text": "Overview\nThis guide walks through setting up PySpark on a single Amazon EC2 instance. It is intended for development, testing, lightweight analysis, and small jobs.\nFor production-scale Spark workloads, consider Amazon EMR, AWS Glue, Databricks, or another managed Spark platform instead of hand-rolling a standalone EC2 setup.",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "0d-pyspark_ec2_setup_manual.html#java-not-found",
+    "href": "0d-pyspark_ec2_setup_manual.html#java-not-found",
+    "title": "Setting Up PySpark on EC2",
+    "section": "Java not found",
+    "text": "Java not found\nCheck Java:\njava -version\nIf missing:\nsudo dnf install -y java-17-amazon-corretto-devel",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "0d-pyspark_ec2_setup_manual.html#pyspark-cannot-find-python",
+    "href": "0d-pyspark_ec2_setup_manual.html#pyspark-cannot-find-python",
+    "title": "Setting Up PySpark on EC2",
+    "section": "PySpark cannot find Python",
+    "text": "PySpark cannot find Python\nAdd this to ~/.bashrc:\nexport PYSPARK_PYTHON=python3\nReload the shell config:\nsource ~/.bashrc",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "0d-pyspark_ec2_setup_manual.html#ec2-runs-out-of-memory",
+    "href": "0d-pyspark_ec2_setup_manual.html#ec2-runs-out-of-memory",
+    "title": "Setting Up PySpark on EC2",
+    "section": "EC2 runs out of memory",
+    "text": "EC2 runs out of memory\nUse a larger instance or limit Spark driver memory:\nspark = (\n    SparkSession.builder\n    .appName(\"memory-limited-job\")\n    .master(\"local[*]\")\n    .config(\"spark.driver.memory\", \"4g\")\n    .getOrCreate()\n)",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "0d-pyspark_ec2_setup_manual.html#disk-fills-up",
+    "href": "0d-pyspark_ec2_setup_manual.html#disk-fills-up",
+    "title": "Setting Up PySpark on EC2",
+    "section": "Disk fills up",
+    "text": "Disk fills up\nCheck disk usage:\ndf -h\ndu -sh ~/.cache /tmp 2&gt;/dev/null\nClean package cache:\nsudo dnf clean all",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Setting Up PySpark on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "0c-airflow-mwaa-setup.html",
+    "href": "0c-airflow-mwaa-setup.html",
+    "title": "Setting Up MWAA Environment on EC2",
+    "section": "",
+    "text": "Overview\nThis guide walks through setting up MWAA Environment on AWS.",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Setting Up MWAA Environment on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "0c-airflow-mwaa-setup.html#step-1-create-an-s3-bucket-or-use-your-existing-group-s3-bucket",
+    "href": "0c-airflow-mwaa-setup.html#step-1-create-an-s3-bucket-or-use-your-existing-group-s3-bucket",
+    "title": "Setting Up MWAA Environment on EC2",
+    "section": "Step 1: Create an S3 Bucket (or use your existing group S3 bucket)",
+    "text": "Step 1: Create an S3 Bucket (or use your existing group S3 bucket)\nMWAA uses S3 to store your DAGs, plugins, and requirements.\n\nGo to S3 in the AWS Console and create a new bucket (e.g., de300-airflow-lastnames).\nVersioning should be enabled by default on the bucket. Double check, this is required by MWAA.\nCreate the following folder structure inside the bucket:\n\nmy-mwaa-bucket/\n├── dags/\n├── plugins/        # optional\n└── requirements.txt  # optional",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Setting Up MWAA Environment on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "0c-airflow-mwaa-setup.html#step-2-create-the-mwaa-environment",
+    "href": "0c-airflow-mwaa-setup.html#step-2-create-the-mwaa-environment",
+    "title": "Setting Up MWAA Environment on EC2",
+    "section": "Step 2: Create the MWAA Environment",
+    "text": "Step 2: Create the MWAA Environment\n\nNavigate to Amazon MWAA in the AWS Console and click Create environment.\nFill in the configuration:\n\n\n\n\n\n\n\n\nSetting\nValue\n\n\n\n\nName\nde300-airflow-lastnames\n\n\nAirflow version\nLatest stable (e.g., 2.9.x)\n\n\nS3 bucket\ns3://YOUR-BUCKET/\n\n\nDAGs folder\ns3://YOUR-BUCKET/dags/\n\n\nExecution role\narn:.....MWAA..... Use the execution role from your first created MWAA. Search with your “team name”.\n\n\nVPC / Subnets\nChoose the VPC that indicates MWAA\n\n\n\n\nUnder Network access, choose:\n\nPublic — accessible over the internet (simpler for getting started)\n\nChange Maximum number of workers to 4.\nClick Create environment and wait 20–30 minutes for provisioning.",
+    "crumbs": [
+      "Useful guides",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Setting Up MWAA Environment on EC2</span>"
+    ]
+  },
+  {
+    "objectID": "99-references.html",
+    "href": "99-references.html",
+    "title": "References",
+    "section": "",
+    "text": "Dean, Jeffrey, and Sanjay Ghemawat. 2008. “MapReduce: Simplified\nData Processing on Large Clusters.” Communications of the\nACM 51 (1): 107–13.\n\n\nDevlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019.\n“Bert: Pre-Training of Deep Bidirectional Transformers for\nLanguage Understanding.” Proceedings of the 2019 Conference\nof the North American Chapter of the Association for Computational\nLinguistics: Human Language Technologies, Volume 1 (Long and Short\nPapers), 4171–86.\n\n\nHastie, Trevor, Rahul Mazumder, Jason D Lee, and Reza Zadeh. 2015.\n“Matrix Completion and Low-Rank SVD via Fast Alternating Least\nSquares.” The Journal of Machine Learning Research 16\n(1): 3367–402.\n\n\nReis, Joe, and Matt Housley. 2022. Fundamentals of Data\nEngineering. O’Reilly Media, Inc.\n\n\nShen, Yelong, Phillip Wallis, Zeyuan Allen-Zhu,\nYuanzhi Li, Shean Wang, et al. n.d. Lora: Low-Rank Adaptation\nof Large Language Models.\n\n\nTian, Wenhong, and Yong Zhao. 2015. “9 - Energy Efficiency\nScheduling in Hadoop.” In Optimized Cloud Resource Management\nand Scheduling, edited by Wenhong Tian and Yong Zhao. Morgan\nKaufmann. https://doi.org/https://doi.org/10.1016/B978-0-12-801476-9.00009-4.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]
